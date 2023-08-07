@@ -22,20 +22,20 @@
                                 <tbody>
                                 <tr>
                                     <td rowspan="3" width="100px" style="text-align: center;vertical-align: center" > <img width="100px" src="<!-- CONFIG_home_link -->images/logo2.jpg"></td>
-                                    <td width="" style="FONT-SIZE:20pt;font-family: Arial!important;"><b>مركز فيومي للتجارة</b></td>
+                                    <td width="" style="FONT-SIZE:20pt;font-family: Arial!important;"><b>مركز علاء للصيانة</b></td>
                                     <td width="250" style="text-align:center">تاريخ و وقت طباعة الايصال</td>
                                     <td  rowspan="3">إيصال صيانة<h1><b><!-- INFO_id --></b></h1>
                                         <img src="<!-- CONFIG_home_link -->barcodes/40/<!-- INFO_id -->" border="0"></td>
 
                                 </tr>
                                 <tr>
-                                    <td >دمشق - جسر فكتوريا - بناء مجمع فندق أسيا - ط4</td>
+                                    <td >دمشق - البحصة - بناء مجمع فندق أسيا </td>
                                     <td  style="text-align:center" dir="ltr"><!-- VAR_now|Y-m-d h:i:s A --></td>
 
                                 </tr>
                                 <tr>
-                                    <td>هاتف : 2312455 - 2311640 - 0940111360</td>
-                                    <td style="text-align:center"><u>E-mail: sales@barcodegate.com</u></td>
+                                    <td>هاتف : 0998877665 - 544332211</td>
+                                    <td style="text-align:center"><u>E-mail: mts@example.com</u></td>
                                 </tr>
                                 </tbody>
                             </table>
