@@ -98,15 +98,14 @@ function obj_customer_list_options() {
     }
     return $result;
 }
-function obj_wakeel_btn() {
-    if (allowed('is_agent'))
-    {
-        return '<li class="nav-item">
-    <a href="'.config::$get->home_link.'payment_cards/" class="nav-link">
-        <i class="nav-icon fa fa-money-bill-wave"> </i>
-        <p> أكواد التعبئة </p>
-    </a>
-</li>';
+function obj_types_options() {
+    $tmp = db::$db->select('DISTINCT(type) as types','maintenance');
+    $html = '';
+    foreach ($tmp as $item) {
+        if ($item['types'])
+        {
+            $html .= '<option value="'.$item['types'].'">'.$item['types'].'</option>';
+        }
     }
-    return '';
+    return $html;
 }

@@ -18,7 +18,7 @@ class single_log
         //$this->prev_stat =
         return $this;
     }
-    public function insert() : bool
+    public function insert($stat = false) : bool
     {
         if ($this->user_id < 1) return false;
         if ($this->m_id < 1) return false;
@@ -28,6 +28,7 @@ class single_log
             $this->error = db::$db->get_last_error();
             return false;
         }
+        if ($stat) return true;
         return db::$db->update('maintenance',['stat'=>$this->new_stat],'id','=',$this->m_id);
     }
 

@@ -3,32 +3,28 @@
     <tr>
         <td style="white-space: nowrap; width: 1px;" nowrap="">اسم الزبون </td>
         <td><input type="text" id="new_customer_name" class="form-control"></td>
-    </tr>
-    <tr>
+
         <td style="white-space: nowrap; width: 1px;" nowrap="">رقم الهاتف الاساسي </td>
         <td><input type="text" id="new_customer_phone" class="form-control"></td>
     </tr>
     <tr>
         <td style="white-space: nowrap; width: 1px;" nowrap="">رقم الهاتف 2 </td>
         <td><input type="text" id="new_customer_phone2" class="form-control"></td>
-    </tr>
-    <tr>
+
         <td style="white-space: nowrap; width: 1px;" nowrap="">رقم الهاتف 3 </td>
         <td><input type="text" id="new_customer_phone3" class="form-control"></td>
     </tr>
     <tr>
         <td style="white-space: nowrap; width: 1px;" nowrap="">رقم الهاتف 4 </td>
         <td><input type="text" id="new_customer_phone4" class="form-control"></td>
-    </tr>
-    <tr>
+
         <td style="white-space: nowrap; width: 1px;" nowrap="">رقم الهاتف 5 </td>
         <td><input type="text" id="new_customer_phone5" class="form-control"></td>
     </tr>
     <tr>
         <td style="white-space: nowrap; width: 1px;" nowrap="">رقم الهاتف 6 </td>
         <td><input type="text" id="new_customer_phone6" class="form-control"></td>
-    </tr>
-    <tr>
+
         <td style="white-space: nowrap; width: 1px;" nowrap="">المدينة </td>
         <td><input type="text" id="new_customer_city" class="form-control"></td>
     </tr>
@@ -39,8 +35,7 @@
         <td>
             <input type="text" id="new_customer_address" class="form-control">
         </td>
-    </tr>
-    <tr>
+
         <td>
             Email
         </td>

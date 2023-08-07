@@ -86,6 +86,15 @@ class maintenance
 
         return $this;
     }
+    public function saveMSN()
+    {
+        $result = db::$db->update('maintenance',['msn'=>$this->msn],'id','=',$this->id);
+        if (!$result)
+        {
+            $this->error .= "\n".db::$db->get_last_error();
+        }
+        return $result;
+    }
     public function editFromInput() : maintenance
     {
         $this->error = '';
@@ -157,6 +166,16 @@ class maintenance
     {
         return $this->id;
     }
+    public function unexit()
+    {
+        $this->out_date = '';
+
+        $up['stat'] = $this->log->getLastReportStat();
+        $up['out_date'] = '';
+        $up['out_by'] = null;
+        db::$db->update('maintenance',$up,'id','=',$this->id);
+
+    }
     public function getFillInfo() : result
     {
         $result = new result();
@@ -169,14 +188,26 @@ class maintenance
         $result->customer_phone = $c['phone'];
         $result->added_by_name = member::load_member($this->added_by)->name;
         $result->out_by_name = '';
-
+        ($result->sn && $result->msn && $result->snsep = '/') || $result->snsep = '';
         if ($this->stat == 3) {
             $result->btnsToRemove[] = 'deliver_to_customer_btn';
             $result->btnsToRemove[] = 'edit_btn';
+            if ($this->out_date) {
+                try {
+                    $out = new DateTime($this->out_date);
+                    $diff = time() - $out->format("U");
+                    if ($diff < -10 || $diff > 864000 ) $result->btnsToRemove[] = 'unexit_btn';
+                } catch (Throwable $any)
+                {
+                    $result->btnsToRemove[] = 'unexit_btn';
+                }
+            }
         } else
         {
             $result->btnsToRemove[] = 're_enter_btn';
+            $result->btnsToRemove[] = 'unexit_btn';
         }
+
         // Case 6643: RONGTA RP80-USE  علي زيود -
         $result->mail_subject = 'Case '.$this->id.': '.$this->device.' '.$result->customer_name.' - '.$result->customer_phone;
         // RONGTA RP80-USE SN :  A8000800720407/F170520

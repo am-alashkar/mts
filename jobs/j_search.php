@@ -12,7 +12,7 @@ else
 $("#card_header").click();
 document.getElementById("Card_result").scrollIntoView(); 
 </script>';
-    data::$get->from_enter_date = '1-1-1900';
+    data::$get->from_enter_date = '1-1-2000';
 }
 if (data::$get->to_enter_date) data::$get->to_enter_date = trim(str_replace('إلى','',data::$get->to_enter_date));
 else
@@ -66,7 +66,12 @@ if (data::$get->btn == 'search')
         {
             $sql .= ' AND';
         }
-        $sql .= " ( sn REGEXP '".data::$get->fast_search."' OR msn REGEXP '".data::$get->fast_search."' )";
+        $snarr = explode('/',data::$get->fast_search.'',2);
+        if (trim($snarr[1].''))
+        {
+            $sql .= " ( sn REGEXP '".trim($snarr[0].'')."' OR msn REGEXP '".trim($snarr[0].'')."' OR sn REGEXP '".trim($snarr[1].'')."' OR msn REGEXP '".
+                trim($snarr[1].'')."' )";
+        } else  $sql .= " ( sn REGEXP '".data::$get->fast_search."' OR msn REGEXP '".data::$get->fast_search."' )";
     }
     if (data::$get->city)
     {

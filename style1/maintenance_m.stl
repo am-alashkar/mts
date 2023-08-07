@@ -22,8 +22,8 @@
                             <thead>
                             <tr>
                                 <td>#</td>
-                                <td style="text-overflow:ellipsis;white-space:nowrap; width: 10px;overflow: hidden;" >الزبون</td>
-                                <td class="no-print">الصنف</td>
+                                <td style="white-space:nowrap; width: 10px;overflow: hidden;" >الزبون</td>
+                                <td>الصنف</td>
                                 <td>الجهاز</td>
                                 <td style="">SN</td>
                                 <td>استلام</td>
@@ -33,14 +33,19 @@
                             </thead>
                             <tbody>
                             <tr>
-                                <td><!-- INFO_id --></td>
-                                <td  style="text-overflow:ellipsis;white-space:nowrap; width: 10px;overflow: hidden;" ><!-- INFO_customer_name --></td>
-                                <td class="no-print"><!-- INFO_type --></td>
+                                <td rowspan="2" style="vertical-align: middle;"><!-- INFO_m_id --></td>
+                                <td  style="white-space:nowrap; width: 10px;" ><!-- INFO_customer_name --></td>
+                                <td ><!-- INFO_type --></td>
                                 <td><!-- INFO_device --></td>
                                 <td style=""><!-- INFO_sn --><!-- INFO_snsep --><!-- INFO_msn --></td>
-                                <td dir="ltr" class="text-left"><span style="display: none"><!-- INFO_enter_date|U --></span> <!-- INFO_enter_date|nlongdate --></td>
+                                <td dir="ltr" class="text-right"><span style="display: none"><!-- INFO_enter_date|U --></span> <!-- INFO_enter_date|nlongdate --></td>
                                 <td><!-- INFO_stat_html --></td>
-                                <td class="no-print"><a href="<!-- CONFIG_home_link -->view/<!-- INFO_id -->/" class="btn btn-warning btn-xs"><i class="fa fa-angle-left"></i> </a> </td>
+                                <td rowspan="2" class="no-print" ><a href="<!-- CONFIG_home_link -->view/<!-- INFO_m_id -->/" class="btn btn-warning btn-xs"><i class="fa fa-angle-left"></i> </a> </td>
+                            </tr>
+                            <tr>
+                                <td colspan="5"> <!-- INFO_report --> </td>
+                                <td dir="ltr" class="text-right" style="white-space: nowrap;"nowrap=""> <!-- INFO_log_enter_date|nlongdate --> <!-- INFO_log_enter_date|nlongtime12 -->  </td>
+
                             </tr>
                             </tbody>
                         </table>
@@ -53,7 +58,7 @@
 
 </section>
 <script>
-    $("#working_on_table").DataTable({
+    /*$("#working_on_table").DataTable({
         "paging": false,
         "ordering": true,
         "pagingType": "numbers",
@@ -83,7 +88,8 @@
             "sInfoEmpty": " ",
         },
         "aaSorting": []
-    });
+    });*/
 
 
 </script>
+<!-- SEP -->

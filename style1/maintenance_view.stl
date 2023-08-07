@@ -9,7 +9,8 @@
             <div class="col-12">
                 <a class="btn btn-success"  href="<!-- CONFIG_home_link -->print/<!-- INFO_id -->/" target="_blank"><i class="fa fa-print"></i> طباعة </a>
                 <span id="deliver_area"><button id="deliver_to_customer_btn" class="btn btn-warning" onclick="senddata('deliver_area','todo=deliver&id=<!-- INFO_id -->')" ><i class="fa fa-hands-helping"></i> تسليم للزبون </button></span>
-                <button id="re_enter_btn" class="btn btn-warning" onclick="window.location.assign('<!-- CONFIG_home_link -->/add/<!-- INFO_id -->/')" ><i class="fa fa-hand-holding-medical"></i> إعادة ادخال </button>
+                <button id="re_enter_btn" class="btn btn-warning" onclick="window.location.assign('<!-- CONFIG_home_link -->add/<!-- INFO_id -->/')" ><i class="fa fa-hand-holding-medical"></i> إعادة ادخال </button>
+                <button id="unexit_btn" class="btn btn-danger" onclick="if(confirm('تـــأكـــيـــد إلغــــاء التــســلــيــم ؟')) window.location.assign('<!-- CONFIG_home_link -->unexit/<!-- INFO_id -->/')" ><i class="fa fa-hand-lizard"></i> الغاء تسليم </button>
                 <button id="edit_btn" class="btn btn-info" onclick="window.location.assign('<!-- CONFIG_home_link -->edit/<!-- INFO_id -->/')"><i class="fa fa-pencil-alt"></i>تعديل</button>
                 <a class="btn btn-primary" href="<!-- CONFIG_home_link -->view/<!-- INFO_id -->/"><i class="fa fa-redo"></i> تحديث </a>
                 <button class="btn btn-dark" onclick="print_func()"><i class="fa fa-mail-bulk"></i> ارسال ايميل </button>
@@ -19,9 +20,44 @@
 </section>
 <script>
     function print_func() {
-        window.location.assign("mailto:firas@barcodegate.com;sales@barcodegate.com?subject=<!-- INFO_mail_subject -->&body=<!-- INFO_mail_body -->");
+        window.location.assign("mailto:firas@barcodegate.com;sales@barcodegate.com?subject=<!-- INFO_mail_subject -->&body=" + `<!-- INFO_mail_body -->`);
+    }
+    function fast_edit(field,value) {
+        if ('<!-- INFO_stat -->' === '3') return;
+        let d_id = field + '_fast_edit';
+        var d = document.getElementById(field+'_fast_search_open').value;
+        value = document.getElementById(field+'_fast_search_value').value;
+        if (d === 1 || d === '1') return;
+        document.getElementById(field+'_fast_search_open').value = '1';
+        let id = Math.random().toString()+'A';
+        $("#"+d_id).html(`<div class="input-group">
+<input class="form-control" type="text" value="`+value+`" id="input_`+
+            id+
+            `"><button class="btn btn-success btn-sm" id="btn_`+
+            id+
+            `" onclick="save_fast_edit('`+field+`',document.getElementById('input_`+ id+ `').value)"><i class="fa fa-save"></i> </button><button class="btn btn-dark btn-sm" id="cbtn_`+
+            id+
+            `" onclick="cancel_fast_edit('`+field+`','`+value+`')"><i class="fa fa-times"></i> </button></div>`);
+
+    }
+    function save_fast_edit(field,value)
+    {
+        let d_id = field + '_fast_edit';
+        senddata(d_id,'todo=fast_save&field='+field+'&nv='+value+'&id=<!-- INFO_id -->');
+        //$("#"+d_id).html(''+value+'');
+        document.getElementById(field+'_fast_search_open').value = '0';
+        document.getElementById(field+'_fast_search_value').value = value;
+    }
+    function cancel_fast_edit(field,value) {
+        let d_id = field + '_fast_edit';
+        $("#"+d_id).html(''+value+'');
+        document.getElementById(field+'_fast_search_open').value = '0';
+
     }
 </script>
+<input type="hidden" id="msn_fast_search_value" value="<!-- INFO_msn -->">
+<input type="hidden" id="msn_fast_search_open" value="0">
+
 <section class="content">
     <div class="container-fluid">
         <div class="row">
@@ -37,7 +73,7 @@
                             <table class="table table-bordered table-hover text-right" dir="rtl">
                                 <tr>
                                     <td style="width:10px;white-space: nowrap" nowrap="">الزبون</td>
-                                    <td><!-- INFO_customer_name --> <span class="float-left" style="cursor: pointer" onclick="senddata('main','todo=view_modal&type=customer&id=<!-- INFO_customer -->')"><i class="fa fa-user"></i> </span> </td>
+                                    <td ondblclick=""><!-- INFO_customer_name --> <span class="float-left" style="cursor: pointer" onclick="senddata('main','todo=view_modal&type=customer&id=<!-- INFO_customer -->')"><i class="fa fa-user"></i> </span> </td>
                                     <td style="width:10px;white-space: nowrap" nowrap="">رقم الهاتف</td>
                                     <td><!-- INFO_customer_phone --></td>
                                 </tr>
@@ -51,11 +87,11 @@
                                     <td style="width:10px;white-space: nowrap" nowrap="">الرقم التسلسلي</td>
                                     <td><!-- INFO_sn --></td>
                                     <td style="width:10px;white-space: nowrap" nowrap="">رقم الصيانة التسلسلي</td>
-                                    <td><!-- INFO_msn --></td>
+                                    <td ondblclick="fast_edit('msn','<!-- INFO_msn -->')" id="msn_fast_edit"><!-- INFO_msn --></td>
                                 </tr>
                                 <tr>
                                     <td style="width:10px;white-space: nowrap" nowrap="">تاريخ الادخال </td>
-                                    <td title="<!-- INFO_enter_date|full_since -->"><!-- INFO_enter_date|nlongdate --> <!-- INFO_enter_date|@ --> <!-- INFO_enter_date|nlongtime12 --></td>
+                                    <td title="<!-- INFO_enter_date|full_since -->" dir="ltr"><!-- INFO_enter_date|Y-m-d h:i A --></td>
                                     <td style="width:10px;white-space: nowrap" nowrap="">المستلم</td>
                                     <td><!-- INFO_added_by_name --></td>
                                 </tr>
@@ -211,7 +247,7 @@
                         <td style="width:10px;white-space: nowrap" nowrap="" ><!-- INFO_prev_out_date|nlongdate --></td>
                         <td style="width:10px;white-space: nowrap" nowrap="" ><!-- INFO_prev_device --></td>
                         <td style="width:10px;white-space: nowrap" nowrap="" ><!-- INFO_prev_customer --></td>
-                        <td style="width:10px;white-space: nowrap" nowrap="" ><!-- INFO_prev_sn --> / <!-- INFO_prev_msn --></td>
+                        <td style="width:10px;white-space: nowrap" nowrap="" ><!-- INFO_prev_sn --><!-- INFO_snsep --><!-- INFO_prev_msn --></td>
                         <td><!-- INFO_prev_report --></td>
                     </tr>
                     </tbody>
@@ -221,6 +257,35 @@
                         window.location.assign('<!-- CONFIG_home_link -->view/'+id+'/');
                     }
                 </script>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- SEP --> <!-- 5 add after deliver report -->
+<div class="col-12 no-print" style="overflow-x: scroll">
+    <div style="min-width: 720px">
+        <div class="card card-outline card-success text-center">
+            <div class="card-header">
+                <h3>إضافة تقرير </h3>
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered text-right" dir="rtl">
+                    <tr>
+                        <th>التقرير</th>
+                        <td>
+                            <textarea dir="rtl" id="new_report" form-name="xnew_report" class="form-control"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <button class="btn btn-warning" onclick="sendform('after_new_report_area','todo=new_report&id=<!-- INFO_id -->','xnew_report')">
+                                <i class="fa fa-plus"></i> إضافة
+                            </button>
+                            <span id="after_new_report_area"></span>
+                        </td>
+                    </tr>
+                </table>
+
             </div>
         </div>
     </div>

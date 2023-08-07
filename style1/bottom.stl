@@ -88,4 +88,5 @@
         });
     }
     startListening('<!-- CONFIG_home_link -->hook/<!-- VAR_hook -->');
+    $(".dataTables_filter").addClass("no-print")
 </script>

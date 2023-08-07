@@ -73,12 +73,12 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="input-group">
-                                            <input type="text" name="from_enter_date" id="from_enter_date" readonly class="form-control" value="من <!-- VAR_from_enter_date|d-m-Y -->" form-name="new_maintenance">
+                                            <input type="text" name="from_enter_date" id="from_enter_date" class="form-control" value="من <!-- VAR_from_enter_date|d-m-Y -->" form-name="new_maintenance">
                                             <div class="input-group-append">
                                                 <button type="button" class="btn btn-default" id="from_today_btn" data-toggle="tooltip" data-placement="bottom" title="اليوم"
                                                         onclick="$('#from_enter_date').val('من '+$('#server_time_custom').html().split('@')[0].trim());a();"><i class="fa fa-calendar-day"></i> </button>
                                                 <button type="button" class="btn btn-default" id="from_first_btn" data-toggle="tooltip" data-placement="bottom" title="من أقدم تاريخ ممكن"
-                                                        onclick="$('#from_enter_date').val('من 01-01-1900');a();"><i class="fab fa-wpexplorer"></i> </button>
+                                                        onclick="$('#from_enter_date').val('من 01-01-2000');a();"><i class="fab fa-wpexplorer"></i> </button>
                                             </div>
                                         </div>
                                     </div>
@@ -91,7 +91,7 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="input-group">
-                                            <input type="text" name="to_enter_date" id="to_enter_date" readonly class="form-control" value="إلى <!-- VAR_to_enter_date|d-m-Y -->" form-name="new_maintenance">
+                                            <input type="text" name="to_enter_date" id="to_enter_date" class="form-control" value="إلى <!-- VAR_to_enter_date|d-m-Y -->" form-name="new_maintenance">
                                             <div class="input-group-append">
                                                 <button type="button" class="btn btn-default" id="to_today_btn" data-toggle="tooltip" data-placement="bottom" title="اليوم"
                                                         onclick="$('#to_enter_date').val('إلى '+$('#server_time_custom').html().split('@')[0].trim());a();"><i class="fa fa-calendar-day"></i> </button>

@@ -21,6 +21,13 @@ class result implements ArrayAccess
         $this->$key = $data;
         return $this;
     }
+    public function push(result $data)
+    {
+        foreach ($data as $datum) {
+            $this->{$this->count()} = $datum;
+        }
+        return $this;
+    }
 //    public function to_array() {
 //        foreach ($this as $key => $var) {
 //            $arr[$key] = $var;

@@ -1,6 +1,18 @@
 
                 <table class="table table-bordered text-right" dir="rtl">
                     <tr>
+                        <td>تاريخ التسليم</td>
+                        <td>
+                            <div class="input-group" dir="ltr">
+                            <input type="text" id="xout_date" class="form-control" value="<!-- VAR_now|j-m-Y h:i A -->" dir="ltr">
+                            <div class="input-group-append">
+                                <button class="btn btn-default" id="today_btn" data-toggle="tooltip" data-placement="bottom" title="اليوم"
+                                        onclick="$('#xout_date').val($('#server_time_custom').html().replace(' @ ',' '));a();"><i class="fa fa-calendar-day"></i> </button>
+                            </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
                         <td>ملاحظات التسليم</td>
                         <td><textarea id="out_notes" class="form-control"></textarea></td>
                     </tr>
@@ -12,8 +24,23 @@
                 </table>
 
 <script>
+    function  a()
+    {
+        $("#xout_date").daterangepicker({
+            "locale": {
+                "format": "DD-MM-YYYY hh:mm A",
+                cancelLabel: 'الغاء'
+            },
+            singleDatePicker : true,
+            timePicker: true,
+            autoUpdateInput: false,
+        }).on('apply.daterangepicker', function(ev, picker) {
+            $(this).val(picker.startDate.format('DD-MM-YYYY hh:mm A')) ;//+ ' - ' + picker.endDate.format('MM/DD/YYYY'));
+        });
+    }
+    a();
     $("#deliver_btn_<!-- RID -->").click(function () {
-        senddata('next_to_title_<!-- RID -->','confirm=1&todo=deliver&id=<!-- VAR_id -->&notes='+$("#out_notes").val());
+        senddata('next_to_title_<!-- RID -->','confirm=1&todo=deliver&id=<!-- VAR_id -->&notes='+$("#out_notes").val()+'&out_date='+$("#xout_date").val());
     });
 
 </script>

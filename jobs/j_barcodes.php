@@ -10,11 +10,16 @@
 
 // For demonstration purposes, get pararameters that are passed in through $_GET or set to the default value
 $filepath = "";//(isset($_GET["filepath"])?$_GET["filepath"]:"");
-$text = data::$get->all[1];//(isset($_GET["text"])?$_GET["text"]:"0");
-$size = data::$get->all[2] ? data::$get->all[2] : '20';//isset($_GET["size"])?$_GET["size"]:"20");
+$i = 2;
+$text = data::$get->all[$i++];//(isset($_GET["text"])?$_GET["text"]:"0");
+while (data::$get->all[$i])
+{
+    $text .= '/'.data::$get->all[$i++];
+};
+$size = data::$get->all[1] ? data::$get->all[1] : '20';//isset($_GET["size"])?$_GET["size"]:"20");
 $orientation = 'horizontal';//(isset($_GET["orientation"])?$_GET["orientation"]:"horizontal");
 $code_type = 'code128';//(isset($_GET["codetype"])?$_GET["codetype"]:"code128");
-$print = true;//(isset($_GET["print"])&&$_GET["print"]=='true'?true:false);
+$print = false;//(isset($_GET["print"])&&$_GET["print"]=='true'?true:false);
 $sizefactor = '2';//(isset($_GET["sizefactor"])?$_GET["sizefactor"]:"1");
 
 // This function call can be copied into your project and can be made from anywhere in your code

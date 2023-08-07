@@ -14,6 +14,18 @@ administration
     </a>
 </li>
 <li class="nav-item">
+    <a href="<!-- CONFIG_home_link -->view/todays/" class="nav-link">
+        <i class="nav-icon fa fa-clock"> </i>
+        <p>تقرير اليوم</p>
+    </a>
+</li>
+<li class="nav-item">
+    <a href="<!-- CONFIG_home_link -->view/weeks/" class="nav-link">
+        <i class="nav-icon fa fa-user-clock"> </i>
+        <p>تقرير الاسبوع</p>
+    </a>
+</li>
+<li class="nav-item">
     <a href="<!-- CONFIG_home_link -->search/" class="nav-link">
         <i class="nav-icon fa fa-search"> </i>
         <p>بحث</p>

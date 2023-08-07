@@ -25,7 +25,15 @@ if (!data::$get->confirm)
 $result = new result();
 $result->stat = 3; // delivered
 $result->out_by = member::get_id();
-$result->out_date = date(config::$get->storedatetime);
+$out_date = '';
+try
+{
+    $out_date = new DateTime(data::$get->out_date);
+} catch (Exception $exception)
+{
+    $out_date = new DateTime();
+}
+$result->out_date = $out_date->format(config::$get->storedatetime);
 $result->out_notes = data::$get->notes;
 if (db::$db->update('maintenance',$result,'id','=',data::$get->id))
 {

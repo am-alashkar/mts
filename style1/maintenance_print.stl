@@ -21,15 +21,17 @@
                             <table class="table table-borderless text-center" dir="rtl">
                                 <tbody>
                                 <tr>
-                                    <td rowspan="3" width="100" style="text-align: center;vertical-align: center" > <img src="<!-- CONFIG_home_link -->images/logo.jpg"></td>
-                                    <td width="" style="FONT-SIZE:20pt">مركز فيومي للتجارة</td>
+                                    <td rowspan="3" width="100px" style="text-align: center;vertical-align: center" > <img width="100px" src="<!-- CONFIG_home_link -->images/logo2.jpg"></td>
+                                    <td width="" style="FONT-SIZE:20pt;font-family: Arial!important;"><b>مركز فيومي للتجارة</b></td>
                                     <td width="250" style="text-align:center">تاريخ و وقت طباعة الايصال</td>
-                                    <td style="FONT-SIZE:20pt;text-align:center" > إيصال صيانة</td>
+                                    <td  rowspan="3">إيصال صيانة<h1><b><!-- INFO_id --></b></h1>
+                                        <img src="<!-- CONFIG_home_link -->barcodes/40/<!-- INFO_id -->" border="0"></td>
+
                                 </tr>
                                 <tr>
                                     <td >دمشق - جسر فكتوريا - بناء مجمع فندق أسيا - ط4</td>
-                                    <td  style="text-align:center" ><!-- VAR_now|Y-m-d h:i:s A --></td>
-                                    <td  rowspan="2"><h1><b><!-- INFO_id --></b></h1></td>
+                                    <td  style="text-align:center" dir="ltr"><!-- VAR_now|Y-m-d h:i:s A --></td>
+
                                 </tr>
                                 <tr>
                                     <td>هاتف : 2312455 - 2311640 - 0940111360</td>
@@ -52,14 +54,14 @@
                                 </tr>
                                 <tr>
                                     <td style="border-color: black!important;width:10px;white-space: nowrap" nowrap="">الرقم التسلسلي</td>
-                                    <td style="border-color: black!important;"><!-- INFO_sn --> / <!-- INFO_msn --></td>
+                                    <td style="border-color: black!important;"><!-- INFO_sn --><!-- INFO_snsep --><!-- INFO_msn --></td>
                                     <td style="border-color: black!important;width:10px;white-space: nowrap" nowrap="" colspan="2" rowspan="2">
-                                        <img src="<!-- CONFIG_home_link -->barcodes/<!-- INFO_id -->/40/" border="0">
+                                        <img src="<!-- CONFIG_home_link -->barcodes/60/<!-- INFO_sn --><!-- INFO_snsep --><!-- INFO_msn -->" border="0">
                                     </td>
                                 </tr>
                                 <tr>
                                     <td style="border-color: black!important;width:10px;white-space: nowrap" nowrap="">تاريخ الادخال </td>
-                                    <td style="border-color: black!important;" dir="ltr"><!-- INFO_enter_date|nlongdate -->   <!-- INFO_enter_date|nshorttime12 --></td>
+                                    <td style="border-color: black!important;" dir="ltr"><!-- INFO_enter_date|Y-m-d h:i A --></td>
 
                                 </tr>
                                 <tr>
@@ -74,7 +76,7 @@
                                         <!-- INFO_description -->
                                     </td>
                                 </tr>
-
+                                <!-- LRT -->
                             </table>
                             <span class="float-left"><br>
                                 المستلم : <!-- INFO_added_by_name -->
@@ -97,3 +99,19 @@
 print();
     });
 </script>
+<!-- SEP --> <!-- 2 IF THERE IS A REPORT -->
+<tr>
+
+    <td colspan="4"   style="border-color: black!important;">
+        <table border="1" cellpadding="0" cellspacing="0" width="100%" dir="rtl">
+            <td style="border-color: black!important;width:10px;white-space: nowrap;vertical-align: middle" nowrap=""> تقرير الصيانة </td>
+            <td colspan="2" style="border-color: black!important;">
+                <!-- INFO_last_log_text -->
+            </td>
+            <td  style="border-color: black!important;" >
+                <!-- INFO_last_log_name -->
+            </td>
+        </table>
+    </td>
+
+</tr>

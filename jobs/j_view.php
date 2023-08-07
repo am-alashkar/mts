@@ -1,8 +1,10 @@
 <?php
 if (!member::check())redirect_to_index();
-mark_active('view');
+
+
 if (!data::$get->all[1])
 {
+    mark_active('view');
     data::$get->page_title = 'كل الصيانات';
     $main = new style('maintenance_mp');
     $workingOn = db::$db->select('*','stm','stat','IN','(0,1,4)','id','DESC');
@@ -40,15 +42,90 @@ if (!data::$get->all[1])
     switch (data::$get->all[1])
     {
         case 'todays':
-            data::$get->page_title = 'Today\'s';
-            $workingOn = db::$db->select('*','stm','stat','IN','(0,1,4)','id','DESC');
-            foreach ($workingOn as $key => $item) {
-                $workingOn->{$key}['stat_html'] = phrases::$stat_name[$item['stat']];
-                 ($item['sn'] && $item['msn'] && $workingOn->{$key}['snsep'] = '/') || $workingOn->{$key}['snsep'] = '' ;
+            mark_active('view/todays');
+            $fromthismorning = new DateTime();
+            $fromthismorning->setTime(0,0,0);
+            $tothisnight = new DateTime();
+            $tothisnight->setTime(23,59,59);
+            if (data::$get->all[2] && is_numeric(data::$get->all[2]) && is_numeric(data::$get->all[3]) && is_numeric(data::$get->all[4]))
+            {
+                try {
+                    $fromthismorning->setDate(data::$get->all[4],data::$get->all[3],data::$get->all[2]);
+                    $fromthismorning->setTime(0,0,0);
+                    $tothisnight->setDate(data::$get->all[4],data::$get->all[3],data::$get->all[2]);
+                    $tothisnight->setTime(23,59,59);
+                } catch (Throwable $anyone)
+                {
+                    $fromthismorning = new DateTime();
+                    $fromthismorning->setTime(0,0,0);
+                    $tothisnight = new DateTime();
+                    $tothisnight->setTime(23,59,59);
+                }
+
             }
-            data::$get->working_on_total = "( " . ( $workingOn->count() > 0 ? $workingOn->count(): "لا يوجد"  ) . " )";
+
+            data::$get->page_title = 'تقرير اليوم';
+            data::$get->page_name = '<b>'.'تقرير اليوم';
+            $sql = 'SELECT lml.* ,
+mtt.stat , mtt.device , mtt.type , mtt.sn , mtt.msn , mtt.enter_date ,
+ctt.name as customer_name , ctt.phone  as customer_phone
+FROM `last_m_log` lml 
+LEFT join  `maintenance` mtt ON lml.m_id = mtt.id
+LEFT JOIN `customers` ctt ON mtt.customer = ctt.id
+WHERE log_enter_date >= \''.$fromthismorning->format(config::$get->storedatetime).'\' AND log_enter_date <= \''.$tothisnight->format(config::$get->storedatetime).'\' ;';
+            $workingOn = db::$db->adv_select('','',$sql);
+            $sql = 'SELECT 
+ mtt.stat , mtt.device , mtt.type , mtt.sn , mtt.msn , mtt.enter_date , mtt.id as m_id ,
+ ctt.name as customer_name , ctt.phone  as customer_phone
+ FROM `maintenance` mtt 
+LEFT JOIN `customers` ctt ON mtt.customer = ctt.id
+where stat = 0 and enter_date >= \''.$fromthismorning->format(config::$get->storedatetime).'\' AND enter_date <= \''.$tothisnight->format(config::$get->storedatetime).'\';';
+            $newtoday = db::$db->adv_select('','',$sql);
+            $newtoday->push($workingOn);
+
+            foreach ($newtoday as $key => $item) {
+                $newtoday->{$key}['stat_html'] = phrases::$stat_name[$item['stat']];
+                 ($item['sn'] && $item['msn'] && $newtoday->{$key}['snsep'] = '/') || $newtoday->{$key}['snsep'] = '' ;
+            }
+            //dd($newtoday);
+            data::$get->page_name .= ' </b>'.$fromthismorning->format(config::$get->nlongdate)." ( " . ( $newtoday->count() > 0 ? $newtoday->count(): "لا يوجد"  ) . " )";
             $main = new style('maintenance_m');
-            $main->fill_table('working_on_table',$workingOn,true);
+            $main->part(1);
+            $main->fill_table('working_on_table',$newtoday,true);
+            break;
+        case 'weeks':
+            mark_active('view/weeks');
+            $fromthismorning = new DateTime();
+            $fromthismorning->setTime(0,0,0);
+            $oneWeek = new DateInterval('P7D');
+            $fromthismorning->sub($oneWeek);
+            data::$get->page_title = 'تقرير الاسبوع';
+            data::$get->page_name = '<b>'.'تقرير العمل من ';
+            $sql = 'SELECT lml.* ,
+mtt.stat , mtt.device , mtt.type , mtt.sn , mtt.msn , mtt.enter_date ,
+ctt.name as customer_name , ctt.phone  as customer_phone
+FROM `last_m_log` lml 
+LEFT join  `maintenance` mtt ON lml.m_id = mtt.id
+LEFT JOIN `customers` ctt ON mtt.customer = ctt.id
+WHERE log_enter_date >= \''.$fromthismorning->format(config::$get->storedatetime).'\';';
+            $workingOn = db::$db->adv_select('','',$sql);
+            $sql = 'SELECT 
+ mtt.stat , mtt.device , mtt.type , mtt.sn , mtt.msn , mtt.enter_date , mtt.id as m_id ,
+ ctt.name as customer_name , ctt.phone  as customer_phone
+ FROM `maintenance` mtt 
+LEFT JOIN `customers` ctt ON mtt.customer = ctt.id
+where stat = 0 and enter_date >= \''.$fromthismorning->format(config::$get->storedatetime).'\';';
+            $newtoday = db::$db->adv_select('','',$sql);
+            $newtoday->push($workingOn);
+            foreach ($newtoday as $key => $item) {
+                $newtoday->{$key}['stat_html'] = phrases::$stat_name[$item['stat']];
+                ($item['sn'] && $item['msn'] && $newtoday->{$key}['snsep'] = '/') || $newtoday->{$key}['snsep'] = '' ;
+            }
+            //dd($newtoday);
+            data::$get->page_name .= ' </b>'.$fromthismorning->format(config::$get->nlongdate)." ( " . ( $newtoday->count() > 0 ? $newtoday->count(): "لا يوجد"  ) . " )";
+            $main = new style('maintenance_m');
+            $main->part(1);
+            $main->fill_table('working_on_table',$newtoday,true);
             break;
         default:
             redirect(true,'','view');
@@ -56,9 +133,11 @@ if (!data::$get->all[1])
     }
 } else
 {
+    mark_active('view');
     data::$get->page_title = 'عرض صيانة '.data::$get->all[1];
     $main = new style('maintenance_view');
     $html = $main->get_part(3);
+    $add_report_html = $main->get_part(5);
     $prev_html = $main->get_part(4);
     $bill = new maintenance(data::$get->all[1]);
     if ($bill->hasError())
@@ -73,10 +152,12 @@ if (!data::$get->all[1])
     if ($bill->canAddReport())
     {
         $html->fill($info);
+        $add_report_html = '';
     } else {
+        $add_report_html->fill($info);
         $html = '';
     }
-    $main->str_replace('<!-- ADD_REPORT -->',$html.'');
+    $main->str_replace('<!-- ADD_REPORT -->',$html.''.$add_report_html);
     $old_reports = $bill->getAllReports();
     $main->fill_table('all_reports',$old_reports);
     $prev_bills = $bill->getPrevBills();

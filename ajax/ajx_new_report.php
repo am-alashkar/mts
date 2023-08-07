@@ -3,7 +3,7 @@ if (!member::check()) create_error('Not Allowed');
 $bill = new maintenance(data::$get->id);
 if ($bill->hasError()) create_error($bill->getError());
 if ($bill->stat == 3) {
-    die(refresh());
+    //die(refresh());
 }
 if (data::$get->new_report == '')
 {
@@ -12,8 +12,11 @@ if (data::$get->new_report == '')
 $report = new single_log();
 $report->buildFromInput();
 $report->prev_stat = $bill->stat;
-;
-if (!$report->insert())
+if ($bill->stat == 3)
+{
+    $report->prev_stat = $report->new_stat = 3;
+}
+if (!$report->insert($bill->stat == 3))
 {
     create_error(db::$db->get_last_error());
 }

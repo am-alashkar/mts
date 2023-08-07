@@ -72,9 +72,12 @@
                                 صنف الجهاز
                                     </div>
                                     <div class="card-body">
-                                <input type="text" id="device_type" class="form-control" placeholder="صنف الجهاز" form-name="new_maintenance" value="<!-- VAR_type -->">
+                                <input list="device_type_typs" type="text" id="device_type" class="form-control" placeholder="صنف الجهاز" form-name="new_maintenance" value="<!-- VAR_type -->">
                                     </div>
                                 </div>
+                                <datalist id="device_type_typs">
+                                    <!-- OBJECT_types_options -->
+                                </datalist>
                             </div>
                             <div class="col-12 col-md-6 col-lg-4">
                                 <div class="card card-gray-dark card-outline">

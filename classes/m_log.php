@@ -14,6 +14,14 @@ class m_log
         if (!$id) return;
         $this->log = db::$db->select('*','m_log','m_id','=',$id,'id','DESC');
     }
+    function getLastReportStat()  {
+        if ( $this->log->count() > 0)
+        {
+            return $this->log->first()['new_stat'];
+        } else {
+            return 0;
+        }
+    }
     function getLastReport() : result
     {
         if ($this->cashed_last_report->count() > 0) return $this->cashed_last_report;
