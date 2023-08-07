@@ -1,0 +1,91 @@
+<aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+    <div class="p-3" >
+        <!-- OBJECT_control_sidebar -->
+    </div>
+</aside>
+<!-- /.control-sidebar -->
+<!-- MEMBERS_START -->
+<div class="modal fade" id="modal-logout">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">{{Logout}}</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>{{Logout}} ?</p>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <form method="post" action="<!-- CONFIG_home_link -->logout/">
+                    <input type="hidden" name="confirm" value="1">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{{Cancel}}</button>
+                    <button type="submit" class="btn btn-warning">{{Logout}}</button>
+                </form>
+
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- MEMBERS_END -->
+<!-- Main Footer -->
+<span id="main"></span>
+<footer class="main-footer no-print text-dark">
+    <!-- Default to the left -->
+    <!-- OBJECT_user_info -->
+    <span id="server_time" class="float-right" dir="{{ltr}}"></span>
+    <span id="server_time_custom" class="hide" style="display: none"><!-- VAR_now|d-m-Y @ h:i A --></span>
+</footer>
+</div>
+<script>
+    let eventSource = null;
+    function startListening(url)
+    {
+        //return false;
+        if (null !== eventSource) eventSource.close();
+        eventSource = new EventSource(url);
+        eventSource.addEventListener("Stater", function(event) {
+            let data = JSON.parse(event.data);
+            var element = null;
+            for (const [key, value] of Object.entries(data.html)) {
+                element = null;
+                element =  document.getElementById(key);
+                if (typeof(element) != 'undefined' && element !== null)
+                    element.innerHTML= value;
+            }
+            for (const [key, value] of Object.entries(data.values)) {
+                element = null;
+                element = document.getElementById(key);
+                if (typeof(element) != 'undefined' && element !== null)
+                    element.value= value;
+            }
+            for (const [key, value] of Object.entries(data.scripts)) {
+                if (key) eval(value);
+
+            }
+        });
+    }
+    function fader_fix()
+    {
+        $(".modal-backdrop").remove();
+    }
+    function copy_to_clip(txt){
+        navigator.clipboard.writeText(txt);
+        var Toast = Swal.mixin({
+            toast: true,
+            position: 'center',
+            grow: true,
+            showConfirmButton: false
+        });
+        Toast.fire({
+            icon: 'success',
+            text: 'تم النسخ إلى الحافظة',
+
+        });
+    }
+    startListening('<!-- CONFIG_home_link -->hook/<!-- VAR_hook -->');
+</script>

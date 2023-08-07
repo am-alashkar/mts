@@ -1,0 +1,12 @@
+<!-- not Done -->
+<span class="badge badge-pill badge-warning">جديد</span>
+<!-- SEP --><!-- 1 Done -->
+<span class="badge badge-pill badge-success">منفذة</span>
+<!-- SEP --><!-- 2 rejected -->
+<span class="badge badge-pill badge-danger" title="<!-- INFO_admin_note -->">ملغاة</span>
+<!-- SEP --><!-- 3 on hold -->
+<span class="badge badge-pill badge-info" title="<!-- INFO_admin_note -->">معلقة</span>
+<!-- SEP --><!-- 4 in progress -->
+<span class="badge badge-pill badge-dark" title="<!-- INFO_admin_note -->">قيد التنفيذ</span>
+
+

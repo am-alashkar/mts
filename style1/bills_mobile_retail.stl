@@ -1,0 +1,48 @@
+<!-- 1 mtn_cash -->
+<table class="table table-hover">
+    <tr>
+        <th>
+            MTN كاش
+        </th>
+        <td>
+            <!-- INFO_send_date|nlongdate -->
+        </td>
+        <td>
+            <!-- INFO_send_date|nlongtime12 -->
+        </td>
+    </tr>
+    <tr>
+        <td>المرسل</td>
+        <td colspan="2">
+            <!-- INFO_user_name --><!-- INFO_sent_by -->
+        </td>
+    </tr>
+    <tr>
+        <td>الرقم</td>
+        <th colspan="2">
+            <!-- INFO_phone -->
+        </th>
+    </tr>
+    <tr>
+        <td>المبلغ :</td>
+        <td><!-- INFO_amount --></td>
+        <td> </td>
+    </tr>
+    <tr>
+        <td>
+            السعر
+        </td>
+        <td>
+            <!-- INFO_price -->
+        </td>
+        <td> </td>
+    </tr>
+    <tr>
+        <td colspan="3" id="table_bill_stat_<!-- INFO_id -->">
+            <!-- CURRENT_STAT -->
+        </td>
+    </tr>
+</table>
+<br>
+<!-- BILL_BTNS -->
+<!-- SEP -->

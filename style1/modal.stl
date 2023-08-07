@@ -1,0 +1,23 @@
+<div class="modal fade" style="color: black" id="modal-<!-- RID -->" dir="{{ltr}}">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" style="color: black;"><!-- TITLE --></h4>
+                <span id="next_to_title_<!-- RID -->"></span>
+                <button type="button" class="btn btn-outline-dark  {{float-right}}" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- CONTENTS -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<input type="hidden" id="mdl_btn-<!-- RID -->" class="btn btn-default" data-toggle="modal" data-target="#modal-<!-- RID -->">
+<script>
+    $(function () {
+        $("#mdl_btn-<!-- RID -->").click();
+    })
+</script>

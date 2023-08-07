@@ -1,0 +1,89 @@
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1></h1>
+            </div>
+
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <div class="card card-dark card-outline ">
+                    <div class="card-header text-center" data-card-widget="collapse" style="cursor:pointer;">
+                        <h2><!-- VAR_page_name --></h2>
+                    </div>
+                    <div class="card-body">
+                        <table data-paging="false" id="working_on_table" class="table table-bordered table-hover text-right" dir="rtl">
+                            <thead>
+                            <tr>
+                                <td>#</td>
+                                <td style="text-overflow:ellipsis;white-space:nowrap; width: 10px;overflow: hidden;" >الزبون</td>
+                                <td class="no-print">الصنف</td>
+                                <td>الجهاز</td>
+                                <td style="">SN</td>
+                                <td>استلام</td>
+                                <td>الحالة</td>
+                                <td class="no-print">-</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td><!-- INFO_id --></td>
+                                <td  style="text-overflow:ellipsis;white-space:nowrap; width: 10px;overflow: hidden;" ><!-- INFO_customer_name --></td>
+                                <td class="no-print"><!-- INFO_type --></td>
+                                <td><!-- INFO_device --></td>
+                                <td style=""><!-- INFO_sn --><!-- INFO_snsep --><!-- INFO_msn --></td>
+                                <td dir="ltr" class="text-left"><span style="display: none"><!-- INFO_enter_date|U --></span> <!-- INFO_enter_date|nlongdate --></td>
+                                <td><!-- INFO_stat_html --></td>
+                                <td class="no-print"><a href="<!-- CONFIG_home_link -->view/<!-- INFO_id -->/" class="btn btn-warning btn-xs"><i class="fa fa-angle-left"></i> </a> </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</section>
+<script>
+    $("#working_on_table").DataTable({
+        "paging": false,
+        "ordering": true,
+        "pagingType": "numbers",
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+        "columns": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            {'searchable' : false},
+            {'searchable' : false,'sortable' : true},
+            {'searchable' : false,'sortable' : false},
+
+
+        ],
+        "language": {
+            "info": " ",
+            "sInfo": " ",
+            "sEmptyTable": "لا يوجد بيانات",
+            "sInfoFiltered": " ",
+            "sLengthMenu": " ",
+            "sZeroRecords": "لا يوجد سجلات مطابقة",
+            "sSearch": "بحث سريع",
+            "sInfoEmpty": " ",
+        },
+        "aaSorting": []
+    });
+
+
+</script>

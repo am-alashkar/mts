@@ -1,0 +1,185 @@
+<script>
+    function Num2words(number,l,c){
+        var number=(number.length>21?number.substr(number.length-21,number.length):number);
+        var l=(l?l:'ar');
+        var c=(c?c:['جنيه','جنيهان','جنيهات','جنيه&#1611;ا',0]);
+        const first = ['','واحد','اثنان','ثلاثة','أربعة', 'خمسة','ستة','سبعة','ثمانية','تسعة','عشرة','أحد عشر','اثنا عشر','ثلاثة عشر','أربعة عشر','خمسة عشر','ستة عشر','سبعة عشر','ثمانية عشر','تسعة عشر'];
+        const first2 = ['','إحدى','اثنتان','ثلاث','أربع', 'خمس','ست','سبع','ثماني','تسع','عشر','إحدى عشرة','اثنتا عشرة','ثلاث عشرة','أربع عشرة','خمس عشرة','ست عشرة','سبع عشرة','ثماني عشرة','تسع عشرة'];
+        const tens = ['', '', 'عشرون','ثلاثون','أربعون','خمسون', 'ستون','سبعون','ثمانون','تسعون'];
+        const ths = ['', 'ألف', 'مليون', 'بليون', 'تريليون','كوادريليون','كوينتليون'];
+        const ths2 = ['', 'آلاف', 'ملايين', 'بليونات', 'تريليونات','كوادريليونات','كوينتليونات'];
+        const firstEn = ['','one','two','three','four', 'five','six','seven','eight','nine','ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen'];
+        const tensEn = ['', '', 'twenty','thirty','forty','fifty', 'sixty','seventy','eighty','ninety'];
+        const thsEn = ['', 'thousand', 'million', 'billion', 'trillion','quadrillion','quintillion'];
+        let words = '';
+        for (let i = 0; i <= ~~(number.length/3); i++) {
+            var m = number.substr(0, number.length - i * 3).slice(-3);
+            var h=~~(m/100);var t=m%100;
+            var s=(i==0?c[4]:0);
+            if (t !== 0) {
+                if (t < 20) {
+                    if(l=='ar'){
+                        words = (t>2? (s==0?first[t]:first2[t]) + ' ' +(t>10 && ths[i].length>0? ths[i]+(words?'&#1611;ا':''):ths2[i]):(ths[i].length>0 ? ths[i]+(t==1?'':(t==2 && words ?'ان':'ا')):(t%10 != 0?'':(s==0?first[t]:first2[t])))) + (words==''?(ths[i].length>0?' '+c[0]:(t==1?c[0]:(t==2 ?c[1]:(t<11?c[2]:c[3])))): ' و' + words);
+                    }else if(l=='en'){
+                        words = firstEn[t] + ' ' + thsEn[i] + (words==''?(ths[i].length>0 ?' ':'')+(number>1?c[2]:c[0]):' '+words);
+                    }
+                } else {
+                    if(l=='ar'){
+                        words = (t%10== 0?'':(s==0? first[t%10]:(t%10==8?first2[t%10].substr(0,4):first2[t%10])) + ' و' )+ tens[~~(t/10)] + ' ' + ths[i] +(words && ths[i].length>0? '&#1611;ا':'') + (words==''?(ths[i].length>0?' '+c[0]:c[3]): ' و' + words);
+                    }else if(l=='en'){
+                        words = tensEn[~~(t/10)] + (t%10==0?'':'-') + firstEn[t%10] + ' ' + thsEn[i] + (words==''?(ths[i].length>0 ?' ':'')+(number>1?c[2]:c[0]):' '+words);
+                    }
+                }
+            }
+            if (h !== 0){
+                if(l=='ar'){
+                    words = (h==1?'مائة':(h==2?'مائتا'+(t>0 ?'ن':''): first[h].substr(0,(first[h].length-(h==8?2:1))) + 'مائة'))+ (t==0?(ths[i].length>0 ?' ':'')+ths[i]:'') + (words==''?' '+c[0]:' و' + words);
+                }else if(l=='en'){
+                    words = firstEn[h] + ' ' + 'hundred' +(t>0?'':' '+thsEn[i]) +(words==''?(ths[i].length>0 ?' ':'')+(number>1?c[2]:c[0]):' '+words);
+                }
+            }
+        }
+        return words;
+    }
+    function mycalc(){
+        l=document.getElementById("lang").value; // ar or en;
+        decimal=document.getElementById("dec").value; //0 or 2 or 3;
+        c=document.getElementById("c").value; //0 or 1 or 2 or 3;
+        document.getElementById("result").style.direction = l=='en'?"ltr":"rtl";
+        document.getElementById("prefix").value= l=='en'?"Only":"فقط";
+        document.getElementById("sufix").value= l=='en'?"No more":"لا غير";
+        if (c==0){
+            if(l=='en'){
+                decimal=2;
+                c1=['Egyptian Pound','','Egyptian Pounds','',''];
+                c2=['Piastre','','Piastres','',''];
+            }else{
+                c1=['جنيه مصري','جنيهان مصريان','جنيهات مصرية','جنيه&#1611;ا مصري&#1611;ا',0];
+                c2=['قرش','قرشان','قروش','قرش&#1611;ا',0];
+            }
+        }
+        if (c==1){
+            decimal=2;
+            if(l=='en'){
+                c1=['US Dollar','','US Dollars','',''];
+                c2=['Cent','','Cents','',''];
+            }else{
+                c1=['دولار أمريكي','دولاران أمريكيان','دولارات أمريكية','دولار&#1611;ا أمريكي&#1611;ا',0];
+                c2=['سنت','سنتان','سنتات','سنت&#1611;ا',0];
+            }
+        }
+        if (c==2){
+            decimal=3;
+            if(l=='en'){
+                c1=['Kuwaiti Dinar','','Kuwaiti Dinars','',''];
+                c2=['Fils','','Filses','',''];
+            }else{
+                c1=['دينار كويتي','ديناران كويتيان','دينارات كويتية','دينار&#1611;ا كويتي&#1611;ا',0];
+                c2=['فلس','فلسان','فلسات','فلس&#1611;ا',0];
+            }
+        }
+        if (c==3){
+            decimal=3;
+            if(l=='en'){
+                c1=['Omani Rial','','Omani Rials','',''];
+                c2=['Baisa','','Baisas','',''];
+            }else{
+                c1=['ريال عماني','ريالان عمانيان','ريالات عمانية','ريال&#1611;ا عماني&#1611;ا',0];
+                c2=['بيسة','بيستان','بيسات','بيسة&#1611;',1];
+            }
+        }
+        if (c==4){
+            decimal=2;
+            if(l=='en'){
+                c1=['Saudi Riyal','','Saudi Riyals','',''];
+                c2=['Halala','','Halalas','',''];
+            }else{
+                c1=['ريال سعودي','ريالان سعوديان','ريالات سعودية','ريال&#1611;ا سعودي&#1611;ا',0];
+                c2=['هللة','هللتان','هللات','هللة&#1611;',1];
+            }
+        }
+        if (c==5){
+            document.getElementById("customotions").style.display='block';
+            var divsToHide = document.getElementsByClassName("ar");
+            for(var i = 0; i < divsToHide.length; i++) divsToHide[i].style.display = l=='en'?'none':'block';
+            c1=[document.getElementById("n1").value,document.getElementById("n2").value,document.getElementById("n3").value,document.getElementById("n4").value,document.getElementById("s1").value];
+            c2=[document.getElementById("n5").value,document.getElementById("n6").value,document.getElementById("n7").value,document.getElementById("n8").value,document.getElementById("s2").value];
+        }else{
+            document.getElementById("customotions").style.display='none';
+        }
+        var number=document.getElementById("num").value;
+        var prefix=document.getElementById("prefix").value;
+        var sufix=document.getElementById("sufix").value;
+        number = number.split('.');
+        document.getElementById("result").innerHTML = prefix+' '+Num2words(number[0],l,c1)+ ((number[1]+'00000000000000000000').substr(0,decimal)>0?(l=='ar'?' و':' and ') +Num2words((number[1]+'00000000000000000000').substr(0,decimal),l,c2):'')+' '+sufix;
+    }
+</script>
+
+
+
+<script>
+    let target = 53020;
+    let bounce = false;
+    let bal_id = 'bonus_account_balance'; // bonus_account_balance balance
+    if (bounce) {
+        bal_id = 'bonus_account_balance';
+    } else {
+        bal_id = 'balance';
+    }
+    let bb = $("#"+bal_id).html();
+    bb.replace(' BTC','');
+    bb = parseFloat(bb);
+    if (bounce) {
+        target -= Math.ceil($("#balance").html()*100000000);
+    }
+    let startbal = Math.floor(bb*100000000);
+    let minbal = startbal - Math.floor( startbal*0.1);
+    let ses_start = startbal;
+    let bal = 0;
+    let mx = 0;
+    let lp = 0;
+    let rema = 0;
+    let btn2 = '<button onclick="f()">Start again</button>';
+    let am = startbal - minbal;
+    let ses_profit = 0;
+    var b = Math.ceil(target-startbal);
+    $("#bonus_eligible_msg").html('Your Target is '+target+' - Better not to go under '+minbal+btn2+'<br> <span id="area51" ></span>');
+    //$("#manual_bet_on").html(btn);
+    function f() {
+        bb = $("#"+bal_id).html();
+        bb.replace(' BTC','');
+        bb = parseFloat(bb);
+        ses_start = Math.floor(bb*100000000);
+        target = ses_start + (ses_start*0.2);
+        minbal = ses_start - (ses_start*0.1);
+        mx = 0;
+
+        $("#bonus_eligible_msg").html('Your Target is '+target+' - Better not to go under '+minbal+btn2+'<br> <span id="area51" ></span>');
+    }
+    function bet_c() {
+        (function(){
+            bb = $("#"+bal_id).html();
+            bb.replace(' BTC','');
+            bb = parseFloat(bb);
+            bal = bb*100000000;
+            mx = Math.max(mx,Math.floor(bal-ses_start));
+            rema = Math.ceil(target - bal);
+            am = Math.floor(bal - minbal);
+            var win = $("#double_your_btc_bet_win").html();
+            if (win !== "")
+            {
+                //console.log('New Bal : '+bal+' Profit : '+(bal-startbal));
+                if ( bal-startbal !== 0 ) ses_profit = Math.round(bal-startbal);
+                startbal = bal;
+                $("#area51").html('Expense : '+Math.ceil(startbal-bal)+' Profit : '+Math.floor(bal-ses_start)+' Max : '+mx + '<br> Remaining : '+rema+
+                ' Allowed margin : '+am+' Last Profit : '+ses_profit);
+            } else {
+                $("#area51").html('Expense : '+Math.ceil(startbal-bal)+' Profit : '+Math.floor(bal-ses_start)+' Max : '+mx+ '<br> Remaining : '+rema+
+                    ' Allowed margin : '+am+' Last Profit : '+ses_profit);
+            }
+            setTimeout(arguments.callee, 500);
+        })();
+    }
+    bet_c();
+    $("#bonus_eligible_msg").show();
+</script>

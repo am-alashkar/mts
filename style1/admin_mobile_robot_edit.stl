@@ -1,0 +1,192 @@
+<table class="table text-right table-borderless table-hover" dir="rtl">
+    <tr>
+        <td style="white-space: nowrap;width: 1px" nowrap=""><!-- INFO_dis_btn_html --></td>
+        <td><!-- INFO_dis_btn_label --></td>
+        <td><button class="btn btn-success" id="rdy_save_<!-- RID -->"><i class="fa fa-check"></i>  تأكيد </button> <span id="rdy_area_<!-- RID -->"></span> </td>
+        <th><h2><!-- INFO_id --></h2></th>
+    </tr>
+</table>
+<div class="card card-dark collapsed-card" >
+    <div class="card-header" data-card-widget="collapse" style="cursor:pointer;">
+        الأسم والأكواد
+        <i class="fa fa-chevron-down"></i>
+        <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
+            </button>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table text-right table-borderless table-hover"  dir="rtl">
+            <tr>
+                <td style="white-space: nowrap;width: 1px" nowrap="">اسم Sim1<input type="text" id="sim_1_name" form-name="robot_<!-- RID -->" class="form-control elevation-1" value="<!-- INFO_sim_1_name -->"></td>
+                <td style="white-space: nowrap;width: 1px" nowrap="">اسم Sim2<input type="text" id="sim_2_name" form-name="robot_<!-- RID -->" class="form-control elevation-1" value="<!-- INFO_sim_2_name -->"></td>
+            </tr>
+            <tr>
+                <td style="white-space: nowrap;width: 1px" nowrap="">كود Sim1<input type="text" id="sim_1_code" form-name="robot_<!-- RID -->" class="form-control elevation-1" value="<!-- INFO_sim_1_code -->"></td>
+                <td style="white-space: nowrap;width: 1px" nowrap="">كود Sim2<input type="text" id="sim_2_code" form-name="robot_<!-- RID -->" class="form-control elevation-1" value="<!-- INFO_sim_2_code -->"></td>
+            </tr>
+            <tr>
+                <td style="white-space: nowrap;width: 1px" nowrap="">رقم Sim1<input type="text" id="sim_1_phone" form-name="robot_<!-- RID -->" class="form-control elevation-1" value="<!-- INFO_sim_1_phone -->"></td>
+                <td style="white-space: nowrap;width: 1px" nowrap="">رقم Sim2<input type="text" id="sim_2_phone" form-name="robot_<!-- RID -->" class="form-control elevation-1" value="<!-- INFO_sim_2_phone -->"></td>
+            </tr>
+            <tr>
+                <td style="white-space: nowrap;width: 1px" nowrap="">Sim1 SN
+                    <input type="text" id="sim_1_sn" form-name="robot_<!-- RID -->" class="form-control elevation-1" value="<!-- INFO_sim_1_sn -->"></td>
+                <td style="white-space: nowrap;width: 1px" nowrap="">Sim2 SN<input type="text" id="sim_2_sn" form-name="robot_<!-- RID -->" class="form-control elevation-1" value="<!-- INFO_sim_2_sn -->"></td>
+            </tr>
+            <tr>
+                <td colspan="2"><button class="btn btn-primary" id="general_save_<!-- RID -->"><i class="fa fa-save"></i> حفظ </button>
+                    <span id="general_area_<!-- RID -->"></span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"> <i class="fa fa-info-circle text-cyan"></i> أي حقل فارغ يعني تعطيل استخدام السيم الخاصة به </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="card card-dark collapsed-card">
+    <div class="card-header" data-card-widget="collapse" style="cursor:pointer;">
+        الميزات الحالية
+        <i class="fa fa-chevron-down"></i>
+        <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
+            </button>
+        </div>
+    </div>
+    <div class="card-body">
+<table id="service_table" class="table table-bordered table-striped text-right" dir="rtl">
+    <thead>
+    <tr>
+        <th>الميزة</th>
+        <th>السيم</th>
+        <th>تلقائي</th>
+        <th>الحد الأدنى</th>
+        <th>المحافظة</th>
+        <th>-</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr id="tr_for_next_to_<!-- INFO_counter -->_<!-- RID -->">
+        <td>
+            <!-- INFO_service_name -->
+        </td>
+        <td>
+            <!-- INFO_sim_number --> <!-- INFO_sim_name -->
+        </td>
+        <td>
+            <!-- INFO_is_auto_html -->
+        </td>
+        <td>
+            <!-- INFO_min_balance -->
+        </td>
+        <td>
+            <!-- INFO_cities_html -->
+        </td>
+        <td>
+            <button class="btn btn-xs btn-danger" onclick="delete_service('<!-- INFO_counter -->','<!-- INFO_id -->','<!-- INFO_service -->','<!-- RID -->','<!-- INFO_sim -->')" title="حذف"><i class="fa fa-times"></i> </button>
+            <span id="next_to_<!-- INFO_counter -->_<!-- RID -->"></span>
+        </td>
+    </tr>
+    </tbody>
+</table><br>
+        <i class="fa fa-info-circle text-cyan"></i> لتعديل ميزة قم بإضافتها من جديد
+    </div>
+</div>
+<div class="card card-dark collapsed-card">
+    <div class="card-header" data-card-widget="collapse" style="cursor:pointer;">
+        إضافة ميزة
+        <i class="fa fa-chevron-down"></i>
+        <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
+            </button>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table elevation-2" dir="rtl">
+            <tr>
+                <td>إضافة ميزة للسيم :</td>
+                <td><select class="form-control" id="sim_select" form-name="add_service_<!-- RID -->">
+                    <option value="" selected disabled>الرجاء الاختيار</option>
+                    <option value="1">Sim 1</option>
+                    <option value="2">Sim 2</option>
+                </select>
+                </td>
+            </tr>
+            <tr>
+                <td>الميزات</td>
+                <td>
+                    <select class="select2" multiple id="service_select" form-name="add_service_<!-- RID -->">
+                        <option value="mtn_cash">MTN كاش</option>
+                        <option value="mtn_pre">MTN مسبق الدفع</option>
+                        <option value="mtn_pos">MTN لاحق الدفع</option>
+                        <option value="syt_cash">Syriatel كاش</option>
+                        <option value="syt_pre">Syriatel مسبق الدفع</option>
+                        <option value="syt_pos">Syriatel لاحق الدفع</option>
+                        <option value="wfa_cash">Waffa كاش</option>
+                        <option value="wfa_pre">Waffa مسبق الدفع</option>
+                        <option value="wfa_pos">Waffa لاحق الدفع</option>
+                        <option value="mtn_cash_j">جملة MTN كاش</option>
+                        <option value="mtn_pre_j">جملة MTN مسبق الدفع</option>
+                        <option value="mtn_pos_j">جملة MTN لاحق الدفع</option>
+                        <option value="syt_cash_j">جملة Syriatel كاش</option>
+                        <option value="syt_pre_j">جملة Syriatel مسبق الدفع</option>
+                        <option value="syt_pos_j">جملة Syriatel لاحق الدفع</option>
+                        <option value="wfa_cash_j">جملة Waffa كاش</option>
+                        <option value="wfa_pre_j">جملة Waffa مسبق الدفع</option>
+                        <option value="wfa_pos_j">جملة Waffa لاحق الدفع</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><!-- INFO_auto_check_h --></td>
+                <td><!-- INFO_auto_check_l --></td>
+            </tr>
+            <tr>
+                <td>الرصيد الأدنى</td>
+                <td><input type="number" min="0" value="0" class="form-control" id="min_balance" form-name="add_service_<!-- RID -->">
+                    <br>
+                    <span class="text-muted">سيتم ايقاف التنفيذ التلفائي عند الوصول إلى هذا الحد من الرصيد لكل خدمة ، وسيتوجب موافقة الموظف لتنفيذ الطلب</span> </td>
+            </tr>
+            <tr>
+                <td>المحافظة</td>
+                <td><select id="city" class="form-control select2" multiple  form-name="add_service_<!-- RID -->">
+                    <option value="ALL" selected>الكل</option>
+                    <option value="حمص">حمص</option>
+                    <option value="ريف حمص">ريف حمص</option>
+                    <option value="طرطوس">طرطوس</option>
+                </select> </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button class="btn btn-primary" id="save_btn_<!-- RID -->"><i class="fa fa-plus"></i> إضافة </button>
+                    <span id="process_area_<!-- RID -->"></span>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<table class="table table-bordered table-hover text-right" dir="rtl" id="current_services">
+    <tr>
+        <td>
+
+        </td>
+    </tr>
+</table>
+<script>
+    $("#service_select[form-name='add_service_<!-- RID -->']").select2();
+    $("#city[form-name='add_service_<!-- RID -->']").select2();
+    $("#save_btn_<!-- RID -->").click(function () {
+        // add service
+        sendform('process_area_<!-- RID -->','todo=service_to_mobile_robot&btn=add&id=<!-- INFO_id -->','add_service_<!-- RID -->');
+    });
+    $("#general_save_<!-- RID -->").click(function () {
+        // save basic info sim name and sim sn .. etc
+        sendform('general_area_<!-- RID -->','todo=service_to_mobile_robot&btn=save_general&id=<!-- INFO_id -->','robot_<!-- RID -->');
+    });
+    $("#rdy_save_<!-- RID -->").click(function () {
+        // switch between on and off
+        sendform('rdy_area_<!-- RID -->','todo=service_to_mobile_robot&btn=rdy_stat&id=<!-- INFO_id -->','robot_rd_<!-- RID -->');
+    });
+</script>

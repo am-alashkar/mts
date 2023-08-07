@@ -1,0 +1,44 @@
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>حسابات الوكلاء</h1>
+            </div>
+
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <span class="col-12">
+                <div class="card card-dark ">
+                    <div class="card-body">
+                        <table class="table table-bordered table-hover text-right" id="agent_table" dir="rtl">
+                            <thead>
+                            <tr>
+                                <th>الاسم</th>
+                                <th>نوع العضوية</th>
+                                <th>عدد الزبائن</th>
+                                <th>الرصيد</th>
+                                <th>-</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td><!-- INFO_name --></td>
+                                <td><!-- INFO_group --></td>
+                                <td><!-- INFO_client_count --></td>
+                                <td><!-- INFO_balance --></td>
+                                <td><a href="<!-- CONFIG_home_link -->admincp/agent/<!-- INFO_id -->/"
+                                       class="btn btn-default" title="تعديل قائمة الزبائن" onclick="sel_agent('<!-- INFO_id -->')"><i class="fa fa-arrow-alt-circle-left"></i>  </a> </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </span>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,76 @@
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>الزبائن</h1>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-dark card-outline">
+                    <div class="card-header" style="overflow-x: scroll;">
+                        <table class="table table-bordered table-hover text-right" id="clients" dir="rtl">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>الاسم</th>
+                                <th>رقم الهاتف</th>
+                                <th>اجمالي الصيانات</th>
+                                <th>-</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr id="client_tr_<!-- INFO_id -->">
+                                <th><!-- INFO_id --></th>
+                                <td>
+                                    <a href="<!-- CONFIG_home_link -->customers/<!-- INFO_id -->/" class="btn btn-default"><!-- INFO_name --></a>
+                                </td>
+                                <td><!-- INFO_phone --></td>
+                                <td><!-- INFO_total_jobs --></td>
+                                <td id="btn_area_<!-- INFO_id -->">
+                                    <button id="del_btn_<!-- INFO_id -->" class="btn btn-danger btn-sm" onclick="senddata('btn_area_<!-- INFO_id -->','todo=customers&btn=delete&id=<!-- INFO_id -->')"><i class="fa fa-times"></i> </button>
+                                    <button id="edit_btn_<!-- INFO_id -->" class="btn btn-warning btn-sm" onclick="senddata('btn_area_<!-- INFO_id -->','todo=customers&btn=edit&id=<!-- INFO_id -->')"><i class="fa fa-pencil-alt"></i> </button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    $("#clients").DataTable({
+        "paging": false,
+        "ordering": true,
+        "pagingType": "numbers",
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+        "columns": [
+            null,
+            null,
+            null,
+            {'searchable' : false},
+            {'searchable' : false,'sortable' : false},
+        ],
+        "language": {
+            "info": "عرض _PAGE_ من _PAGES_",
+            "sInfo": "عرض _START_ إلى _END_ من أصل _TOTAL_ نتيجة",
+            "sEmptyTable": "لا يوجد بيانات",
+            "sInfoFiltered": "(مفتلرة من أصل  _MAX_ نتيجة)",
+            "sLengthMenu": "عرض _MENU_ نتيجة",
+            "sZeroRecords": "لا يوجد نتيجة مطابقة",
+            "sSearch": "بحث:",
+            "sInfoEmpty": "عرض 0 نتيجة",
+        }
+
+    });
+</script>

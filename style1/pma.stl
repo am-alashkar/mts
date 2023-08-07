@@ -1,0 +1,59 @@
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                PMA
+            </div>
+
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<form method="post" action="<!-- CONFIG_home_link -->pma/">
+<section class="content">
+
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+
+            <div class="col-sm-12 col-md-3">
+                <div class="input-group">
+                    <select id="tables" class="form-control" name="table">
+                        <!-- TABLES -->
+                    </select>
+                    <div class="input-group-append">
+                        <button type="submit" name="btn" value="table" class="btn btn-default btn-sm">Go</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-3">
+                <div class="input-group">
+                    <select id="column" class="form-control" name="column">
+                        <!-- COLUMNS -->
+                    </select>
+                    <div class="input-group-append">
+                        <button type="submit" name="btn" value="column" class="btn btn-default btn-sm">Go</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-3">
+                <div class="input-group">
+                    <select id="row" class="form-control" name="row">
+                        <!-- ROWS -->
+                    </select>
+                    <div class="input-group-append">
+                        <button type="submit" name="btn" value="row" class="btn btn-default btn-sm">Go</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <textarea name="password" class="form-control"></textarea>
+                <br>
+                <button name="btn" class="btn btn-dark" type="submit" value="SQL">RUN</button>
+                <!-- MSG -->
+            </div>
+        </div>
+    </div>
+</section>
+</form>

@@ -1,0 +1,58 @@
+<div class="card card-dark card-outline">
+    <div class="card-header text-center" dir="rtl">
+        كشف حساب <b><!-- INFO_username --></b> من تاريخ <!-- INFO_date_from|nlongdate --> إلى تاريخ <!-- INFO_date_to|nlongdate -->
+    </div>
+    <div class="card-body">
+    <div style="overflow-x: scroll">
+        <table class="text-right table table-striped table-bordered" id="done_table" dir="rtl">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>النوع</th>
+                <th>البيان</th>
+                <th>السعر</th>
+                <th>الرصيد</th>
+                <th>التاريخ</th>
+                <th id="view_bill_area2" class="no-print">-</th>
+            </tr>
+            <tr>
+                <td>-</td>
+                <th colspan="3">رصيد سابق</th>
+                <th><!-- INFO_pre_balance -->&nbsp;</th>
+                <th colspan="2">&nbsp;</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ondblclick="view_bill2('<!-- INFO_id -->')">
+                <td><!-- INFO_id --></td>
+                <td><!-- INFO_type_html --></td>
+                <td><!-- INFO_infos --></td>
+                <td><!-- INFO_price --></td>
+                <td><!-- INFO_balance --></td>
+                <td><!-- INFO_send_date|nlongdate --> @ <!-- INFO_send_date|nshorttime12 --><br><!-- INFO_stat_html_mini --></td>
+                <td class="no-print"><button class="btn btn-xs btn-outline-info" onclick="view_bill2('<!-- INFO_id -->')"><i class="fa fa-search-plus"></i> </button> </td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td>-</td>
+                <th colspan="3">الرصيد الاجمالي</th>
+                <th><!-- INFO_after_balance -->&nbsp;</th>
+                <th colspan="2">&nbsp;</th>
+            </tr>
+            </tfoot>
+        </table>
+
+    </div>
+        <div class="card-footer no-print">
+            <button class="btn btn-warning" id="print_btn" title="طباعة" onclick="window.print();return false;"><i class="fa fa-print"></i> طباعة </button>
+            <button class="btn btn-warning" id="export_btn"><i class="fa fa-file-excel"></i> تصدير إلى أكسل </button>
+            <span id="export_area"></span>
+        </div>
+</div>
+</div>
+<script>
+    $("#export_btn").click(function () {
+        senddata('export_area','todo=export&data=<!-- VAR_exp_data -->');
+    });
+</script>

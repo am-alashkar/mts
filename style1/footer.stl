@@ -1,0 +1,14 @@
+</div>
+<!-- VAR_lmscript -->
+<input type="button" style="display: none;" hidden disabled readonly
+       id="site_url" value="<!-- CONFIG_home_link -->" >
+<input type="button" style="display: none;" hidden disabled readonly
+       id="date_now" value="<!-- VAR_now|d-m-Y -->" >
+
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>
+</body>
+</html>

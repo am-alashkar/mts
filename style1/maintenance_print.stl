@@ -1,0 +1,99 @@
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 dir="rtl">طباعة الصيانة</h1>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                    <div class="card card-dark card-outline">
+                        <div class="card-header text-center no-print" dir="rtl">
+                            <h3>ايصال استلام صيانة
+                            <span class="float-left text-green" style="cursor: pointer" onclick="print()"><i class="fa fa-print"></i> </span>
+                            </h3>
+                        </div>
+                        <div class="card-body" dir="rtl">
+                            <table class="table table-borderless text-center" dir="rtl">
+                                <tbody>
+                                <tr>
+                                    <td rowspan="3" width="100" style="text-align: center;vertical-align: center" > <img src="<!-- CONFIG_home_link -->images/logo.jpg"></td>
+                                    <td width="" style="FONT-SIZE:20pt">مركز فيومي للتجارة</td>
+                                    <td width="250" style="text-align:center">تاريخ و وقت طباعة الايصال</td>
+                                    <td style="FONT-SIZE:20pt;text-align:center" > إيصال صيانة</td>
+                                </tr>
+                                <tr>
+                                    <td >دمشق - جسر فكتوريا - بناء مجمع فندق أسيا - ط4</td>
+                                    <td  style="text-align:center" ><!-- VAR_now|Y-m-d h:i:s A --></td>
+                                    <td  rowspan="2"><h1><b><!-- INFO_id --></b></h1></td>
+                                </tr>
+                                <tr>
+                                    <td>هاتف : 2312455 - 2311640 - 0940111360</td>
+                                    <td style="text-align:center"><u>E-mail: sales@barcodegate.com</u></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <table class="table table-bordered text-right" dir="rtl" style="border-color: black!important; border-width: thick;">
+                                <tr>
+                                    <td style="width:10px;white-space: nowrap;border-color: black!important;" nowrap="">الزبون</td>
+                                    <td style="border-color: black!important;"><!-- INFO_customer_name --> </td>
+                                    <td style="border-color: black!important;width:10px;white-space: nowrap" nowrap="">رقم الهاتف</td>
+                                    <td style="border-color: black!important;"><!-- INFO_customer_phone --></td>
+                                </tr>
+                                <tr>
+                                    <td style="border-color: black!important;width:10px;white-space: nowrap" nowrap="">الجهاز</td>
+                                    <td style="border-color: black!important;"><!-- INFO_device --></td>
+                                    <td style="border-color: black!important;">الصنف</td>
+                                    <td style="border-color: black!important;"><!-- INFO_type --></td>
+                                </tr>
+                                <tr>
+                                    <td style="border-color: black!important;width:10px;white-space: nowrap" nowrap="">الرقم التسلسلي</td>
+                                    <td style="border-color: black!important;"><!-- INFO_sn --> / <!-- INFO_msn --></td>
+                                    <td style="border-color: black!important;width:10px;white-space: nowrap" nowrap="" colspan="2" rowspan="2">
+                                        <img src="<!-- CONFIG_home_link -->barcodes/<!-- INFO_id -->/40/" border="0">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="border-color: black!important;width:10px;white-space: nowrap" nowrap="">تاريخ الادخال </td>
+                                    <td style="border-color: black!important;" dir="ltr"><!-- INFO_enter_date|nlongdate -->   <!-- INFO_enter_date|nshorttime12 --></td>
+
+                                </tr>
+                                <tr>
+                                    <td style="border-color: black!important;width:10px;white-space: nowrap" nowrap=""> الملحقات </td>
+                                    <td style="border-color: black!important;"><!-- INFO_adds --></td>
+                                    <td style="border-color: black!important;width:10px;white-space: nowrap" nowrap=""> ملاحظات </td>
+                                    <td style="border-color: black!important;"><!-- INFO_notes --></td>
+                                </tr>
+                                <tr>
+                                    <td style="border-color: black!important;width:10px;white-space: nowrap" nowrap=""> شكوى الزبون </td>
+                                    <td colspan="3" style="border-color: black!important;">
+                                        <!-- INFO_description -->
+                                    </td>
+                                </tr>
+
+                            </table>
+                            <span class="float-left"><br>
+                                المستلم : <!-- INFO_added_by_name -->
+                            </span>
+                            <hr>
+                            <span class="text-right float-right col-12" dir="rtl">
+                                <i class="fa fa-info-circle text-blue"></i>
+                                يفقد هذا الايصال صلاحيته بعد ثلاثة أشهر من تاريخه<br>
+                                يرجى الاحتفاظ بهذا الوصل ليتم التسليم و الاستلام بموجبه و نعتذر سلفا عن التسليم في حال الفقدان<br>
+                                لسنا مسؤولين عن أي قطعة مضى عليها أكثر من ثلاثة أشهر.
+                            </span>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    $(function () {
+print();
+    });
+</script>

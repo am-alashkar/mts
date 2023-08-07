@@ -1,0 +1,17 @@
+<!-- SEP --><!-- group 2 Clients -->
+- services
+* {{pers_dsl_client}} dsl_client
+** {{pers_can_cancel}} can_cancel_dsl dsl_client
+* {{pers_mobile_retail_client}} mobile_retail_client
+** {{pers_can_cancel}} can_cancel_mobile_retail mobile_retail_client
+* {{pers_mobile_kazia_client}} mobile_kazia_client
+** {{pers_can_cancel}} can_cancel_mobile_kazia mobile_kazia_client
+- agents
+* {{pers_is_agent}} is_agent
+** {{pers_can_create_cards_for_free}} is_accountant
+<!-- SEP --><!-- group 3 Staff -->
+- per_gr_administration
+* {{pers_administration}} administration
+<!-- SEP -->
+* {{pers_can_send_bills}} can_send_bills
+* {{pers_can_do_bills}} can_do_bills

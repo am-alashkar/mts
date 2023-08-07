@@ -1,0 +1,139 @@
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>الطلبات</h1>
+            </div>
+
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+           <div class="col-12">
+               <div class="card card-dark card-outline">
+                   <div class="card-header">
+                       الطلبات المحجوزة
+                   </div>
+                   <div class="card-body">
+                       <div style="overflow-x: scroll">
+                       <table class="text-right table table-striped table-bordered" id="on_hold_table" dir="rtl">
+                           <thead>
+                           <tr>
+                               <th>#</th>
+                               <th>النوع</th>
+                               <th>المرسل</th>
+                               <th>البيان</th>
+                               <th>السعر</th>
+                               <th>الحالة</th>
+                               <th>التاريخ</th>
+                               <th id="view_bill_area">-</th>
+                           </tr>
+                           </thead>
+                           <tbody>
+                           <tr ondblclick="view_bill('<!-- INFO_id -->')">
+                               <td><!-- INFO_id --></td>
+                               <td><!-- INFO_type_html --></td>
+                               <td><!-- INFO_user_name --> <!-- INFO_sent_by --></td>
+                               <td><!-- INFO_infos --></td>
+                               <td><!-- INFO_price --></td>
+                               <td id="table_bill_stat_<!-- INFO_id -->"><!-- INFO_stat_html --></td>
+                               <td><!-- INFO_send_date|auto --></td>
+                               <td><button class="btn btn-xs btn-outline-info" onclick="view_bill('<!-- INFO_id -->')"><i class="fa fa-search-plus"></i> </button> </td>
+                           </tr>
+                           </tbody>
+                       </table>
+                       </div>
+                   </div>
+               </div>
+           </div>
+            <div class="col-12">
+                <div class="card card-dark card-outline">
+                    <div class="card-header">
+                        طلبات قيد الانتظار
+                    </div>
+                    <div class="card-body">
+                        <div style="overflow-x: scroll">
+                            <table class="text-right table table-striped table-bordered" id="undone_table" dir="rtl">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>النوع</th>
+                                    <th>المرسل</th>
+                                    <th>البيان</th>
+                                    <th>السعر</th>
+                                    <th>الحالة</th>
+                                    <th>التاريخ</th>
+                                    <th id="view_bill_area2">-</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ondblclick="view_bill2('<!-- INFO_id -->')">
+                                    <td><!-- INFO_id --></td>
+                                    <td><!-- INFO_type_html --></td>
+                                    <td><!-- INFO_user_name --> <!-- INFO_sent_by --></td>
+                                    <td><!-- INFO_infos --></td>
+                                    <td><!-- INFO_price --></td>
+                                    <td id="table_bill_stat_<!-- INFO_id -->"><!-- INFO_stat_html --></td>
+                                    <td><!-- INFO_send_date|auto --></td>
+                                    <td><button class="btn btn-xs btn-outline-info" onclick="view_bill2('<!-- INFO_id -->')"><i class="fa fa-search-plus"></i> </button> </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="card card-dark card-outline">
+                    <div class="card-header">
+                        طلبات منفذة
+                    </div>
+                    <div class="card-body">
+                        <div style="overflow-x: scroll">
+                            <table class="text-right table table-striped table-bordered" id="done_table" dir="rtl">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>النوع</th>
+                                    <th>المرسل</th>
+                                    <th>البيان</th>
+                                    <th>السعر</th>
+                                    <th>الحالة</th>
+                                    <th>التاريخ</th>
+                                    <th id="view_bill_area3">-</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ondblclick="view_bill2('<!-- INFO_id -->')">
+                                    <td><!-- INFO_id --></td>
+                                    <td><!-- INFO_type_html --></td>
+                                    <td><!-- INFO_user_name --> <!-- INFO_sent_by --></td>
+                                    <td><!-- INFO_infos --></td>
+                                    <td><!-- INFO_price --></td>
+                                    <td id="table_bill_stat_<!-- INFO_id -->"><!-- INFO_stat_html --></td>
+                                    <td><!-- INFO_send_date|auto --></td>
+                                    <td><button class="btn btn-xs btn-outline-info" onclick="view_bill3('<!-- INFO_id -->')"><i class="fa fa-search-plus"></i> </button> </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    function view_bill(id) {
+        senddata('view_bill_area','todo=view_bill&id='+id);
+    }
+    function view_bill2(id) {
+        senddata('view_bill_area2','todo=view_bill&id='+id);
+    }
+    function view_bill3(id) {
+        senddata('view_bill_area3','todo=view_bill&id='+id);
+    }
+</script>

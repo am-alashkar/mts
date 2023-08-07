@@ -1,0 +1,124 @@
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>إدارة خدمة الشدات</h1>
+            </div>
+
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <form method="post">
+                <table class="table">
+                    <tr>
+                        <td>اسم المستخدم</td>
+                        <td><input type="text" class="form-control" name="api_user"></td>
+                    </tr>
+                    <tr>
+                        <td>كلمة المرور</td>
+                        <td><input type="password" class="form-control" name="password"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <button class="btn btn-warning" type="submit">ربط</button>
+                            <input type="hidden" name="login" value="1">
+                        </td>
+                    </tr>
+                </table>
+                </form>
+                <hr>
+                <table class="table table-bordered" dir="rtl">
+                    <tr>
+                        <th colspan="5">الأسعار</th>
+                    </tr>
+                    <tr>
+                        <th>-</th><th>الحد الأدنى</th><th>خاص</th><th>جملة</th><th>مفرق</th>
+                    </tr>
+                    <tr>
+                        <th dir="rtl">كل 1000 بـ </th>
+                        <th>
+                            <input type="number" form-name="shadat_price" id="price_0" value="<!-- INFO_price_0 -->" class="form-control">
+                        </th>
+                        <th>
+                            <input type="number" form-name="shadat_price" id="price_1" value="<!-- INFO_price_1 -->" min="0" class="form-control">
+                        </th>
+                        <th>
+                            <input type="number" form-name="shadat_price" id="price_2" value="<!-- INFO_price_2 -->" min="0" class="form-control">
+                        </th>
+                        <th>
+                            <input type="number" form-name="shadat_price" id="price_3" value="<!-- INFO_price_3 -->" min="0" class="form-control">
+                        </th>
+                    </tr>
+                    <tr>
+                        <th colspan="5">
+                            <button class="btn btn-warning" onclick="sendform('save_area','todo=shadat_api&btn=price_save','shadat_price')"><i class="fa fa-save"></i> حفظ </button>
+                            <span id="save_area"></span>
+                        </th>
+                    </tr>
+                </table>
+                <hr>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- SEP -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>إدارة خدمة الشدات</h1>
+            </div>
+
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <button class="btn btn-warning" onclick="senddata('area_of_response','todo=shadat_api&btn=logout')">فك الربط</button>
+                <hr>
+                <table class="table table-bordered" dir="rtl">
+                    <tr>
+                        <th colspan="5">الأسعار</th>
+                    </tr>
+                    <tr>
+                        <th>-</th><th>الحد الأدنى</th><th>خاص</th><th>جملة</th><th>مفرق</th>
+                    </tr>
+                    <tr>
+                        <th dir="rtl">كل 1000 بـ </th>
+                        <th>
+                            <input type="number" form-name="shadat_price" id="price_0" value="<!-- INFO_price_0 -->" class="form-control">
+                        </th>
+                        <th>
+                            <input type="number" form-name="shadat_price" id="price_1" value="<!-- INFO_price_1 -->" min="0" class="form-control">
+                        </th>
+                        <th>
+                            <input type="number" form-name="shadat_price" id="price_2" value="<!-- INFO_price_2 -->" min="0" class="form-control">
+                        </th>
+                        <th>
+                            <input type="number" form-name="shadat_price" id="price_3" value="<!-- INFO_price_3 -->" min="0" class="form-control">
+                        </th>
+                    </tr>
+                    <tr>
+                        <th colspan="5">
+                            <button class="btn btn-warning" onclick="sendform('save_area','todo=shadat_api&btn=price_save','shadat_price')"><i class="fa fa-save"></i> حفظ </button>
+                            <span id="save_area"></span>
+                        </th>
+                    </tr>
+                </table>
+                <hr>
+                <button class="btn btn-warning" onclick="senddata('balance','todo=shadat_api&btn=balance')">استعلام الرصيد</button>
+                 الرصيد الحالي : <span id="balance"><!-- INFO_balance --></span><hr>
+                <button class="btn btn-warning" onclick="senddata('area_of_response','todo=shadat_api&btn=orders')">الطلبات</button>
+            </div>
+            <div class="col-12" id="area_of_response"></div>
+        </div>
+    </div>
+</section>

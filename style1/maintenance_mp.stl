@@ -1,0 +1,267 @@
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1></h1>
+            </div>
+
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <div class="card card-dark card-outline ">
+                    <div class="card-header text-center" data-card-widget="collapse" style="cursor:pointer;">
+                        <h2>الصيانات الحالية <!-- VAR_working_on_total --></h2>
+                    </div>
+                    <div class="card-body">
+                        <table data-paging="false" id="working_on_table" class="table table-bordered table-hover text-right" dir="rtl">
+                            <thead>
+                            <tr>
+                                <td>#</td>
+                                <td>الزبون</td>
+                                <td>الصنف</td>
+                                <td>الجهاز</td>
+                                <td style="">sn</td>
+                                <td>استلام</td>
+                                <td>الحالة</td>
+                                <td class="no-print">-</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td><!-- INFO_id --></td>
+                                <td><!-- INFO_customer_name --></td>
+                                <td><!-- INFO_type --></td>
+                                <td><!-- INFO_device --></td>
+                                <td style=""><!-- INFO_sn --><!-- INFO_snsep --><!-- INFO_msn --></td>
+                                <td dir="ltr" class="text-left"><span style="display: none"><!-- INFO_enter_date|U --></span> <!-- INFO_enter_date|nlongdate --></td>
+                                <td><!-- INFO_stat_html --></td>
+                                <td class="no-print"><a href="<!-- CONFIG_home_link -->view/<!-- INFO_id -->/" class="btn btn-warning btn-xs"><i class="fa fa-angle-left"></i> </a> </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card card-success card-outline collapsed-card">
+                    <div class="card-header text-center" data-card-widget="collapse" style="cursor:pointer;">
+                        <h2>جاهزة <!-- VAR_ready_total --></h2>
+                    </div>
+                    <div class="card-body">
+                        <table data-paging="false" id="ready_table" class="table table-bordered table-hover text-right" dir="rtl">
+                            <thead>
+                            <tr>
+                                <td>#</td>
+                                <td>الزبون</td>
+                                <td>الصنف</td>
+                                <td>الجهاز</td>
+                                <td style="">sn</td>
+                                <td>استلام</td>
+                                <td class="no-print">-</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td><!-- INFO_id --></td>
+                                <td><!-- INFO_customer_name --></td>
+                                <td><!-- INFO_type --></td>
+                                <td><!-- INFO_device --></td>
+                                <td style=""><!-- INFO_sn --> / <!-- INFO_msn --></td>
+                                <td dir="ltr" class="text-left"><span style="display: none"><!-- INFO_enter_date|U --></span> <!-- INFO_enter_date|nlongdate --> <!-- INFO_enter_date|nlongtime12 --></td>
+                                <td class="no-print"><a href="<!-- CONFIG_home_link -->view/<!-- INFO_id -->/" class="btn btn-warning btn-sm"><i class="fa fa-angle-left"></i> </a> </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card card-warning card-outline collapsed-card">
+                    <div class="card-header text-center" data-card-widget="collapse" style="cursor:pointer;">
+                        <h2>دبي <!-- VAR_dubai_total --></h2>
+                    </div>
+                    <div class="card-body">
+                        <table data-paging="false" id="dubai_table" class="table table-bordered table-hover text-right" dir="rtl">
+                            <thead>
+                            <tr>
+                                <td>#</td>
+                                <td>الزبون</td>
+                                <td>الصنف</td>
+                                <td>الجهاز</td>
+                                <td style="">SN</td>
+                                <td>استلام</td>
+                                <td class="no-print">-</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td><!-- INFO_id --></td>
+                                <td><!-- INFO_customer_name --></td>
+                                <td><!-- INFO_type --></td>
+                                <td><!-- INFO_device --></td>
+                                <td style=""><!-- INFO_sn --> / <!-- INFO_msn --></td>
+                                <td dir="ltr" class="text-left"><span style="display: none"><!-- INFO_enter_date|U --></span> <!-- INFO_enter_date|nlongdate --> <!-- INFO_enter_date|nlongtime12 --></td>
+                                <td class="no-print"><a href="<!-- CONFIG_home_link -->view/<!-- INFO_id -->/" class="btn btn-warning btn-sm"><i class="fa fa-angle-left"></i> </a> </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card card-primary card-outline collapsed-card">
+                    <div class="card-header text-center" data-card-widget="collapse" style="cursor:pointer;">
+                        <h2>صيانات معلقة <!-- VAR_onhold_total --></h2>
+                    </div>
+                    <div class="card-body">
+                        <table data-paging="false" id="onhold_table" class="table table-bordered table-hover text-right" dir="rtl">
+                            <thead>
+                            <tr>
+                                <td>#</td>
+                                <td>الزبون</td>
+                                <td>الصنف</td>
+                                <td>الجهاز</td>
+                                <td style="">sn</td>
+                                <td>استلام</td>
+                                <td class="no-print">-</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td><!-- INFO_id --></td>
+                                <td><!-- INFO_customer_name --></td>
+                                <td><!-- INFO_type --></td>
+                                <td><!-- INFO_device --></td>
+                                <td style=""><!-- INFO_sn --> <!-- INFO_msn --></td>
+                                <td dir="ltr" class="text-left"><span style="display: none"><!-- INFO_enter_date|U --></span> <!-- INFO_enter_date|nlongdate --> <!-- INFO_enter_date|nlongtime12 --></td>
+                                <td class="no-print"><a href="<!-- CONFIG_home_link -->view/<!-- INFO_id -->/" class="btn btn-warning btn-sm"><i class="fa fa-angle-left"></i> </a> </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+<script>
+    $("#working_on_table").DataTable({
+        "paging": false,
+        "ordering": true,
+        "pagingType": "numbers",
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+        "columns": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            {'searchable' : false},
+            {'searchable' : false,'sortable' : true},
+            {'searchable' : false,'sortable' : false},
+
+
+        ],
+        "language": {
+            "info": " ",
+            "sInfo": "عرض _START_ إلى _END_ من أصل _TOTAL_ سجل",
+            "sEmptyTable": "لا يوجد بيانات",
+            "sInfoFiltered": " ",
+            "sLengthMenu": "عرض _MENU_ سجل بالصفحة",
+            "sZeroRecords": "لا يوجد سجلات مطابقة",
+            "sSearch": "بحث سريع",
+            "sInfoEmpty": " ",
+        },
+        "aaSorting": []
+    });
+    $("#dubai_table").DataTable({
+        "paging": false,
+        "ordering": true,
+        "pagingType": "numbers",
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+        "columns": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            {'searchable' : false},
+            {'searchable' : false,'sortable' : false},
+
+        ],
+        "language": {
+            "info": " ",
+            "sInfo": "عرض _START_ إلى _END_ من أصل _TOTAL_ سجل",
+            "sEmptyTable": "لا يوجد بيانات",
+            "sInfoFiltered": " ",
+            "sLengthMenu": "عرض _MENU_ سجل بالصفحة",
+            "sZeroRecords": "لا يوجد سجلات مطابقة",
+            "sSearch": "بحث سريع",
+            "sInfoEmpty": " ",
+        },
+        "aaSorting": []
+    });
+    $("#onhold_table").DataTable({
+        "paging": false,
+        "ordering": true,
+        "pagingType": "numbers",
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+        "columns": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            {'searchable' : false},
+            {'searchable' : false,'sortable' : false},
+
+        ],
+        "language": {
+            "info": " ",
+            "sInfo": "عرض _START_ إلى _END_ من أصل _TOTAL_ سجل",
+            "sEmptyTable": "لا يوجد بيانات",
+            "sInfoFiltered": " ",
+            "sLengthMenu": "عرض _MENU_ سجل بالصفحة",
+            "sZeroRecords": "لا يوجد سجلات مطابقة",
+            "sSearch": "بحث سريع",
+            "sInfoEmpty": " ",
+        },
+        "aaSorting": []
+    });
+    $("#ready_table").DataTable({
+        "paging": false,
+        "ordering": true,
+        "pagingType": "numbers",
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+        "columns": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            {'searchable' : false},
+            {'searchable' : false,'sortable' : false},
+
+        ],
+        "language": {
+            "info": " ",
+            "sInfo": "عرض _START_ إلى _END_ من أصل _TOTAL_ سجل",
+            "sEmptyTable": "لا يوجد بيانات",
+            "sInfoFiltered": " ",
+            "sLengthMenu": "عرض _MENU_ سجل بالصفحة",
+            "sZeroRecords": "لا يوجد سجلات مطابقة",
+            "sSearch": "بحث سريع",
+            "sInfoEmpty": " ",
+        },
+        "aaSorting": []
+    });
+
+</script>

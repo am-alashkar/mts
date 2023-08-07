@@ -1,0 +1,54 @@
+<table class="table table-bordered table-striped text-right" dir="rtl">
+
+    <tr>
+        <td style="white-space: nowrap; width: 1px;" nowrap="">اسم الزبون </td>
+        <td><!-- INFO_name --></td>
+    </tr>
+    <tr>
+        <td style="white-space: nowrap; width: 1px;" nowrap="">رقم الهاتف الاساسي </td>
+        <td><!-- INFO_phone --></td>
+    </tr>
+    <tr>
+        <td style="white-space: nowrap; width: 1px;" nowrap="">رقم الهاتف 2 </td>
+        <td><!-- INFO_phone2 --></td>
+    </tr>
+    <tr>
+        <td style="white-space: nowrap; width: 1px;" nowrap="">رقم الهاتف 3 </td>
+        <td><!-- INFO_phone3 --></td>
+    </tr>
+    <tr>
+        <td style="white-space: nowrap; width: 1px;" nowrap="">رقم الهاتف 4 </td>
+        <td><!-- INFO_phone4 --></td>
+    </tr>
+    <tr>
+        <td style="white-space: nowrap; width: 1px;" nowrap="">رقم الهاتف 5 </td>
+        <td><!-- INFO_phone5 --></td>
+    </tr>
+    <tr>
+        <td style="white-space: nowrap; width: 1px;" nowrap="">رقم الهاتف 6 </td>
+        <td><!-- INFO_phone6 --></td>
+    </tr>
+    <tr>
+        <td style="white-space: nowrap; width: 1px;" nowrap="">المدينة </td>
+        <td><!-- INFO_city --></td>
+    </tr>
+    <tr>
+        <td>
+            العنوان
+        </td>
+        <td>
+            <!-- INFO_address -->
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Email
+        </td>
+        <td>
+            <!-- INFO_email -->
+        </td>
+    </tr>
+
+</table>
+
+

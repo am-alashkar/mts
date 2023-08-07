@@ -1,0 +1,78 @@
+<table class="table table-bordered table-striped" dir="rtl">
+    <tr>
+        <td colspan="3"><h2>تأكيد حذف حساب الزبون</h2></td>
+    </tr>
+    <tr>
+        <th>الاسم</th>
+        <th>رقم الهاتف</th>
+        <th>عدد الصيانات</th>
+    </tr>
+    <tr>
+        <td><!-- INFO_name --></td>
+        <td><!-- INFO_phone --> </td>
+        <td><!-- INFO_total_jobs --> </td>
+    </tr>
+    <tr>
+        <th>نقل الصيانات إلى </th>
+        <td colspan="2">
+            <select id="transfer_to_<!-- RID -->" class="select2">
+                <option value="0" selected disabled>الرجاء اختيار زبون</option>
+                <!-- OBJECT_customer_list_options -->
+            </select>
+        </td>
+    </tr>
+
+</table>
+<table class="table table-bordered table-striped" dir="rtl">
+    <tr>
+        <th colspan="4">بيانات الزبون التالية سيتم حذفها</th>
+    </tr>
+    <tr>
+        <td style="white-space: nowrap; width: 1px;" nowrap="">اسم الزبون </td>
+        <td><!-- INFO_name --></td>
+        <td style="white-space: nowrap; width: 1px;" nowrap="">رقم الهاتف الاساسي </td>
+        <td><!-- INFO_phone --></td>
+    </tr>
+    <tr>
+        <td style="white-space: nowrap; width: 1px;" nowrap="">رقم الهاتف 2 </td>
+        <td><!-- INFO_phone2 --></td>
+        <td style="white-space: nowrap; width: 1px;" nowrap="">رقم الهاتف 3 </td>
+        <td><!-- INFO_phone3 --></td>
+    </tr>
+    <tr>
+        <td style="white-space: nowrap; width: 1px;" nowrap="">رقم الهاتف 4 </td>
+        <td><!-- INFO_phone4 --></td>
+        <td style="white-space: nowrap; width: 1px;" nowrap="">رقم الهاتف 5 </td>
+        <td><!-- INFO_phone5 --></td>
+    </tr>
+    <tr>
+        <td style="white-space: nowrap; width: 1px;" nowrap="">رقم الهاتف 6 </td>
+        <td><!-- INFO_phone6 --></td>
+        <td style="white-space: nowrap; width: 1px;" nowrap="">المدينة </td>
+        <td><!-- INFO_city --></td>
+    </tr>
+    <tr>
+        <td>
+            العنوان
+        </td>
+        <td><!-- INFO_address --></td>
+        <td>
+            Email
+        </td>
+        <td><!-- INFO_email --></td>
+    </tr>
+
+</table>
+<br>
+<button class="btn btn-danger" id="new_customer_btn_<!-- RID -->"><i class="fa fa-times"></i> حذف </button>
+<script>
+    $("#transfer_to_<!-- RID -->").find('option[value="<!-- INFO_id -->"]').attr('disabled', 'disabled');
+    $("#transfer_to_<!-- RID -->").select2();
+    $("#new_customer_btn_<!-- RID -->").click(
+        function () {
+            if (!confirm('تأكيد الحذف !!')) return;
+            senddata('next_to_title_<!-- RID -->','todo=customers&btn=delete&id=<!-- INFO_id -->&confirm=1'
+                +'&newcustomer='+$("#transfer_to_<!-- RID -->").val());
+        }
+    );
+</script>

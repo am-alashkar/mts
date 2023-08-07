@@ -1,0 +1,233 @@
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h4>
+                    إدارة خدمات وأسعار تحويل رصيد جملة ( الكازيات )
+                </h4>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- MTN -->
+            <div class="col-12">
+                <div class="card card-outline card-warning collapsed-card">
+                    <div class="card-header"data-toggle="tooltip" data-card-widget="collapse" style="cursor: pointer">MTN
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" id="collapse_mtn" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                                <i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div style="overflow-x: scroll">
+                            <table class="table table-bordered table-striped text-right" dir="rtl" style="min-width: 700px;">
+                                <tr>
+                                    <th style="width: 1px;white-space: nowrap;" nowrap="">-</th>
+                                    <td>الحد الأدنى</td>
+                                    <td>خاص</td>
+                                    <td>جملة</td>
+                                    <td>مفرق</td>
+                                    <td>مبلغ ثابت؟</td>
+                                </tr>
+                                <tr>
+                                    <th style="width: 1px;white-space: nowrap;" nowrap="">خدمة كاش<br>كل 1000 بـ</th>
+                                    <td><input type="number" min="0" id="mtn_cash_price_0" value="<!-- INFO_mtn_cash_price_0 -->" form-name="mtn_general" class="form-control"></td>
+                                    <td><input type="number" min="0" id="mtn_cash_price_1" value="<!-- INFO_mtn_cash_price_1 -->" form-name="mtn_general" class="form-control"></td>
+                                    <td><input type="number" min="0" id="mtn_cash_price_2" value="<!-- INFO_mtn_cash_price_2 -->" form-name="mtn_general" class="form-control"></td>
+                                    <td><input type="number" min="0" id="mtn_cash_price_3" value="<!-- INFO_mtn_cash_price_3 -->" form-name="mtn_general" class="form-control"></td>
+                                    <td><!-- MTN_CASH_IS_NOT_PERCENT --></td>
+                                </tr>
+                                <tr>
+                                    <th style="width: 1px;white-space: nowrap;" nowrap="">لاحق الدفع<br>كل 1000 بـ</th>
+                                    <td><input type="number" min="0" id="mtn_pos_price_0" value="<!-- INFO_mtn_pos_price_0 -->" form-name="mtn_general" class="form-control"></td>
+                                    <td><input type="number" min="0" id="mtn_pos_price_1" value="<!-- INFO_mtn_pos_price_1 -->" form-name="mtn_general" class="form-control"></td>
+                                    <td><input type="number" min="0" id="mtn_pos_price_2" value="<!-- INFO_mtn_pos_price_2 -->" form-name="mtn_general" class="form-control"></td>
+                                    <td><input type="number" min="0" id="mtn_pos_price_3" value="<!-- INFO_mtn_pos_price_3 -->" form-name="mtn_general" class="form-control"></td>
+                                    <td><!-- MTN_POS_IS_NOT_PERCENT --></td>
+                                </tr>
+                                <tr>
+                                    <th style="width: 1px;white-space: nowrap;" nowrap="">مسبق الدفع<br>كل 1000 بـ</th>
+                                    <td><input type="number" min="0" id="mtn_pre_price_0" value="<!-- INFO_mtn_pre_price_0 -->" form-name="mtn_general" class="form-control"></td>
+                                    <td><input type="number" min="0" id="mtn_pre_price_1" value="<!-- INFO_mtn_pre_price_1 -->" form-name="mtn_general" class="form-control"></td>
+                                    <td><input type="number" min="0" id="mtn_pre_price_2" value="<!-- INFO_mtn_pre_price_2 -->" form-name="mtn_general" class="form-control"></td>
+                                    <td><input type="number" min="0" id="mtn_pre_price_3" value="<!-- INFO_mtn_pre_price_3 -->" form-name="mtn_general" class="form-control"></td>
+                                    <td><!-- MTN_PRE_IS_NOT_PERCENT --></td>
+                                </tr>
+                                <tr>
+                                    <th style="width: 1px;white-space: nowrap;" nowrap=""> اسماء المحافظات <br>اكتب كل مدينة بسطر</th>
+                                    <td colspan="5">
+                                        <textarea class="form-control" form-name="mtn_general" id="mtn_cities_in"><!-- INFO_mtn_cities_in --></textarea>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td colspan="5">
+                                        <button class="btn btn-warning" onclick="save_general('mtn')"><i class="fas fa-save"></i> حفظ </button>
+                                        <span id="gen_save_area_mtn"></span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- SYRIATEL -->
+            <div class="col-12">
+                <div class="card card-outline card-danger collapsed-card">
+                    <div class="card-header" data-toggle="tooltip" data-card-widget="collapse" style="cursor: pointer">Syriatel
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" id="collapse_syt" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                                <i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div style="overflow-x: scroll">
+                            <table class="table table-bordered table-striped text-right" dir="rtl" style="min-width: 700px;">
+                                <tr>
+                                    <th style="width: 1px;white-space: nowrap;" nowrap="">-</th>
+                                    <td>الحد الأدنى</td>
+                                    <td>خاص</td>
+                                    <td>جملة</td>
+                                    <td>مفرق</td>
+                                    <td>مبلغ ثابت؟</td>
+                                </tr>
+                                <tr>
+                                    <th style="width: 1px;white-space: nowrap;" nowrap="">خدمة كاش<br>كل 1000 بـ</th>
+                                    <td><input type="number" min="0" id="syt_cash_price_0" value="<!-- INFO_syt_cash_price_0 -->" form-name="syt_general" class="form-control"></td>
+                                    <td><input type="number" min="0" id="syt_cash_price_1" value="<!-- INFO_syt_cash_price_1 -->" form-name="syt_general" class="form-control"></td>
+                                    <td><input type="number" min="0" id="syt_cash_price_2" value="<!-- INFO_syt_cash_price_2 -->" form-name="syt_general" class="form-control"></td>
+                                    <td><input type="number" min="0" id="syt_cash_price_3" value="<!-- INFO_syt_cash_price_3 -->" form-name="syt_general" class="form-control"></td>
+                                    <td><!-- SYT_CASH_IS_NOT_PERCENT --></td>
+                                </tr>
+                                <tr>
+                                    <th style="width: 1px;white-space: nowrap;" nowrap="">لاحق الدفع<br>كل 1000 بـ</th>
+                                    <td><input type="number" min="0" id="syt_pos_price_0" value="<!-- INFO_syt_pos_price_0 -->" form-name="syt_general" class="form-control"></td>
+                                    <td><input type="number" min="0" id="syt_pos_price_1" value="<!-- INFO_syt_pos_price_1 -->" form-name="syt_general" class="form-control"></td>
+                                    <td><input type="number" min="0" id="syt_pos_price_2" value="<!-- INFO_syt_pos_price_2 -->" form-name="syt_general" class="form-control"></td>
+                                    <td><input type="number" min="0" id="syt_pos_price_3" value="<!-- INFO_syt_pos_price_3 -->" form-name="syt_general" class="form-control"></td>
+                                    <td><!-- SYT_POS_IS_NOT_PERCENT --></td>
+                                </tr>
+                                <tr>
+                                    <th style="width: 1px;white-space: nowrap;" nowrap="">مسبق الدفع<br>كل 1000 بـ</th>
+                                    <td><input type="number" min="0" id="syt_pre_price_0" value="<!-- INFO_syt_pre_price_0 -->" form-name="syt_general" class="form-control"></td>
+                                    <td><input type="number" min="0" id="syt_pre_price_1" value="<!-- INFO_syt_pre_price_1 -->" form-name="syt_general" class="form-control"></td>
+                                    <td><input type="number" min="0" id="syt_pre_price_2" value="<!-- INFO_syt_pre_price_2 -->" form-name="syt_general" class="form-control"></td>
+                                    <td><input type="number" min="0" id="syt_pre_price_3" value="<!-- INFO_syt_pre_price_3 -->" form-name="syt_general" class="form-control"></td>
+                                    <td><!-- SYT_PRE_IS_NOT_PERCENT --></td>
+                                </tr>
+                                <tr>
+                                    <th style="width: 1px;white-space: nowrap;" nowrap=""> اسماء المحافظات <br>اكتب كل مدينة بسطر</th>
+                                    <td colspan="5">
+                                        <textarea class="form-control" form-name="syt_general" id="syt_cities_in"><!-- INFO_syt_cities_in --></textarea>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td colspan="5">
+                                        <button class="btn btn-warning" onclick="save_general('syt')"><i class="fas fa-save"></i> حفظ </button>
+                                        <span id="gen_save_area_syt"></span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- WAFATEL -->
+            <div class="col-12">
+                <div class="card card-outline card-success collapsed-card">
+                    <div class="card-header"data-toggle="tooltip" data-card-widget="collapse" style="cursor: pointer">WAFATEL
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" id="collapse_wfa" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                                <i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div style="overflow-x: scroll">
+                            <table class="table table-bordered table-striped text-right" dir="rtl" style="min-width: 700px;">
+                                <tr>
+                                    <th style="width: 1px;white-space: nowrap;" nowrap="">-</th>
+                                    <td>الحد الأدنى</td>
+                                    <td>خاص</td>
+                                    <td>جملة</td>
+                                    <td>مفرق</td>
+                                    <td>مبلغ ثابت؟</td>
+                                </tr>
+                                <tr>
+                                    <th style="width: 1px;white-space: nowrap;" nowrap="">خدمة كاش<br>كل 1000 بـ</th>
+                                    <td><input type="number" min="0" id="wfa_cash_price_0" value="<!-- INFO_wfa_cash_price_0 -->" form-name="wfa_general" class="form-control"></td>
+                                    <td><input type="number" min="0" id="wfa_cash_price_1" value="<!-- INFO_wfa_cash_price_1 -->" form-name="wfa_general" class="form-control"></td>
+                                    <td><input type="number" min="0" id="wfa_cash_price_2" value="<!-- INFO_wfa_cash_price_2 -->" form-name="wfa_general" class="form-control"></td>
+                                    <td><input type="number" min="0" id="wfa_cash_price_3" value="<!-- INFO_wfa_cash_price_3 -->" form-name="wfa_general" class="form-control"></td>
+                                    <td><!-- WFA_CASH_IS_NOT_PERCENT --></td>
+                                </tr>
+                                <tr>
+                                    <th style="width: 1px;white-space: nowrap;" nowrap="">لاحق الدفع<br>كل 1000 بـ</th>
+                                    <td><input type="number" min="0" id="wfa_pos_price_0" value="<!-- INFO_wfa_pos_price_0 -->" form-name="wfa_general" class="form-control"></td>
+                                    <td><input type="number" min="0" id="wfa_pos_price_1" value="<!-- INFO_wfa_pos_price_1 -->" form-name="wfa_general" class="form-control"></td>
+                                    <td><input type="number" min="0" id="wfa_pos_price_2" value="<!-- INFO_wfa_pos_price_2 -->" form-name="wfa_general" class="form-control"></td>
+                                    <td><input type="number" min="0" id="wfa_pos_price_3" value="<!-- INFO_wfa_pos_price_3 -->" form-name="wfa_general" class="form-control"></td>
+                                    <td><!-- WFA_POS_IS_NOT_PERCENT --></td>
+                                </tr>
+                                <tr>
+                                    <th style="width: 1px;white-space: nowrap;" nowrap="">مسبق الدفع<br>كل 1000 بـ</th>
+                                    <td><input type="number" min="0" id="wfa_pre_price_0" value="<!-- INFO_wfa_pre_price_0 -->" form-name="wfa_general" class="form-control"></td>
+                                    <td><input type="number" min="0" id="wfa_pre_price_1" value="<!-- INFO_wfa_pre_price_1 -->" form-name="wfa_general" class="form-control"></td>
+                                    <td><input type="number" min="0" id="wfa_pre_price_2" value="<!-- INFO_wfa_pre_price_2 -->" form-name="wfa_general" class="form-control"></td>
+                                    <td><input type="number" min="0" id="wfa_pre_price_3" value="<!-- INFO_wfa_pre_price_3 -->" form-name="wfa_general" class="form-control"></td>
+                                    <td><!-- WFA_PRE_IS_NOT_PERCENT --></td>
+                                </tr>
+                                <tr>
+                                    <th style="width: 1px;white-space: nowrap;" nowrap=""> اسماء المحافظات <br>اكتب كل مدينة بسطر</th>
+                                    <td colspan="5">
+                                        <textarea class="form-control" form-name="wfa_general" id="wfa_cities_in"><!-- INFO_wfa_cities_in --></textarea>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td colspan="5">
+                                        <button class="btn btn-success" onclick="save_general('wfa')"><i class="fas fa-save"></i> حفظ </button>
+                                        <span id="gen_save_area_wfa"></span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div class="card card-dark collapsed-card">
+                    <div class="card-header" data-card-widget="collapse" style="cursor: pointer">
+                        <i class="fa fa-info"></i>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" id="collapse_info" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                                <i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <div class="card-body text-right" dir="rtl">
+                        <i class="fa fa-info-circle text-cyan"></i><b>الحد الأدنى : </b>لا يسمح لأي خدمة بأن يظهر سعرها أقل من هذا السعر حتى لو تم تخصيص أسعار أقل منها بشكل صريح للزبون أو في إحدى الفئات الافتراضية.<br>
+                        <i class="fa fa-info-circle text-cyan"></i><b>ضع صفر في حقل الحد الأدنى</b> لتعطيل الخدمة عن كل فئات الزبائن.<br>
+                        <i class="fa fa-info-circle text-cyan"></i><b>ضع صفر في حقل السعر</b> لتعطيل الخدمة عن فئة معينة.<br>
+                        <i class="fa fa-exclamation-triangle text-red"></i>في حال تفعيل <b>مبلغ ثابت</b> : الحد الأدنى سيكون  هو السعر لكل 1000 ، و يتم اضافة مبلغ ثابت على الطلب حسب فئة الزبون وبغض النظر عن الكمية المطلوبة.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+
+    function save_general(c) {
+        sendform('gen_save_area_'+c,'todo=admin&type=mobile_kazia&btn=save_general&com='+c,c+'_general');
+    }
+</script>

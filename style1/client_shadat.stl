@@ -1,0 +1,95 @@
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>شدات</h1>
+            </div>
+
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <h1>الخدمة غير متاحة حالياً</h1>
+        </div>
+    </div>
+</section>
+<!-- SEP --><!-- 2 OK -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>شدات</h1>
+            </div>
+
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-dark">
+                    <div class="card-header">
+                        <span id="category_select">
+                            <script>
+                                senddata('category_select','todo=shadat_client&btn=get_category');
+                            </script>
+                        </span>
+                    </div>
+                    <div class="card-body">
+                        <span id="categories">
+
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    function order_item(item_id) {
+        if (confirm('تأكيد ارسال الطلب')) senddata('order_area','todo=shadat_client&btn=order&item_id='+item_id);
+    }
+    function choose_category(id) {
+        $("button").removeClass('active');
+        $("button[onclick=\"choose_category('"+id+"')\"]").addClass('active');
+        senddata('categories','todo=shadat_client&btn=select_category&id='+id);
+    }
+</script>
+<!-- SEP --><!-- 3 category -->
+<button class="btn btn-outline-warning" onclick="choose_category('<!-- INFO_id -->')"> <!-- INFO_display_name --> </button>
+<!-- SEP --><!-- 4 item select table -->
+<table class="table table-bordered table-hover" id="item_select">
+    <thead>
+    <tr>
+        <td>Player ID</td>
+        <td colspan="2">
+            <input type="text" id="player_id" class="form-control" style="max-width: 300px" form-name="shadat_new_order">
+        </td>
+    </tr>
+    <tr>
+        <td>-</td>
+        <td>النوع</td>
+        <td>السعر</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td style="width: 1px;white-space: nowrap" nowrap="">
+            <button class="btn btn-warning" onclick="order_item('<!-- INFO_denomination_id -->')"> ارسال طلب <i class="fa fa-telegram-plane"></i> </button>
+        </td>
+        <td>
+            <!-- INFO_product_name -->
+        </td>
+        <td>
+            <!-- INFO_product_price -->
+        </td>
+    </tr>
+    </tbody>
+</table>
+<!-- SEP --><!-- 5 not available category -->
+<h3>لا يوجد خدمات متوفرة لهذه الفئة</h3>

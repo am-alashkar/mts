@@ -1,0 +1,773 @@
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>رصيد جوال</h1>
+            </div>
+
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-sm-12">
+            <div class="card card-dark">
+                <div class="card-header">
+                    <span dir="rtl" class="float-right">الرقم أو الكود: </span>
+                    <input type="tel" class="form-control form-control-lg" style="background-color: unset; color: white; font-size: xx-large" id="mobile_no"
+                    placeholder="09xxxxxxxx" dir="ltr" onchange="select_com_by_phone()" onkeyup="select_com_by_phone()">
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                    <button class="btn btn-outline-danger float-right" id="syt_btn" onclick="select_com('syt')">SYRIATEL</button>
+                    <button class="btn btn-outline-warning float-left"id="mtn_btn" onclick="select_com('mtn')">MTN</button>
+                    <div style="text-align: center;"><button class="btn btn-outline-success" id="wfa_btn" onclick="select_com('wfa')">WAFATEL</button></div>
+                    </div>
+                    <br>
+                    <span id="syt_section" style="display: none">
+                        <hr>
+                        <span class="text-red"><h3>SYRIATEL</h3></span><br>
+                        <div class="row justify-content-around">
+                            <button class="btn btn-outline-danger" onclick="select_service('syt_cash')" id="syt_cash_btn">كاش</button>
+                            <button class="btn btn-outline-danger" onclick="select_service('syt_pos')" id="syt_pos_btn">لاحق الدفع</button>
+                            <button class="btn btn-outline-danger" onclick="select_service('syt_pre')" id="syt_pre_btn">مسبق الدفع</button>
+                        </div>
+                    </span>
+                    <span id="mtn_section" style="display: none">
+                        <hr>
+                        <span class="text-warning"><h3>MTN</h3></span><br>
+                        <div class="row justify-content-around">
+                            <button class="btn btn-outline-warning text-dark" onclick="select_service('mtn_cash')" id="mtn_cash_btn">كاش</button>
+                            <button class="btn btn-outline-warning text-dark" onclick="select_service('mtn_pos')" id="mtn_pos_btn">لاحق الدفع</button>
+                            <button class="btn btn-outline-warning text-dark" onclick="select_service('mtn_pre')" id="mtn_pre_btn">مسبق الدفع</button>
+                        </div>
+                    </span>
+                    <span id="wfa_section" style="display: none">
+                        <hr>
+                        <span class="text-success"><h3>WAFATEL</h3></span><br>
+                        <div class="row justify-content-around">
+                            <button class="btn btn-outline-success text-dark" onclick="select_service('wfa_cash')" id="wfa_cash_btn">كاش</button>
+                            <button class="btn btn-outline-success text-dark" onclick="select_service('wfa_pos')" id="wfa_pos_btn">لاحق الدفع</button>
+                            <button class="btn btn-outline-success text-dark" onclick="select_service('wfa_pre')" id="wfa_pre_btn">مسبق الدفع</button>
+                        </div>
+                    </span>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+
+            <div class="col-md-6 col-sm-12">
+                <div class="card card-warning card-outline" form_ref="tables" id="mtn_cash_card" style="display: none">
+                    <div class="card-header">
+                        MTN كاش
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-borderless table-striped">
+                            <tr>
+                                <td style="width: 1px;white-space: nowrap" nowrap="">المبلغ</td>
+                                <td>
+                                    <input type="number" dir="ltr" min="0" id="mtn_cash_amount" onkeyup="mtn_cash_price()" onchange="mtn_cash_price()" class="form-control" placeholder="ادخل المبلغ هنا" style="max-width: 400px;">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 1px;white-space: nowrap" nowrap=""><span id="mtn_cash_process_area">
+                                    <button class="btn btn-warning" onclick="mtn_cash_send()" id="mtn_cash_send_btn">ارسال الطلب <i class="fab fa-telegram-plane"></i>
+                                    </button>
+                                </span></td>
+                                <td dir="rtl"><span id="mtn_cash_balance_area"></span></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <script>
+                        function mtn_cash_send() {
+                            var amount = +$("#mtn_cash_amount").val();
+                            var phone = $("#mobile_no").val().trim();
+                            if (phone === '') {
+                                if ($("#mobile_no").hasClass('is-invalid')) alert('الرجاء ادخال رقم الجوال');
+                                $("#mobile_no").addClass('is-invalid');
+                                return;
+                            }
+                            if (phone.length < 8) {
+                                if ($("#mobile_no").hasClass('is-invalid')) alert('الرجاء ادخال رقم جوال صحيح');
+                                $("#mobile_no").addClass('is-invalid');
+                                return;
+                            }
+                            $("#mobile_no").removeClass('is-invalid');
+                            var test = mtn_cash_price();
+                            if (!test['ok'])
+                            {
+                                alert("رصيدك غير كافي لارسال الطلب");
+                                return;
+                            }
+                            if (confirm('تأكيد ارسال الطلب ؟'))
+                            {
+                                senddata('mtn_cash_process_area','todo=client_ops&type=mobile_retail&do=new_order&op=mtn_cash&phone='+phone+'&amount='+amount);
+                            }
+                        }
+                        function mtn_cash_price() {
+                            var price = <!-- INFO_mtn_cash_price -->;
+                            var adder = <!-- INFO_mtn_cash_type -->;
+                            var add_am = <!-- INFO_mtn_cash_adder -->;
+                            var amount = +$("#mtn_cash_amount").val();
+                            var result = '';
+                            var total = 0;
+                            if (amount > 0) {
+                                total = Math.ceil(amount * price / 1000);
+                                if (adder) total += add_am;
+                                result = 'المبلغ : '+amount+ ' ، السعر : '+total+'<br> الرصيد الجديد : ';
+                                var newbal = newbalance(total);
+                                result += '<span style="color: '+(newbal['newbal'] >= 0 ? 'green':'red' )+'; ">'+newbal['newbal']+'</span>';
+                                if (!newbal['ok']) result += '<br><span style="color: red;"><b>رصيدك غير كافي لاتمام العملية</b></span>';
+                            }
+                            $("#mtn_cash_balance_area").html(result);
+                            return newbal;
+                        }
+                    </script>
+                </div>
+                <div class="card card-warning card-outline" form_ref="tables" id="mtn_pre_card" style="display: none">
+                    <div class="card-header">MTN مسبق الدفع</div>
+                    <div class="card-body" style="overflow-x: scroll">
+                        <table class="table table-borderless text-center" dir="rtl" id="mtn_pre_table">
+                            <thead>
+                            <tr>
+
+                                <td dir="rtl" class="text-left"><span id="mtn_pre_balance_area"></span>
+                                    <input type="hidden" id="mtn_pre_amount"><input type="hidden" id="mtn_pre_price"></td>
+                                <td style="width: 1px;white-space: nowrap" nowrap="">
+                                    <span id="mtn_pre_process_area">
+                                        <button class="btn btn-warning" onclick="mtn_pre_send()" id="mtn_pre_send_btn">ارسال الطلب <i class="fab fa-telegram-plane"></i> </button>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><input type="number" id="mtn_pre_am" onchange="mtn_pre_amount_filter()" onkeyup="mtn_pre_amount_filter()" class="form-control" style="min-width: 300px"
+                                           placeholder="اكتب هنا للبحث في فئات التعبئة" min="0"></td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr mtn-filter="mtn_<!-- INFO_amount -->"><td colspan="2">
+                                <button class="btn btn-warning btn-block" dir="rtl" onclick="mtn_pre_select('<!-- INFO_amount -->','<!-- INFO_price -->')"><i class="fab fa-telegram-plane"></i>
+                                الرصيد : <b><!-- INFO_amount --></b> السعر : <!-- INFO_price --> </button> </td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <script>
+                        function mtn_pre_amount_filter() {
+                            mtn_pre_select(0,0);
+                            var am = $("#mtn_pre_am").val();
+                            if (am) {
+                                $("[mtn-filter^='mtn_']").not("[mtn-filter*='"+am+"']").hide(250);
+                                $("[mtn-filter*='"+am+"']").show(250);
+                            } else {
+                                $("[mtn-filter^='mtn_']").show(250);
+                            }
+                        }
+                        function mtn_pre_select(amount,price) {
+                            $("#mtn_pre_amount").val(amount);
+                            $("#mtn_pre_price").val(price);
+                            mtn_pre_price();
+                        }
+                        function mtn_pre_price() {
+                            var amount = +$("#mtn_pre_amount").val();
+                            var price = +$("#mtn_pre_price").val();
+                            var result = '';
+                            if (amount > 0) {
+                                result = 'المبلغ : '+amount+ ' ، السعر : '+price+'<br> الرصيد الجديد : ';
+                                var newbal = newbalance(price);
+                                result += '<span style="color: '+(newbal['newbal'] >= 0 ? 'green':'red' )+'; ">'+newbal['newbal']+'</span>';
+                                if (!newbal['ok']) result += '<br><span style="color: red;"><b>رصيدك غير كافي لاتمام العملية</b></span>';
+                            }
+                            $("#mtn_pre_balance_area").html(result);
+                            return newbal;
+                        }
+                        function mtn_pre_send() {
+                            var amount = +$("#mtn_pre_amount").val();
+                            if (!amount) {
+                                alert("يجب اختيار فئة تعبئة أولاً .");
+                                return;
+                            }
+                            var phone = $("#mobile_no").val().trim();
+                            if (phone === '') {
+                                if ($("#mobile_no").hasClass('is-invalid')) alert('الرجاء ادخال رقم الجوال');
+                                $("#mobile_no").addClass('is-invalid');
+                                return;
+                            }
+                            if (phone.length < 8) {
+                                if ($("#mobile_no").hasClass('is-invalid')) alert('الرجاء ادخال رقم جوال صحيح');
+                                $("#mobile_no").addClass('is-invalid');
+                                return;
+                            }
+                            $("#mobile_no").removeClass('is-invalid');
+                            var test = mtn_pre_price();
+                            if (!test['ok'])
+                            {
+                                alert("رصيدك غير كافي لارسال الطلب");
+                                return;
+                            }
+                            if (confirm("تأكيد ارسال الطلب ؟")) {
+                                senddata('mtn_pre_process_area','todo=client_ops&type=mobile_retail&do=new_order&op=mtn_pre&phone='+phone+'&amount='+amount);
+                            }
+                        }
+                    </script>
+                </div>
+                <div class="card card-warning card-outline" form_ref="tables" id="mtn_pos_card" style="display: none">
+                    <div class="card-header">
+                        MTN لاحق الدفع
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-borderless table-striped">
+                            <tr>
+                                <td style="width: 1px;white-space: nowrap" nowrap="">المبلغ</td>
+                                <td>
+                                    <input type="number" dir="ltr" min="0" id="mtn_pos_amount" onkeyup="mtn_pos_price()" onchange="mtn_pos_price()" class="form-control" placeholder="ادخل المبلغ هنا" style="max-width: 400px;">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 1px;white-space: nowrap" nowrap=""><span id="mtn_pos_process_area">
+                                    <button class="btn btn-warning" onclick="mtn_pos_send()" id="mtn_pos_send_btn">ارسال الطلب <i class="fab fa-telegram-plane"></i> </button>
+                                </span></td>
+                                <td dir="rtl"><span id="mtn_pos_balance_area"></span></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <script>
+                        function mtn_pos_send() {
+                            var amount = +$("#mtn_pos_amount").val();
+                            var phone = $("#mobile_no").val().trim();
+                            if (phone === '') {
+                                if ($("#mobile_no").hasClass('is-invalid')) alert('الرجاء ادخال رقم الجوال');
+                                $("#mobile_no").addClass('is-invalid');
+                                return;
+                            }
+                            if (phone.length < 8) {
+                                if ($("#mobile_no").hasClass('is-invalid')) alert('الرجاء ادخال رقم جوال صحيح');
+                                $("#mobile_no").addClass('is-invalid');
+                                return;
+                            }
+                            $("#mobile_no").removeClass('is-invalid');
+                            var test = mtn_pos_price();
+                            if (!test['ok'])
+                            {
+                                alert("رصيدك غير كافي لارسال الطلب");
+                                return;
+                            }
+                            if (confirm('تأكيد ارسال الطلب ؟'))
+                            {
+                                senddata('mtn_pos_process_area','todo=client_ops&type=mobile_retail&do=new_order&op=mtn_pos&phone='+phone+'&amount='+amount);
+                            }
+                        }
+                        function mtn_pos_price() {
+                            var price = <!-- INFO_mtn_pos_price -->;
+                            var adder = <!-- INFO_mtn_pos_type -->;
+                            var add_am = <!-- INFO_mtn_pos_adder -->;
+                            var amount = +$("#mtn_pos_amount").val();
+                            var result = '';
+                            var total = 0;
+                            if (amount > 0) {
+                                total = Math.ceil(amount * price / 1000);
+                                if (adder) total += add_am;
+                                result = 'المبلغ : '+amount+ ' ، السعر : '+total+'<br> الرصيد الجديد : ';
+                                var newbal = newbalance(total);
+                                result += '<span style="color: '+(newbal['newbal'] >= 0 ? 'green':'red' )+'; ">'+newbal['newbal']+'</span>';
+                                if (!newbal['ok']) result += '<br><span style="color: red;"><b>رصيدك غير كافي لاتمام العملية</b></span>';
+                            }
+                            $("#mtn_pos_balance_area").html(result);
+                            return newbal;
+                        }
+                    </script>
+                </div>
+                <div class="card card-danger card-outline" form_ref="tables" id="syt_cash_card" style="display: none">
+                    <div class="card-header">
+                        Syriatel كاش
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-borderless table-striped">
+                            <tr>
+                                <td style="width: 1px;white-space: nowrap" nowrap="">المبلغ</td>
+                                <td>
+                                    <input type="number" dir="ltr" min="0" id="syt_cash_amount" onkeyup="syt_cash_price()" onchange="syt_cash_price()" class="form-control" placeholder="ادخل المبلغ هنا" style="max-width: 400px;">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 1px;white-space: nowrap" nowrap=""><span id="syt_cash_process_area">
+                                    <button class="btn btn-danger" onclick="syt_cash_send()" id="syt_cash_send_btn">ارسال الطلب <i class="fab fa-telegram-plane"></i> </button>
+                                </span></td>
+                                <td dir="rtl"><span id="syt_cash_balance_area"></span></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <script>
+                        function syt_cash_send() {
+                            var amount = +$("#syt_cash_amount").val();
+                            var phone = $("#mobile_no").val().trim();
+                            if (phone === '') {
+                                if ($("#mobile_no").hasClass('is-invalid')) alert('الرجاء ادخال رقم الجوال');
+                                $("#mobile_no").addClass('is-invalid');
+                                return;
+                            }
+                            if (phone.length < 8) {
+                                if ($("#mobile_no").hasClass('is-invalid')) alert('الرجاء ادخال رقم جوال صحيح');
+                                $("#mobile_no").addClass('is-invalid');
+                                return;
+                            }
+                            $("#mobile_no").removeClass('is-invalid');
+                            var test = syt_cash_price();
+                            if (!test['ok'])
+                            {
+                                alert("رصيدك غير كافي لارسال الطلب");
+                                return;
+                            }
+                            if (confirm('تأكيد ارسال الطلب ؟'))
+                            {
+                                senddata('syt_cash_process_area','todo=client_ops&type=mobile_retail&do=new_order&op=syt_cash&phone='+phone+'&amount='+amount);
+                            }
+                        }
+                        function syt_cash_price() {
+                            var price = <!-- INFO_syt_cash_price -->;
+                            var adder = <!-- INFO_syt_cash_type -->;
+                            var add_am = <!-- INFO_syt_cash_adder -->;
+                            var amount = +$("#syt_cash_amount").val();
+                            var result = '';
+                            var total = 0;
+                            if (amount > 0) {
+                                total = Math.ceil(amount * price / 1000);
+                                if (adder) total += add_am;
+                                result = 'المبلغ : '+amount+ ' ، السعر : '+total+'<br> الرصيد الجديد : ';
+                                var newbal = newbalance(total);
+                                result += '<span style="color: '+(newbal['newbal'] >= 0 ? 'green':'red' )+'; ">'+newbal['newbal']+'</span>';
+                                if (!newbal['ok']) result += '<br><span style="color: red;"><b>رصيدك غير كافي لاتمام العملية</b></span>';
+                            }
+                            $("#syt_cash_balance_area").html(result);
+                            return newbal;
+                        }
+                    </script>
+                </div>
+                <div class="card card-danger card-outline" form_ref="tables" id="syt_pre_card" style="display: none">
+                    <div class="card-header">Syriatel مسبق الدفع</div>
+                    <div class="card-body" style="overflow-x: scroll">
+                        <table class="table table-borderless text-center" dir="rtl" id="syt_pre_table">
+                            <thead>
+                            <tr>
+
+                                <td dir="rtl" class="text-left"><span id="syt_pre_balance_area"></span>
+                                    <input type="hidden" id="syt_pre_amount"><input type="hidden" id="syt_pre_price"></td>
+                                <td style="width: 1px;white-space: nowrap" nowrap="">
+                                    <span id="syt_pre_process_area">
+                                        <button class="btn btn-danger" onclick="syt_pre_send()" id="syt_pre_send_btn">ارسال الطلب <i class="fab fa-telegram-plane"></i> </button>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><input type="number" id="syt_pre_am" onchange="syt_pre_amount_filter()" onkeyup="syt_pre_amount_filter()" class="form-control" style="min-width: 300px"
+                                                       placeholder="اكتب هنا للبحث في فئات التعبئة" min="0"></td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr syt-filter="syt_<!-- INFO_amount -->"><td colspan="2">
+                                <button class="btn btn-danger btn-block" dir="rtl" onclick="syt_pre_select('<!-- INFO_amount -->','<!-- INFO_price -->')"><i class="fab fa-telegram-plane"></i>
+                                    الرصيد : <b><!-- INFO_amount --></b> السعر : <!-- INFO_price --> </button> </td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <script>
+                        function syt_pre_amount_filter() {
+                            syt_pre_select(0,0);
+                            var am = $("#syt_pre_am").val();
+                            if (am) {
+                                $("[syt-filter^='syt_']").not("[syt-filter*='"+am+"']").hide(250);
+                                $("[syt-filter*='"+am+"']").show(250);
+                            } else {
+                                $("[syt-filter^='syt_']").show(250);
+                            }
+                        }
+                        function syt_pre_select(amount,price) {
+                            $("#syt_pre_amount").val(amount);
+                            $("#syt_pre_price").val(price);
+                            syt_pre_price();
+                        }
+                        function syt_pre_price() {
+                            var amount = +$("#syt_pre_amount").val();
+                            var price = +$("#syt_pre_price").val();
+                            var result = '';
+                            if (amount > 0) {
+                                result = 'المبلغ : '+amount+ ' ، السعر : '+price+'<br> الرصيد الجديد : ';
+                                var newbal = newbalance(price);
+                                result += '<span style="color: '+(newbal['newbal'] >= 0 ? 'green':'red' )+'; ">'+newbal['newbal']+'</span>';
+                                if (!newbal['ok']) result += '<br><span style="color: red;"><b>رصيدك غير كافي لاتمام العملية</b></span>';
+                            }
+                            $("#syt_pre_balance_area").html(result);
+                            return newbal;
+                        }
+                        function syt_pre_send() {
+                            var amount = +$("#syt_pre_amount").val();
+                            if (!amount) {
+                                alert("يجب اختيار فئة تعبئة أولاً .");
+                                return;
+                            }
+                            var phone = $("#mobile_no").val().trim();
+                            if (phone === '') {
+                                if ($("#mobile_no").hasClass('is-invalid')) alert('الرجاء ادخال رقم الجوال');
+                                $("#mobile_no").addClass('is-invalid');
+                                return;
+                            }
+                            if (phone.length < 8) {
+                                if ($("#mobile_no").hasClass('is-invalid')) alert('الرجاء ادخال رقم جوال صحيح');
+                                $("#mobile_no").addClass('is-invalid');
+                                return;
+                            }
+                            $("#mobile_no").removeClass('is-invalid');
+                            var test = syt_pre_price();
+                            if (!test['ok'])
+                            {
+                                alert("رصيدك غير كافي لارسال الطلب");
+                                return;
+                            }
+                            if (confirm("تأكيد ارسال الطلب ؟")) {
+                                senddata('syt_pre_process_area','todo=client_ops&type=mobile_retail&do=new_order&op=syt_pre&phone='+phone+'&amount='+amount);
+                            }
+                        }
+                    </script>
+                </div>
+                <div class="card card-danger card-outline" form_ref="tables" id="syt_pos_card" style="display: none"
+                ><div class="card-header">
+                    Syriatel لاحق الدفع
+                </div>
+                    <div class="card-body">
+                        <table class="table table-borderless table-striped">
+                            <tr>
+                                <td style="width: 1px;white-space: nowrap" nowrap="">المبلغ</td>
+                                <td>
+                                    <input type="number" dir="ltr" min="0" id="syt_pos_amount" onkeyup="syt_pos_price()" onchange="syt_pos_price()" class="form-control" placeholder="ادخل المبلغ هنا" style="max-width: 400px;">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 1px;white-space: nowrap" nowrap=""><span id="syt_pos_process_area">
+                                    <button class="btn btn-danger" onclick="syt_pos_send()" id="syt_pos_send_btn">ارسال الطلب <i class="fab fa-telegram-plane"></i> </button>
+                                </span></td>
+                                <td dir="rtl"><span id="syt_pos_balance_area"></span></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <script>
+                        function syt_pos_send() {
+                            var amount = +$("#syt_pos_amount").val();
+                            var phone = $("#mobile_no").val().trim();
+                            if (phone === '') {
+                                if ($("#mobile_no").hasClass('is-invalid')) alert('الرجاء ادخال رقم الجوال');
+                                $("#mobile_no").addClass('is-invalid');
+                                return;
+                            }
+                            if (phone.length < 8) {
+                                if ($("#mobile_no").hasClass('is-invalid')) alert('الرجاء ادخال رقم جوال صحيح');
+                                $("#mobile_no").addClass('is-invalid');
+                                return;
+                            }
+                            $("#mobile_no").removeClass('is-invalid');
+                            var test = syt_pos_price();
+                            if (!test['ok'])
+                            {
+                                alert("رصيدك غير كافي لارسال الطلب");
+                                return;
+                            }
+                            if (confirm('تأكيد ارسال الطلب ؟'))
+                            {
+                                senddata('syt_pos_process_area','todo=client_ops&type=mobile_retail&do=new_order&op=syt_pos&phone='+phone+'&amount='+amount);
+                            }
+                        }
+                        function syt_pos_price() {
+                            var price = <!-- INFO_syt_pos_price -->;
+                            var adder = <!-- INFO_syt_pos_type -->;
+                            var add_am = <!-- INFO_syt_pos_adder -->;
+                            var amount = +$("#syt_pos_amount").val();
+                            var result = '';
+                            var total = 0;
+                            if (amount > 0) {
+                                total = Math.ceil(amount * price / 1000);
+                                if (adder) total += add_am;
+                                result = 'المبلغ : '+amount+ ' ، السعر : '+total+'<br> الرصيد الجديد : ';
+                                var newbal = newbalance(total);
+                                result += '<span style="color: '+(newbal['newbal'] >= 0 ? 'green':'red' )+'; ">'+newbal['newbal']+'</span>';
+                                if (!newbal['ok']) result += '<br><span style="color: red;"><b>رصيدك غير كافي لاتمام العملية</b></span>';
+                            }
+                            $("#syt_pos_balance_area").html(result);
+                            return newbal;
+                        }
+                    </script>
+                </div>
+                <div class="card card-success card-outline" form_ref="tables" id="wfa_cash_card" style="display: none">
+                    <div class="card-header">
+                        Wafatel كاش
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-borderless table-striped">
+                            <tr>
+                                <td style="width: 1px;white-space: nowrap" nowrap="">المبلغ</td>
+                                <td>
+                                    <input type="number" dir="ltr" min="0" id="wfa_cash_amount" onkeyup="wfa_cash_price()" onchange="wfa_cash_price()" class="form-control" placeholder="ادخل المبلغ هنا" style="max-width: 400px;">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 1px;white-space: nowrap" nowrap=""><span id="wfa_cash_process_area">
+                                    <button class="btn btn-success" onclick="wfa_cash_send()" id="wfa_cash_send_btn">ارسال الطلب <i class="fab fa-telegram-plane"></i> </button>
+                                </span></td>
+                                <td dir="rtl"><span id="wfa_cash_balance_area"></span></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <script>
+                        function wfa_cash_send() {
+                            var amount = +$("#wfa_cash_amount").val();
+                            var phone = $("#mobile_no").val().trim();
+                            if (phone === '') {
+                                if ($("#mobile_no").hasClass('is-invalid')) alert('الرجاء ادخال رقم الجوال');
+                                $("#mobile_no").addClass('is-invalid');
+                                return;
+                            }
+                            if (phone.length < 8) {
+                                if ($("#mobile_no").hasClass('is-invalid')) alert('الرجاء ادخال رقم جوال صحيح');
+                                $("#mobile_no").addClass('is-invalid');
+                                return;
+                            }
+                            $("#mobile_no").removeClass('is-invalid');
+                            var test = wfa_cash_price();
+                            if (!test['ok'])
+                            {
+                                alert("رصيدك غير كافي لارسال الطلب");
+                                return;
+                            }
+                            if (confirm('تأكيد ارسال الطلب ؟'))
+                            {
+                                senddata('wfa_cash_process_area','todo=client_ops&type=mobile_retail&do=new_order&op=wfa_cash&phone='+phone+'&amount='+amount);
+                            }
+                        }
+                        function wfa_cash_price() {
+                            var price = <!-- INFO_wfa_cash_price -->;
+                            var adder = <!-- INFO_wfa_cash_type -->;
+                            var add_am = <!-- INFO_wfa_cash_adder -->;
+                            var amount = +$("#wfa_cash_amount").val();
+                            var result = '';
+                            var total = 0;
+                            if (amount > 0) {
+                                total = Math.ceil(amount * price / 1000);
+                                if (adder) total += add_am;
+                                result = 'المبلغ : '+amount+ ' ، السعر : '+total+'<br> الرصيد الجديد : ';
+                                var newbal = newbalance(total);
+                                result += '<span style="color: '+(newbal['newbal'] >= 0 ? 'green':'red' )+'; ">'+newbal['newbal']+'</span>';
+                                if (!newbal['ok']) result += '<br><span style="color: red;"><b>رصيدك غير كافي لاتمام العملية</b></span>';
+                            }
+                            $("#wfa_cash_balance_area").html(result);
+                            return newbal;
+                        }
+                    </script>
+                </div>
+                <div class="card card-success card-outline" form_ref="tables" id="wfa_pre_card" style="display: none">
+                    <div class="card-header">Wafatel مسبق الدفع</div>
+                    <div class="card-body" style="overflow-x: scroll">
+                        <table class="table table-borderless text-center" dir="rtl" id="wfa_pre_table">
+                            <thead>
+                            <tr>
+
+                                <td dir="rtl" class="text-left"><span id="wfa_pre_balance_area"></span>
+                                    <input type="hidden" id="wfa_pre_amount"><input type="hidden" id="wfa_pre_price"></td>
+                                <td style="width: 1px;white-space: nowrap" nowrap="">
+                                    <span id="wfa_pre_process_area">
+                                        <button class="btn btn-success" onclick="wfa_pre_send()" id="wfa_pre_send_btn">ارسال الطلب <i class="fab fa-telegram-plane"></i> </button>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><input type="number" id="wfa_pre_am" onchange="wfa_pre_amount_filter()" onkeyup="wfa_pre_amount_filter()" class="form-control" style="min-width: 300px"
+                                                       placeholder="اكتب هنا للبحث في فئات التعبئة" min="0"></td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr wfa-filter="wfa_<!-- INFO_amount -->"><td colspan="2">
+                                <button class="btn btn-success btn-block" dir="rtl" onclick="wfa_pre_select('<!-- INFO_amount -->','<!-- INFO_price -->')"><i class="fab fa-telegram-plane"></i>
+                                    الرصيد : <b><!-- INFO_amount --></b> السعر : <!-- INFO_price --> </button> </td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <script>
+                        function wfa_pre_amount_filter() {
+                            wfa_pre_select(0,0);
+                            var am = $("#wfa_pre_am").val();
+                            if (am) {
+                                $("[wfa-filter^='wfa_']").not("[wfa-filter*='"+am+"']").hide(250);
+                                $("[wfa-filter*='"+am+"']").show(250);
+                            } else {
+                                $("[wfa-filter^='syt_']").show(250);
+                            }
+                        }
+                        function wfa_pre_select(amount,price) {
+                            $("#wfa_pre_amount").val(amount);
+                            $("#wfa_pre_price").val(price);
+                            wfa_pre_price();
+                        }
+                        function wfa_pre_price() {
+                            var amount = +$("#wfa_pre_amount").val();
+                            var price = +$("#wfa_pre_price").val();
+                            var result = '';
+                            if (amount > 0) {
+                                result = 'المبلغ : '+amount+ ' ، السعر : '+price+'<br> الرصيد الجديد : ';
+                                var newbal = newbalance(price);
+                                result += '<span style="color: '+(newbal['newbal'] >= 0 ? 'green':'red' )+'; ">'+newbal['newbal']+'</span>';
+                                if (!newbal['ok']) result += '<br><span style="color: red;"><b>رصيدك غير كافي لاتمام العملية</b></span>';
+                            }
+                            $("#wfa_pre_balance_area").html(result);
+                            return newbal;
+                        }
+                        function wfa_pre_send() {
+                            var amount = +$("#wfa_pre_amount").val();
+                            if (!amount) {
+                                alert("يجب اختيار فئة تعبئة أولاً .");
+                                return;
+                            }
+                            var phone = $("#mobile_no").val().trim();
+                            if (phone === '') {
+                                if ($("#mobile_no").hasClass('is-invalid')) alert('الرجاء ادخال رقم الجوال');
+                                $("#mobile_no").addClass('is-invalid');
+                                return;
+                            }
+                            if (phone.length < 8) {
+                                if ($("#mobile_no").hasClass('is-invalid')) alert('الرجاء ادخال رقم جوال صحيح');
+                                $("#mobile_no").addClass('is-invalid');
+                                return;
+                            }
+                            $("#mobile_no").removeClass('is-invalid');
+                            var test = wfa_pre_price();
+                            if (!test['ok'])
+                            {
+                                alert("رصيدك غير كافي لارسال الطلب");
+                                return;
+                            }
+                            if (confirm("تأكيد ارسال الطلب ؟")) {
+                                senddata('wfa_pre_process_area','todo=client_ops&type=mobile_retail&do=new_order&op=wfa_pre&phone='+phone+'&amount='+amount);
+                            }
+                        }
+                    </script>
+                </div>
+                <div class="card card-success card-outline" form_ref="tables" id="wfa_pos_card" style="display: none">
+                    <div class="card-header">
+                    Wafatel لاحق الدفع
+                </div>
+                    <div class="card-body">
+                        <table class="table table-borderless table-striped">
+                            <tr>
+                                <td style="width: 1px;white-space: nowrap" nowrap="">المبلغ</td>
+                                <td>
+                                    <input type="number" dir="ltr" min="0" id="wfa_pos_amount" onkeyup="wfa_pos_price()" onchange="wfa_pos_price()" class="form-control" placeholder="ادخل المبلغ هنا" style="max-width: 400px;">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 1px;white-space: nowrap" nowrap=""><span id="wfa_pos_process_area">
+                                    <button class="btn btn-success" onclick="wfa_pos_send()" id="wfa_pos_send_btn">ارسال الطلب <i class="fab fa-telegram-plane"></i> </button>
+                                </span></td>
+                                <td dir="rtl"><span id="wfa_pos_balance_area"></span></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <script>
+                        function wfa_pos_send() {
+                            var amount = +$("#wfa_pos_amount").val();
+                            var phone = $("#mobile_no").val().trim();
+                            if (phone === '') {
+                                if ($("#mobile_no").hasClass('is-invalid')) alert('الرجاء ادخال رقم الجوال');
+                                $("#mobile_no").addClass('is-invalid');
+                                return;
+                            }
+                            if (phone.length < 8) {
+                                if ($("#mobile_no").hasClass('is-invalid')) alert('الرجاء ادخال رقم جوال صحيح');
+                                $("#mobile_no").addClass('is-invalid');
+                                return;
+                            }
+                            $("#mobile_no").removeClass('is-invalid');
+                            var test = wfa_pos_price();
+                            if (!test['ok'])
+                            {
+                                alert("رصيدك غير كافي لارسال الطلب");
+                                return;
+                            }
+                            if (confirm('تأكيد ارسال الطلب ؟'))
+                            {
+                                senddata('wfa_pos_process_area','todo=client_ops&type=mobile_retail&do=new_order&op=wfa_pos&phone='+phone+'&amount='+amount);
+                            }
+                        }
+                        function wfa_pos_price() {
+                            var price = <!-- INFO_wfa_pos_price -->;
+                            var adder = <!-- INFO_wfa_pos_type -->;
+                            var add_am = <!-- INFO_wfa_pos_adder -->;
+                            var amount = +$("#wfa_pos_amount").val();
+                            var result = '';
+                            var total = 0;
+                            if (amount > 0) {
+                                total = Math.ceil(amount * price / 1000);
+                                if (adder) total += add_am;
+                                result = 'المبلغ : '+amount+ ' ، السعر : '+total+'<br> الرصيد الجديد : ';
+                                var newbal = newbalance(total);
+                                result += '<span style="color: '+(newbal['newbal'] >= 0 ? 'green':'red' )+'; ">'+newbal['newbal']+'</span>';
+                                if (!newbal['ok']) result += '<br><span style="color: red;"><b>رصيدك غير كافي لاتمام العملية</b></span>';
+                            }
+                            $("#wfa_pos_balance_area").html(result);
+                            return newbal;
+                        }
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+<script>
+    function select_com_by_phone() {
+        $("#mobile_no").removeClass('is-invalid');
+        var phone = $("#mobile_no").val().trim();
+        var start = phone.substr(0,3);
+        switch (start) {
+            case '093': case '098' : case '099':
+                select_com('syt');
+                break;
+            case '094': case'095':case '096': case '097':
+                select_com('mtn');
+                break;
+            default:
+                select_com('none');
+        }
+    }
+
+    function select_com(com) {
+        $("#syt_btn").removeClass("active");
+        $("#mtn_btn").removeClass("active");
+        $("#wfa_btn").removeClass("active");
+        $("#syt_section").hide();
+        $("#mtn_section").hide();
+        $("#wfa_section").hide();
+        $("#"+com+"_section").show();
+        $("#"+com+"_btn").addClass("active");
+        select_service('none');
+    }
+    function select_service(service) {
+        $("[form_ref='tables']").hide();
+        $("#"+service+"_card").show();
+        $("[id$='_cash_btn']").removeClass("active");
+        $("[id$='_pre_btn']").removeClass("active");
+        $("[id$='_pos_btn']").removeClass("active");
+        $("#"+service+"_btn").addClass("active");
+    }
+    function newbalance(price) {
+        var bal = +$("#balance").val();
+        var cri = +$("#credit").val();
+        var newbal = Array();
+        newbal['newbal'] = Math.floor(bal-price);
+        newbal['ok'] = (newbal['newbal'] >= 0 - cri);
+        return newbal
+    }
+    function clear_all() {
+        $("input[type='text']").val('');
+        $("input[type='number']").val(0);
+        select_com('none');
+        $("[id$='_balance_area']").html('');
+    }
+</script>

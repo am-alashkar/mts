@@ -1,0 +1,88 @@
+<table class="table table-bordered table-striped" dir="rtl">
+
+    <tr>
+        <td style="white-space: nowrap; width: 1px;" nowrap="">اسم الزبون </td>
+        <td><input type="text" id="new_customer_name" class="form-control" value="<!-- INFO_name -->"></td>
+    </tr>
+    <tr>
+        <td style="white-space: nowrap; width: 1px;" nowrap="">رقم الهاتف الاساسي </td>
+        <td><input type="text" id="new_customer_phone" class="form-control" value="<!-- INFO_phone -->"></td>
+    </tr>
+    <tr>
+        <td style="white-space: nowrap; width: 1px;" nowrap="">رقم الهاتف 2 </td>
+        <td><input type="text" id="new_customer_phone2" class="form-control" value="<!-- INFO_phone2 -->"></td>
+    </tr>
+    <tr>
+        <td style="white-space: nowrap; width: 1px;" nowrap="">رقم الهاتف 3 </td>
+        <td><input type="text" id="new_customer_phone3" class="form-control" value="<!-- INFO_phone3 -->"></td>
+    </tr>
+    <tr>
+        <td style="white-space: nowrap; width: 1px;" nowrap="">رقم الهاتف 4 </td>
+        <td><input type="text" id="new_customer_phone4" class="form-control" value="<!-- INFO_phone4 -->"></td>
+    </tr>
+    <tr>
+        <td style="white-space: nowrap; width: 1px;" nowrap="">رقم الهاتف 5 </td>
+        <td><input type="text" id="new_customer_phone5" class="form-control" value="<!-- INFO_phone5 -->"></td>
+    </tr>
+    <tr>
+        <td style="white-space: nowrap; width: 1px;" nowrap="">رقم الهاتف 6 </td>
+        <td><input type="text" id="new_customer_phone6" class="form-control" value="<!-- INFO_phone6 -->"></td>
+    </tr>
+    <tr>
+        <td style="white-space: nowrap; width: 1px;" nowrap="">المدينة </td>
+        <td><input type="text" id="new_customer_city" class="form-control" value="<!-- INFO_city -->"></td>
+    </tr>
+    <tr>
+        <td>
+            العنوان
+        </td>
+        <td>
+            <input type="text" id="new_customer_address" class="form-control" value="<!-- INFO_address -->">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Email
+        </td>
+        <td>
+            <input type="email" id="new_customer_email" class="form-control" value="<!-- INFO_email -->">
+        </td>
+    </tr>
+
+</table>
+<br>
+<button class="btn btn-warning" id="new_customer_btn_<!-- RID -->"><i class="fa fa-save"></i> حفظ </button>
+<script>
+    $("#new_customer_btn_<!-- RID -->").click(
+        function () {
+            $("#new_customer_name").removeClass("is-invalid");
+            var name = $("#new_customer_name").val().trim();
+            var phone = $("#new_customer_phone").val();
+            var phone2 = $("#new_customer_phone2").val();
+            var phone3 = $("#new_customer_phone3").val();
+            var phone4 = $("#new_customer_phone4").val();
+            var phone5 = $("#new_customer_phone5").val();
+            var phone6 = $("#new_customer_phone6").val();
+            var city = $("#new_customer_city").val();
+            var email = $("#new_customer_city").val();
+            var address = $("#new_customer_address").val();
+            if (name === "")
+            {
+                $("#new_customer_name").addClass("is-invalid");
+                return;
+            }
+            senddata('next_to_title_<!-- RID -->','todo=customers&btn=edit&id=<!-- INFO_id -->&confirm=1'
+                +'&name='+name
+                +'&phone='+phone+'&address='+address
+                +'&phone2='+phone2
+                +'&phone3='+phone3
+                +'&phone4='+phone4
+                +'&phone5='+phone5
+                +'&phone6='+phone6
+                +'&city='+city
+                +'&email='+email
+            );
+
+        }
+    );
+</script>

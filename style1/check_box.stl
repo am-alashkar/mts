@@ -1,0 +1,8 @@
+<div class="form-group">
+    <div class="custom-control custom-switch custom-switch-off-gray custom-switch-on-warning">
+        <input type="checkbox" form-name="<!-- INFO_form_name -->" class="custom-control-input" id="<!-- INFO_id -->" <!-- INFO_checked --> >
+        <label class="custom-control-label" style="cursor: pointer"  for="<!-- INFO_id -->"></label>
+    </div>
+</div>
+<!-- SEP -->
+<label class="text-dark" style="cursor: pointer"  for="<!-- INFO_id -->" dir="{{ltr}}"><!-- INFO_name --></label>

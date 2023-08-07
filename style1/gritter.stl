@@ -1,0 +1,30 @@
+<script>
+    var Toast = Swal.mixin({
+    toast: <!-- TOAST -->,
+    confirmButtonText: '<!-- BTN -->',
+    position: '<!-- STYLE -->',
+    grow: true,
+    showConfirmButton: <!-- CONFIRM --><!-- TIME -->
+});
+Toast.fire({
+    icon: '<!-- ICON -->',
+    title: '<!-- TITLE -->',
+    text: '<!-- MSG -->',
+});
+<!-- SEP -->
+$("[data-dismiss=modal]").trigger({ type: "click" });
+<!-- SEP -->
+</script>
+<!-- SEP -->
+top-start top-end bottom-start bottom-end center
+icons : success info error warning question
+updatableParams = ['title',
+'titleText',
+'text', 'html', 'icon', 'hideClass', 'customClass', 'allowOutsideClick',
+'allowEscapeKey', 'showConfirmButton', 'showCancelButton', 'confirmButtonText',
+'confirmButtonAriaLabel', 'confirmButtonColor',
+'cancelButtonText', 'cancelButtonAriaLabel',
+'cancelButtonColor', 'buttonsStyling',
+'reverseButtons', 'imageUrl', 'imageWidth',
+'imageHeight', 'imageAlt', 'progressSteps',
+'currentProgressStep'];

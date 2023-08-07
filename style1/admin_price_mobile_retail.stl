@@ -1,0 +1,405 @@
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h4>{{pers_mobile_retail_price_admin}}</h4>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- MTN -->
+            <div class="col-12">
+                <div class="card card-outline card-warning collapsed-card">
+                    <div class="card-header"data-toggle="tooltip" data-card-widget="collapse" style="cursor: pointer">MTN
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" id="collapse_mtn" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                                <i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div style="overflow-x: scroll">
+                            <table class="table table-bordered table-striped text-right" dir="rtl" style="min-width: 700px;">
+                                <tr>
+                                    <th style="width: 1px;white-space: nowrap;" nowrap="">-</th>
+                                    <td>الحد الأدنى</td>
+                                    <td>خاص</td>
+                                    <td>جملة</td>
+                                    <td>مفرق</td>
+                                    <td>مبلغ ثابت؟</td>
+                                </tr>
+                                <tr>
+                                    <th style="width: 1px;white-space: nowrap;" nowrap="">خدمة كاش<br>كل 1000 بـ</th>
+                                    <td><input type="number" min="0" id="mtn_cash_price_0" value="<!-- INFO_mtn_cash_price_0 -->" form-name="mtn_general" class="form-control"></td>
+                                    <td><input type="number" min="0" id="mtn_cash_price_1" value="<!-- INFO_mtn_cash_price_1 -->" form-name="mtn_general" class="form-control"></td>
+                                    <td><input type="number" min="0" id="mtn_cash_price_2" value="<!-- INFO_mtn_cash_price_2 -->" form-name="mtn_general" class="form-control"></td>
+                                    <td><input type="number" min="0" id="mtn_cash_price_3" value="<!-- INFO_mtn_cash_price_3 -->" form-name="mtn_general" class="form-control"></td>
+                                    <td><!-- MTN_CASH_IS_NOT_PERCENT --></td>
+                                </tr>
+                                <tr>
+                                    <th style="width: 1px;white-space: nowrap;" nowrap="">لاحق الدفع<br>كل 1000 بـ</th>
+                                    <td><input type="number" min="0" id="mtn_pos_price_0" value="<!-- INFO_mtn_pos_price_0 -->" form-name="mtn_general" class="form-control"></td>
+                                    <td><input type="number" min="0" id="mtn_pos_price_1" value="<!-- INFO_mtn_pos_price_1 -->" form-name="mtn_general" class="form-control"></td>
+                                    <td><input type="number" min="0" id="mtn_pos_price_2" value="<!-- INFO_mtn_pos_price_2 -->" form-name="mtn_general" class="form-control"></td>
+                                    <td><input type="number" min="0" id="mtn_pos_price_3" value="<!-- INFO_mtn_pos_price_3 -->" form-name="mtn_general" class="form-control"></td>
+                                    <td><!-- MTN_POS_IS_NOT_PERCENT --></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5">
+                                        <button class="btn btn-warning" onclick="save_general('mtn')"><i class="fas fa-save"></i> حفظ </button>
+                                        <span id="gen_save_area_mtn"></span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div style="overflow-x: scroll" class="row">
+
+                            <span class="col-12 text-center">
+                                <hr>
+                                <h4>مسبق الدفع</h4>
+                            </span>
+                            <table class="table table-hover table-bordered text-right" id="mtn_prepaid_table" dir="rtl"  style="min-width: 800px;">
+                                <thead>
+                                <tr>
+                                    <th>التعبئة</th>
+                                    <th>الحد الأدنى</th>
+                                    <th>خاص</th>
+                                    <th>جملة</th>
+                                    <th>مفرق</th>
+                                    <th>-</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr tr-name="mtn_<!-- INFO_id -->">
+                                    <td><input dir="ltr" type="number" min="0" id="mtn_prepaid_amount_<!-- INFO_id -->" value="<!-- INFO_amount -->" form-name="mtn_prepaid" class="form-control"></td>
+                                    <td><input dir="ltr" type="number" min="0" id="mtn_prepaid_price_0_<!-- INFO_id -->" value="<!-- INFO_price_0 -->" form-name="mtn_prepaid" class="form-control"></td>
+                                    <td><input dir="ltr" type="number" min="0" id="mtn_prepaid_price_1_<!-- INFO_id -->" value="<!-- INFO_price_1 -->" form-name="mtn_prepaid" class="form-control"></td>
+                                    <td><input dir="ltr" type="number" min="0" id="mtn_prepaid_price_2_<!-- INFO_id -->" value="<!-- INFO_price_2 -->" form-name="mtn_prepaid" class="form-control"></td>
+                                    <td><input dir="ltr" type="number" min="0" id="mtn_prepaid_price_3_<!-- INFO_id -->" value="<!-- INFO_price_3 -->" form-name="mtn_prepaid" class="form-control"></td>
+                                    <td><div class="btn-group btn-group-sm" dir="ltr">
+                                        <button class="btn btn-xs btn-default" onclick="moveIt(this,true)"><i class="fa fa-angle-up"></i> </button>
+                                        <button class="btn btn-xs btn-danger" onclick="removeIt('mtn_<!-- INFO_id -->')"><i class="fa fa-times-circle"></i> </button>
+                                        <button class="btn btn-xs btn-default" onclick="moveIt(this,false)"><i class="fa fa-angle-down"></i> </button>
+
+                                    </div> </td>
+                                </tr>
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <td><input dir="ltr" type="number" min="0" id="mtn_prepaid_amount_new"  class="form-control"></td>
+                                    <td><input dir="ltr" type="number" min="0" id="mtn_prepaid_price_0_new" class="form-control"></td>
+                                    <td><input dir="ltr" type="number" min="0" id="mtn_prepaid_price_1_new" class="form-control"></td>
+                                    <td><input dir="ltr" type="number" min="0" id="mtn_prepaid_price_2_new" class="form-control"></td>
+                                    <td><input dir="ltr" type="number" min="0" id="mtn_prepaid_price_3_new" class="form-control"></td>
+                                    <td><div class="btn-group btn-group-sm" dir="ltr">
+                                        <button class="btn btn-xs btn-default" onclick="add_to_prepaid('mtn')"><i class="fa fa-plus-circle"></i> </button>
+                                    </div> </td>
+                                </tr>
+                                <tr>
+                                    <td><button class="btn btn-warning" onclick="save_prepaid('mtn')"><i class="fa fa-save"></i>  حفظ  </button> </td>
+                                    <td colspan="5"><span id="mtn_prepaid_save_area"></span></td>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SYRIATEL -->
+            <div class="col-12">
+                <div class="card card-outline card-danger collapsed-card">
+                    <div class="card-header" data-toggle="tooltip" data-card-widget="collapse" style="cursor: pointer">Syriatel
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" id="collapse_syt" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                                <i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div style="overflow-x: scroll">
+                            <table class="table table-bordered table-striped text-right" dir="rtl" style="min-width: 700px;">
+                                <tr>
+                                    <th style="width: 1px;white-space: nowrap;" nowrap="">-</th>
+                                    <td>الحد الأدنى</td>
+                                    <td>خاص</td>
+                                    <td>جملة</td>
+                                    <td>مفرق</td>
+                                    <td>مبلغ ثابت؟</td>
+                                </tr>
+                                <tr>
+                                    <th style="width: 1px;white-space: nowrap;" nowrap="">خدمة كاش<br>كل 1000 بـ</th>
+                                    <td><input type="number" min="0" id="syt_cash_price_0" value="<!-- INFO_syt_cash_price_0 -->" form-name="syt_general" class="form-control"></td>
+                                    <td><input type="number" min="0" id="syt_cash_price_1" value="<!-- INFO_syt_cash_price_1 -->" form-name="syt_general" class="form-control"></td>
+                                    <td><input type="number" min="0" id="syt_cash_price_2" value="<!-- INFO_syt_cash_price_2 -->" form-name="syt_general" class="form-control"></td>
+                                    <td><input type="number" min="0" id="syt_cash_price_3" value="<!-- INFO_syt_cash_price_3 -->" form-name="syt_general" class="form-control"></td>
+                                    <td><!-- SYT_CASH_IS_NOT_PERCENT --></td>
+                                </tr>
+                                <tr>
+                                    <th style="width: 1px;white-space: nowrap;" nowrap="">لاحق الدفع<br>كل 1000 بـ</th>
+                                    <td><input type="number" min="0" id="syt_pos_price_0" value="<!-- INFO_syt_pos_price_0 -->" form-name="syt_general" class="form-control"></td>
+                                    <td><input type="number" min="0" id="syt_pos_price_1" value="<!-- INFO_syt_pos_price_1 -->" form-name="syt_general" class="form-control"></td>
+                                    <td><input type="number" min="0" id="syt_pos_price_2" value="<!-- INFO_syt_pos_price_2 -->" form-name="syt_general" class="form-control"></td>
+                                    <td><input type="number" min="0" id="syt_pos_price_3" value="<!-- INFO_syt_pos_price_3 -->" form-name="syt_general" class="form-control"></td>
+                                    <td><!-- SYT_POS_IS_NOT_PERCENT --></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5">
+                                        <button class="btn btn-warning" onclick="save_general('syt')"><i class="fas fa-save"></i> حفظ </button>
+                                        <span id="gen_save_area_syt"></span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div style="overflow-x: scroll" class="row">
+
+                            <span class="col-12 text-center">
+                                <hr>
+                                <h4>مسبق الدفع</h4>
+                            </span>
+                            <table class="table table-hover table-bordered text-right" id="syt_prepaid_table" dir="rtl"  style="min-width: 800px;">
+                                <thead>
+                                <tr>
+                                    <th>التعبئة</th>
+                                    <th>الحد الأدنى</th>
+                                    <th>خاص</th>
+                                    <th>جملة</th>
+                                    <th>مفرق</th>
+                                    <th>-</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr tr-name="syt_<!-- INFO_id -->">
+                                    <td><input dir="ltr" type="number" min="0" id="syt_prepaid_amount_<!-- INFO_id -->" value="<!-- INFO_amount -->" form-name="syt_prepaid" class="form-control"></td>
+                                    <td><input dir="ltr" type="number" min="0" id="syt_prepaid_price_0_<!-- INFO_id -->" value="<!-- INFO_price_0 -->" form-name="syt_prepaid" class="form-control"></td>
+                                    <td><input dir="ltr" type="number" min="0" id="syt_prepaid_price_1_<!-- INFO_id -->" value="<!-- INFO_price_1 -->" form-name="syt_prepaid" class="form-control"></td>
+                                    <td><input dir="ltr" type="number" min="0" id="syt_prepaid_price_2_<!-- INFO_id -->" value="<!-- INFO_price_2 -->" form-name="syt_prepaid" class="form-control"></td>
+                                    <td><input dir="ltr" type="number" min="0" id="syt_prepaid_price_3_<!-- INFO_id -->" value="<!-- INFO_price_3 -->" form-name="syt_prepaid" class="form-control"></td>
+                                    <td><div class="btn-group btn-group-sm" dir="ltr">
+                                        <button class="btn btn-xs btn-default" onclick="moveIt(this,true)"><i class="fa fa-angle-up"></i> </button>
+                                        <button class="btn btn-xs btn-danger" onclick="removeIt('syt_<!-- INFO_id -->')"><i class="fa fa-times-circle"></i> </button>
+                                        <button class="btn btn-xs btn-default" onclick="moveIt(this,false)"><i class="fa fa-angle-down"></i> </button>
+
+                                    </div> </td>
+                                </tr>
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <td><input dir="ltr" type="number" min="0" id="syt_prepaid_amount_new"  class="form-control"></td>
+                                    <td><input dir="ltr" type="number" min="0" id="syt_prepaid_price_0_new" class="form-control"></td>
+                                    <td><input dir="ltr" type="number" min="0" id="syt_prepaid_price_1_new" class="form-control"></td>
+                                    <td><input dir="ltr" type="number" min="0" id="syt_prepaid_price_2_new" class="form-control"></td>
+                                    <td><input dir="ltr" type="number" min="0" id="syt_prepaid_price_3_new" class="form-control"></td>
+                                    <td><div class="btn-group btn-group-sm" dir="ltr">
+                                        <button class="btn btn-xs btn-default" onclick="add_to_prepaid('syt')"><i class="fa fa-plus-circle"></i> </button>
+                                    </div> </td>
+                                </tr>
+                                <tr>
+                                    <td><button class="btn btn-warning" onclick="save_prepaid('syt')"><i class="fa fa-save"></i>  حفظ  </button> </td>
+                                    <td colspan="5"><span id="syt_prepaid_save_area"></span></td>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- WAFATEL -->
+            <div class="col-12">
+                <div class="card card-outline card-success collapsed-card">
+                    <div class="card-header" data-toggle="tooltip" data-card-widget="collapse" style="cursor: pointer">Wafatel
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" id="collapse_wfa" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                                <i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div style="overflow-x: scroll">
+                            <table class="table table-bordered table-striped text-right" dir="rtl" style="min-width: 700px;">
+                                <tr>
+                                    <th style="width: 1px;white-space: nowrap;" nowrap="">-</th>
+                                    <td>الحد الأدنى</td>
+                                    <td>خاص</td>
+                                    <td>جملة</td>
+                                    <td>مفرق</td>
+                                    <td>مبلغ ثابت؟</td>
+                                </tr>
+                                <tr>
+                                    <th style="width: 1px;white-space: nowrap;" nowrap="">خدمة كاش<br>كل 1000 بـ</th>
+                                    <td><input type="number" min="0" id="wfa_cash_price_0" value="<!-- INFO_wfa_cash_price_0 -->" form-name="wfa_general" class="form-control"></td>
+                                    <td><input type="number" min="0" id="wfa_cash_price_1" value="<!-- INFO_wfa_cash_price_1 -->" form-name="wfa_general" class="form-control"></td>
+                                    <td><input type="number" min="0" id="wfa_cash_price_2" value="<!-- INFO_wfa_cash_price_2 -->" form-name="wfa_general" class="form-control"></td>
+                                    <td><input type="number" min="0" id="wfa_cash_price_3" value="<!-- INFO_wfa_cash_price_3 -->" form-name="wfa_general" class="form-control"></td>
+                                    <td><!-- WFA_CASH_IS_NOT_PERCENT --></td>
+                                </tr>
+                                <tr>
+                                    <th style="width: 1px;white-space: nowrap;" nowrap="">لاحق الدفع<br>كل 1000 بـ</th>
+                                    <td><input type="number" min="0" id="wfa_pos_price_0" value="<!-- INFO_wfa_pos_price_0 -->" form-name="wfa_general" class="form-control"></td>
+                                    <td><input type="number" min="0" id="wfa_pos_price_1" value="<!-- INFO_wfa_pos_price_1 -->" form-name="wfa_general" class="form-control"></td>
+                                    <td><input type="number" min="0" id="wfa_pos_price_2" value="<!-- INFO_wfa_pos_price_2 -->" form-name="wfa_general" class="form-control"></td>
+                                    <td><input type="number" min="0" id="wfa_pos_price_3" value="<!-- INFO_wfa_pos_price_3 -->" form-name="wfa_general" class="form-control"></td>
+                                    <td><!-- WFA_POS_IS_NOT_PERCENT --></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5">
+                                        <button class="btn btn-warning" onclick="save_general('wfa')"><i class="fas fa-save"></i> حفظ </button>
+                                        <span id="gen_save_area_wfa"></span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div style="overflow-x: scroll" class="row">
+
+                            <span class="col-12 text-center">
+                                <hr>
+                                <h4>مسبق الدفع</h4>
+                            </span>
+                            <table class="table table-hover table-bordered text-right" id="wfa_prepaid_table" dir="rtl"  style="min-width: 800px;">
+                                <thead>
+                                <tr>
+                                    <th>التعبئة</th>
+                                    <th>الحد الأدنى</th>
+                                    <th>خاص</th>
+                                    <th>جملة</th>
+                                    <th>مفرق</th>
+                                    <th>-</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr tr-name="wfa_<!-- INFO_id -->">
+                                    <td><input dir="ltr" type="number" min="0" id="wfa_prepaid_amount_<!-- INFO_id -->" value="<!-- INFO_amount -->" form-name="wfa_prepaid" class="form-control"></td>
+                                    <td><input dir="ltr" type="number" min="0" id="wfa_prepaid_price_0_<!-- INFO_id -->" value="<!-- INFO_price_0 -->" form-name="wfa_prepaid" class="form-control"></td>
+                                    <td><input dir="ltr" type="number" min="0" id="wfa_prepaid_price_1_<!-- INFO_id -->" value="<!-- INFO_price_1 -->" form-name="wfa_prepaid" class="form-control"></td>
+                                    <td><input dir="ltr" type="number" min="0" id="wfa_prepaid_price_2_<!-- INFO_id -->" value="<!-- INFO_price_2 -->" form-name="wfa_prepaid" class="form-control"></td>
+                                    <td><input dir="ltr" type="number" min="0" id="wfa_prepaid_price_3_<!-- INFO_id -->" value="<!-- INFO_price_3 -->" form-name="wfa_prepaid" class="form-control"></td>
+                                    <td><div class="btn-group btn-group-sm" dir="ltr">
+                                        <button class="btn btn-xs btn-default" onclick="moveIt(this,true)"><i class="fa fa-angle-up"></i> </button>
+                                        <button class="btn btn-xs btn-danger" onclick="removeIt('wfa_<!-- INFO_id -->')"><i class="fa fa-times-circle"></i> </button>
+                                        <button class="btn btn-xs btn-default" onclick="moveIt(this,false)"><i class="fa fa-angle-down"></i> </button>
+
+                                    </div> </td>
+                                </tr>
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <td><input dir="ltr" type="number" min="0" id="wfa_prepaid_amount_new"  class="form-control"></td>
+                                    <td><input dir="ltr" type="number" min="0" id="wfa_prepaid_price_0_new" class="form-control"></td>
+                                    <td><input dir="ltr" type="number" min="0" id="wfa_prepaid_price_1_new" class="form-control"></td>
+                                    <td><input dir="ltr" type="number" min="0" id="wfa_prepaid_price_2_new" class="form-control"></td>
+                                    <td><input dir="ltr" type="number" min="0" id="wfa_prepaid_price_3_new" class="form-control"></td>
+                                    <td><div class="btn-group btn-group-sm" dir="ltr">
+                                        <button class="btn btn-xs btn-default" onclick="add_to_prepaid('wfa')"><i class="fa fa-plus-circle"></i> </button>
+                                    </div> </td>
+                                </tr>
+                                <tr>
+                                    <td><button class="btn btn-success" onclick="save_prepaid('wfa')"><i class="fa fa-save"></i>  حفظ  </button> </td>
+                                    <td colspan="5"><span id="wfa_prepaid_save_area"></span></td>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-12">
+                <div class="card card-dark collapsed-card">
+                    <div class="card-header" data-card-widget="collapse" style="cursor: pointer">
+                        <i class="fa fa-info"></i>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" id="collapse_info" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                                <i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <div class="card-body text-right" dir="rtl">
+                        <i class="fa fa-info-circle text-cyan"></i><b>الحد الأدنى : </b>لا يسمح لأي خدمة بأن يظهر سعرها أقل من هذا السعر حتى لو تم تخصيص أسعار أقل منها بشكل صريح للزبون أو في إحدى الفئات الافتراضية.<br>
+                        <i class="fa fa-info-circle text-cyan"></i><b>ضع صفر في حقل الحد الأدنى</b> لتعطيل الخدمة عن كل فئات الزبائن.<br>
+                        <i class="fa fa-info-circle text-cyan"></i><b>ضع صفر في حقل السعر</b> لتعطيل الخدمة عن فئة معينة.<br>
+                        <i class="fa fa-exclamation-triangle text-red"></i>في حال تفعيل <b>مبلغ ثابت</b> : الحد الأدنى سيكون  هو السعر لكل 1000 ، و يتم اضافة مبلغ ثابت على الطلب حسب فئة الزبون وبغض النظر عن الكمية المطلوبة.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    function add_to_prepaid(c) {
+        // syt_prepaid_table
+        /**
+         * <tr tr-name="syt_<!-- INFO_id -->">
+         <td><input dir="ltr" type="number" min="0" id="syt_prepaid_amount_<!-- INFO_id -->" value="<!-- INFO_amount -->" form-name="syt_prepaid" class="form-control"></td>
+         <td><input dir="ltr" type="number" min="0" id="syt_prepaid_price_0_<!-- INFO_id -->" value="<!-- INFO_price_0 -->" form-name="syt_prepaid" class="form-control"></td>
+         <td><input dir="ltr" type="number" min="0" id="syt_prepaid_price_1_<!-- INFO_id -->" value="<!-- INFO_price_1 -->" form-name="syt_prepaid" class="form-control"></td>
+         <td><input dir="ltr" type="number" min="0" id="syt_prepaid_price_2_<!-- INFO_id -->" value="<!-- INFO_price_2 -->" form-name="syt_prepaid" class="form-control"></td>
+         <td><input dir="ltr" type="number" min="0" id="syt_prepaid_price_3_<!-- INFO_id -->" value="<!-- INFO_price_3 -->" form-name="syt_prepaid" class="form-control"></td>
+         <td><div class="btn-group btn-group-sm" dir="ltr">
+         <button class="btn btn-xs btn-default" onclick="moveIt('syt_<!-- INFO_id -->',true)"><i class="fa fa-angle-up"></i> </button>
+         <button class="btn btn-xs btn-danger" onclick="removeIt('syt_<!-- INFO_id -->')"><i class="fa fa-times-circle"></i> </button>
+         <button class="btn btn-xs btn-default" onclick="moveIt('syt_<!-- INFO_id -->',false)"><i class="fa fa-angle-down"></i> </button>
+         </div> </td>
+         </tr>
+         */
+        /**
+         * syt_prepaid_amount_new
+         */
+        $(".is-invalid").removeClass('is-invalid');
+        var amount = $("#"+c+"_prepaid_amount_new").val();
+        var price_0 = $("#"+c+"_prepaid_price_0_new").val();
+        var price_1 = $("#"+c+"_prepaid_price_1_new").val();
+        var price_2 = $("#"+c+"_prepaid_price_2_new").val();
+        var price_3 = $("#"+c+"_prepaid_price_3_new").val();
+        var id = 1;
+        $("[tr-name^='"+c+"_']").each(function () {
+            var r = parseInt(this.getAttribute('tr-name').split('_')[1]);
+            //console.log(r);
+            if (r >= id) id = r+1;
+        });
+        var tbodyRef = document.getElementById(c+'_prepaid_table').getElementsByTagName('tbody')[0];
+        var r = tbodyRef.insertRow();
+        r.setAttribute('tr-name', c+'_'+id);
+        r.innerHTML = '<td>' +
+            '<input dir="ltr" type="number" min="0" id="'+c+'_prepaid_amount_'+id+'" value="'+amount+'" form-name="'+c+'_prepaid" class="form-control"></td>\n'+
+            '<td><input dir="ltr" type="number" min="0" id="'+c+'_prepaid_price_0_'+id+'" value="'+price_0+'" form-name="'+c+'_prepaid" class="form-control"></td>\n'+
+            '<td><input dir="ltr" type="number" min="0" id="'+c+'_prepaid_price_1_'+id+'" value="'+price_1+'" form-name="'+c+'_prepaid" class="form-control"></td>\n'+
+            '<td><input dir="ltr" type="number" min="0" id="'+c+'_prepaid_price_2_'+id+'" value="'+price_2+'" form-name="'+c+'_prepaid" class="form-control"></td>\n'+
+            '<td><input dir="ltr" type="number" min="0" id="'+c+'_prepaid_price_3_'+id+'" value="'+price_3+'" form-name="'+c+'_prepaid" class="form-control"></td>\n'+
+            '<td><div class="btn-group btn-group-sm" dir="ltr">\n'+
+            '<button class="btn btn-xs btn-default" onclick="moveIt(this,true)"><i class="fa fa-angle-up"></i> </button>\n'+
+            '<button class="btn btn-xs btn-danger" onclick="removeIt(\''+c+'_'+id+'\')"><i class="fa fa-times-circle"></i> </button>\n'+
+            '<button class="btn btn-xs btn-default" onclick="moveIt(this,false)"><i class="fa fa-angle-down"></i> </button>\n'+
+            '</div> </td>';
+    }
+    function save_prepaid(c) {
+        sendform(c+'_prepaid_save_area','todo=admin&type=mobile_retail&btn=save_prepaid&com='+c,c+'_prepaid');
+    }
+    function moveIt(id,direction) {
+        var old_tr = id.closest('tr');
+        var replace_with;
+        if (direction) {
+            replace_with = old_tr.previousElementSibling;
+            if (replace_with === null) return false;
+        } else {
+            replace_with = old_tr.nextElementSibling;
+            if (replace_with === null) return false;
+        }
+        var t = old_tr.innerHTML;
+        var t_name = old_tr.getAttribute('tr-name');
+        old_tr.innerHTML = replace_with.innerHTML;
+        old_tr.setAttribute('tr-name',replace_with.getAttribute('tr-name'));
+        replace_with.innerHTML = t;
+        replace_with.setAttribute('tr-name',t_name);
+    }
+    function removeIt(id) {
+        if (confirm('تأكيد الحذف ؟'))
+        {
+            $("[tr-name='"+id+"']").remove();
+        }
+    }
+    function save_general(c) {
+        sendform('gen_save_area_'+c,'todo=admin&type=mobile_retail&btn=save_general&com='+c,c+'_general');
+    }
+</script>

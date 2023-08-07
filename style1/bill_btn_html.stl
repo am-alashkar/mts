@@ -1,0 +1,36 @@
+<button id="cancel_bill_btn" class="btn btn-warning" onclick="if (confirm('تأكيد إلغاء الطلب؟'))
+    senddata('btn_area_<!-- RID -->','todo=bills&btn=cancel&id=<!-- INFO_id -->&rid=<!-- RID -->&admin_note='+$('#admin_note_<!-- RID -->').val())">
+    <i class="fa fa-times-circle"></i> الغاء الطلب
+</button>
+<button id="accept_bill_btn" class="btn btn-success" onclick="if (confirm('تأكيد تنفيذ الطلب؟'))
+    senddata('btn_area_<!-- RID -->','todo=bills&btn=accept&id=<!-- INFO_id -->&rid=<!-- RID -->&admin_note='+$('#admin_note_<!-- RID -->').val())">
+    <i class="fa fa-check"></i> تنفيذ
+</button>
+<button id="reject_bill_btn" class="btn btn-danger" onclick="if (confirm('تأكيد الغاء الطلب؟'))
+    senddata('btn_area_<!-- RID -->','todo=bills&btn=reject&id=<!-- INFO_id -->&rid=<!-- RID -->&admin_note='+$('#admin_note_<!-- RID -->').val())">
+    <i class="fa fa-times"></i> الغاء
+</button>
+<button id="hold_bill_btn" class="btn btn-info" onclick="if (confirm('تأكيد تعليق الطلب؟'))
+    senddata('btn_area_<!-- RID -->','todo=bills&btn=hold&id=<!-- INFO_id -->&rid=<!-- RID -->&admin_note='+$('#admin_note_<!-- RID -->').val())">
+    <i class="fa fa-hand-paper"></i> تعليق
+</button>
+<button id="un_hold_bill_btn" class="btn btn-info" onclick="if (confirm('تأكيد الغاء تعليق الطلب؟'))
+    senddata('btn_area_<!-- RID -->','todo=bills&btn=un_hold&id=<!-- INFO_id -->&rid=<!-- RID -->&admin_note='+$('#admin_note_<!-- RID -->').val())">
+    <i class="fa fa-hand-spock"></i> الغاء التعليق
+</button>
+<button id="take_bill_btn" class="btn btn-primary" onclick="if (confirm('تأكيد استلام الطلب؟'))
+    senddata('btn_area_<!-- RID -->','todo=bills&btn=take&id=<!-- INFO_id -->&rid=<!-- RID -->&admin_note='+$('#admin_note_<!-- RID -->').val())">
+    <i class="fa fa-cog"></i>  استلام الطلب للتنفيذ
+</button>
+<button id="override_take_bill_btn" class="btn btn-danger" onclick="if (confirm('تأكيد استلام الطلب بدلا من الموظف الحالي ؟'))
+    senddata('btn_area_<!-- RID -->','todo=bills&btn=overtake&id=<!-- INFO_id -->&rid=<!-- RID -->&admin_note='+$('#admin_note_<!-- RID -->').val())">
+    <i class="fa fa-user-friends"></i>  استلام الطلب للتنفيذ بدلاً من الموظف الحالي
+</button>
+<!-- SEP -->
+<span>
+    <input type="text" class="form-control" id="admin_note_<!-- RID -->" placeholder="ملاحظات" onkeyup="$(this).removeClass('is-invalid')">
+    <hr>
+    <span class="row justify-content-around" id="btn_area_<!-- RID -->">
+        <!-- BTNS -->
+    </span>
+</span>

@@ -1,0 +1,27 @@
+<table class="table table-hover table-bordered" id="address">
+    <thead>
+    <tr>
+        <th>الاسم</th>
+        <th>الكود</th>
+        <th>الرقم</th>
+        <th>المحافظة</th>
+        <th>الشركة</th>
+        <th>-</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td id="name_<!-- INFO_id -->"><!-- INFO_name --></td>
+        <td id="code_<!-- INFO_id -->"><!-- INFO_code --></td>
+        <td id="phone_<!-- INFO_id -->"><!-- INFO_phone --></td>
+        <td id="city_<!-- INFO_id -->"><!-- INFO_city --></td>
+        <td id="com_<!-- INFO_id -->"><!-- INFO_company --></td>
+        <td><button class="btn btn-sm btn-secondary" onclick="select_from_address('<!-- INFO_id -->')"><i class="fa fa-hand-pointer"></i> </button>
+            <button class="btn btn-sm btn-danger" title="حذف"
+                    onclick="if (confirm('تأكيد حذف هذا العنوان')) senddata('next_to_title_<!-- RID -->','todo=address_book&type=mobile_kazia&btn=delete&del_id=<!-- INFO_id -->')">
+                <i class="fa fa-times"></i> </button> </td>
+    </tr>
+    </tbody>
+
+</table>
+

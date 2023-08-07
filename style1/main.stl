@@ -1,0 +1,30 @@
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>الرئيسية</h1>
+            </div>
+
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <span class="col-12">
+                <div class="card card-dark ">
+                    <div class="card-header">
+
+                    </div>
+                    <div class="card-body">
+
+                    </div>
+                </div>
+            </span>
+        </div>
+    </div>
+</section>
+<script>
+    $(".select2").select2();
+</script>

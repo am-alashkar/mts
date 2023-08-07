@@ -1,0 +1,19 @@
+
+                <table class="table table-bordered text-right" dir="rtl">
+                    <tr>
+                        <td>ملاحظات التسليم</td>
+                        <td><textarea id="out_notes" class="form-control"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="text-center">
+                            <button class="btn btn-success" id="deliver_btn_<!-- RID -->"><i class="fa fa-check"></i> تأكيد التسليم </button>
+                        </td>
+                    </tr>
+                </table>
+
+<script>
+    $("#deliver_btn_<!-- RID -->").click(function () {
+        senddata('next_to_title_<!-- RID -->','confirm=1&todo=deliver&id=<!-- VAR_id -->&notes='+$("#out_notes").val());
+    });
+
+</script>

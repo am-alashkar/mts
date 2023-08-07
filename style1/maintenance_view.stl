@@ -1,0 +1,227 @@
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 dir="rtl">عرض الصيانة</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <a class="btn btn-success"  href="<!-- CONFIG_home_link -->print/<!-- INFO_id -->/" target="_blank"><i class="fa fa-print"></i> طباعة </a>
+                <span id="deliver_area"><button id="deliver_to_customer_btn" class="btn btn-warning" onclick="senddata('deliver_area','todo=deliver&id=<!-- INFO_id -->')" ><i class="fa fa-hands-helping"></i> تسليم للزبون </button></span>
+                <button id="re_enter_btn" class="btn btn-warning" onclick="window.location.assign('<!-- CONFIG_home_link -->/add/<!-- INFO_id -->/')" ><i class="fa fa-hand-holding-medical"></i> إعادة ادخال </button>
+                <button id="edit_btn" class="btn btn-info" onclick="window.location.assign('<!-- CONFIG_home_link -->edit/<!-- INFO_id -->/')"><i class="fa fa-pencil-alt"></i>تعديل</button>
+                <a class="btn btn-primary" href="<!-- CONFIG_home_link -->view/<!-- INFO_id -->/"><i class="fa fa-redo"></i> تحديث </a>
+                <button class="btn btn-dark" onclick="print_func()"><i class="fa fa-mail-bulk"></i> ارسال ايميل </button>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<script>
+    function print_func() {
+        window.location.assign("mailto:firas@barcodegate.com;sales@barcodegate.com?subject=<!-- INFO_mail_subject -->&body=<!-- INFO_mail_body -->");
+    }
+</script>
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12" style="overflow-x: scroll;">
+                <div style="min-width: 720px;">
+                    <div class="card card-dark card-outline">
+                        <div class="card-header text-center" dir="rtl">
+                            <h3>رقم الصيانة : <b> <!-- INFO_id --> </b>
+                            <span class=""> <!-- INFO_stat_html --></span></h3>
+                        </div>
+                        <div class="card-body">
+                            <!-- INFO_delivered_html -->
+                            <table class="table table-bordered table-hover text-right" dir="rtl">
+                                <tr>
+                                    <td style="width:10px;white-space: nowrap" nowrap="">الزبون</td>
+                                    <td><!-- INFO_customer_name --> <span class="float-left" style="cursor: pointer" onclick="senddata('main','todo=view_modal&type=customer&id=<!-- INFO_customer -->')"><i class="fa fa-user"></i> </span> </td>
+                                    <td style="width:10px;white-space: nowrap" nowrap="">رقم الهاتف</td>
+                                    <td><!-- INFO_customer_phone --></td>
+                                </tr>
+                                <tr>
+                                    <td style="width:10px;white-space: nowrap" nowrap="">الجهاز</td>
+                                    <td><!-- INFO_device --></td>
+                                    <td>الصنف</td>
+                                    <td><!-- INFO_type --></td>
+                                </tr>
+                                <tr>
+                                    <td style="width:10px;white-space: nowrap" nowrap="">الرقم التسلسلي</td>
+                                    <td><!-- INFO_sn --></td>
+                                    <td style="width:10px;white-space: nowrap" nowrap="">رقم الصيانة التسلسلي</td>
+                                    <td><!-- INFO_msn --></td>
+                                </tr>
+                                <tr>
+                                    <td style="width:10px;white-space: nowrap" nowrap="">تاريخ الادخال </td>
+                                    <td title="<!-- INFO_enter_date|full_since -->"><!-- INFO_enter_date|nlongdate --> <!-- INFO_enter_date|@ --> <!-- INFO_enter_date|nlongtime12 --></td>
+                                    <td style="width:10px;white-space: nowrap" nowrap="">المستلم</td>
+                                    <td><!-- INFO_added_by_name --></td>
+                                </tr>
+                                <tr>
+                                    <td style="width:10px;white-space: nowrap" nowrap=""> الملحقات </td>
+                                    <td><!-- INFO_adds --></td>
+                                    <td style="width:10px;white-space: nowrap" nowrap=""> ملاحظات </td>
+                                    <td><!-- INFO_notes --></td>
+                                </tr>
+                                <tr>
+                                    <td style="width:10px;white-space: nowrap" nowrap=""> شكوى الزبون </td>
+                                    <td colspan="3">
+                                        <!-- INFO_description -->
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:10px;white-space: nowrap" nowrap="" rowspan="2"> تقرير الصيانة<br>الأخير </td>
+                                    <td colspan="3">
+                                        <!-- INFO_last_log_text -->
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3"  title="<!-- INFO_last_log_date|full_since -->">
+                                        <!-- INFO_last_log_name --> <br> <!-- INFO_last_log_date|nlongdate -->  <!-- INFO_last_log_date|@ --> <!-- INFO_last_log_date|nlongtime12 -->
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ADD_REPORT -->
+            <div class="col-12" style="overflow-x: scroll">
+                <div style="min-width: 720px">
+                    <div class="card card-outline card-primary text-center">
+                        <div class="card-header">
+                            <h3>سجل الصيانة</h3>
+                        </div>
+                        <div class="card-body">
+                            <table id="all_reports" dir="rtl" class="table table-bordered table-hover text-right text-sm">
+                                <thead>
+                                <tr>
+                                    <td style="width:10px;white-space: nowrap" nowrap="" >التاريخ</td>
+                                    <td style="width:10px;white-space: nowrap" nowrap="" >المرسل</td>
+                                    <td>التقرير</td>
+                                    <td style="width:10px;white-space: nowrap" nowrap="" >الحالة</td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td style="width:10px;white-space: nowrap" nowrap="" ><!-- INFO_log_enter_date|nlongdate --> <br> <!-- INFO_log_enter_date|nlongtime12 --></td>
+                                    <td style="width:10px;white-space: nowrap" nowrap="" ><!-- INFO_sentby --></td>
+                                    <td><!-- INFO_report --></td>
+                                    <td style="width:10px;white-space: nowrap" nowrap="" ><!-- INFO_new_stat_html --></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- PREV_BILLS -->
+        </div>
+    </div>
+</section>
+
+<!-- SEP --> <!-- 2 delivered -->
+<table class="table table-bordered table-hover text-right" dir="rtl">
+    <tr>
+        <td style="width:10px;white-space: nowrap" nowrap="">تاريخ التسليم</td>
+        <td title="<!-- INFO_out_date|full_since -->">
+            <!-- INFO_out_date|nlongdate -->  <!-- INFO_out_date|@ --> <!-- INFO_out_date|nlongtime12 -->
+        </td>
+        <td style="width:10px;white-space: nowrap" nowrap="">الموظف</td>
+        <td><!-- INFO_out_by_name --></td>
+    </tr>
+    <tr>
+        <td style="width:10px;white-space: nowrap" nowrap="">ملاحظات التسليم</td>
+        <td colspan="3"><!-- INFO_out_notes --></td>
+    </tr>
+</table>
+<hr>
+<!-- SEP --> <!-- 3 add report -->
+<div class="col-12 no-print" style="overflow-x: scroll">
+    <div style="min-width: 720px">
+        <div class="card card-outline card-success text-center">
+            <div class="card-header">
+                <h3>إضافة تقرير صيانة</h3>
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered text-right" dir="rtl">
+                    <tr>
+                        <th>التقرير</th>
+                        <td>
+                            <textarea dir="rtl" id="new_report" form-name="new_report" class="form-control"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>الحالة</th>
+                        <td>
+                            <select id="new_stat" class="form-control" form-name="new_report">
+                                <option value="1">قيد الصيانة</option>
+                                <option value="2">تمت الصيانة</option>
+                                <option value="4">مطلوب رد الزبون</option>
+                                <option value="5">تحويل إلى صيانات دبي</option>
+                                <option value="6">معلقة</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <button class="btn btn-warning" onclick="sendform('new_report_area','todo=new_report&id=<!-- INFO_id -->','new_report')">
+                                <i class="fa fa-plus"></i> إضافة
+                            </button>
+                            <span id="new_report_area"></span>
+                        </td>
+                    </tr>
+                </table>
+<script>
+    var ns = '<!-- INFO_stat -->';
+    if (ns === '0') ns = '1';
+    $("#new_stat").val(ns);
+</script>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- SEP --> <!-- 4 prev comming -->
+<div class="col-12" style="overflow-x: scroll">
+    <div style="min-width: 720px">
+        <div class="card card-outline card-info text-center">
+            <div class="card-header">
+                <h3>دخولات اخرى للجهاز</h3>
+            </div>
+            <div class="card-body">
+                <table id="old_reports" dir="rtl" class="table table-bordered table-hover text-right text-sm">
+                    <thead>
+                    <tr>
+                        <td style="width:10px;white-space: nowrap" nowrap="" >رقم الوصل</td>
+                        <td style="width:10px;white-space: nowrap" nowrap="" >دخول</td>
+                        <td style="width:10px;white-space: nowrap" nowrap="" >خروج</td>
+                        <td style="width:10px;white-space: nowrap" nowrap="" >الجهاز</td>
+                        <td style="width:10px;white-space: nowrap" nowrap="" >الزبون</td>
+                        <td style="width:10px;white-space: nowrap" nowrap="" >SN</td>
+                        <td>التقرير</td>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ondblclick="goToBill('<!-- INFO_prev_id -->')">
+                        <td style="width:10px;white-space: nowrap" nowrap="" ><!-- INFO_prev_id --></td>
+                        <td style="width:10px;white-space: nowrap" nowrap="" ><!-- INFO_prev_enter_date|nlongdate --></td>
+                        <td style="width:10px;white-space: nowrap" nowrap="" ><!-- INFO_prev_out_date|nlongdate --></td>
+                        <td style="width:10px;white-space: nowrap" nowrap="" ><!-- INFO_prev_device --></td>
+                        <td style="width:10px;white-space: nowrap" nowrap="" ><!-- INFO_prev_customer --></td>
+                        <td style="width:10px;white-space: nowrap" nowrap="" ><!-- INFO_prev_sn --> / <!-- INFO_prev_msn --></td>
+                        <td><!-- INFO_prev_report --></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <script>
+                    function goToBill(id) {
+                        window.location.assign('<!-- CONFIG_home_link -->view/'+id+'/');
+                    }
+                </script>
+            </div>
+        </div>
+    </div>
+</div>

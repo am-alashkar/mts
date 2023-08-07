@@ -1,0 +1,165 @@
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                تعديل صيانة
+            </div>
+
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<section class="content">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-12 text-center">
+                <div class="card card-dark">
+                    <div class="card-header">
+                        <h3 class="card-title"> تعديل وصل الصيانة رقم <!-- VAR_id --></h3>
+                        <input type="hidden" id="id" form-name="new_maintenance" value="<!-- VAR_id -->">
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body" style="overflow-x: scroll;">
+
+                        <div class="row" style="min-width: 500px;">
+                            <div class="col-12 col-md-6 col-lg-4">
+                                <div class="card card-gray-dark card-outline">
+                                    <div class="card-header">
+                                اسم الزبون
+                                        <span id="add_new_customer" class="float-left">
+                                            <button id="add_new_customer_btn" onclick="senddata('add_new_customer','todo=add_new_customer')" class="btn btn-warning btn-sm " title="إضافة زبون" ><i class="fa fa-plus-circle"></i> </button>
+                                        </span>
+                                    </div>
+                                <div class="card-body">
+                                <select id="customer" class="form-control" form-name="new_maintenance">
+                                    <option value="0" selected disabled>الرجاء اختيار زبون</option>
+                                    <!-- OBJECT_customer_list_options -->
+                                </select>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-4">
+                                <div class="card card-gray-dark card-outline">
+                                    <div class="card-header">
+                                اسم وموديل الجهاز
+                                    </div>
+                                    <div class="card-body">
+                                <input type="text" id="device" class="form-control" dir="ltr" placeholder="اسم وموديل الجهاز" form-name="new_maintenance" value="<!-- VAR_device -->">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-4">
+                                <div class="card card-gray-dark card-outline">
+                                    <div class="card-header">
+                                        الرقم التسلسلي
+                                    </div>
+                                    <div class="card-body">
+                                        <input type="text" id="sn" placeholder="SN" class="form-control" form-name="new_maintenance" value="<!-- VAR_sn -->">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-4">
+                                <div class="card card-gray-dark card-outline">
+                                    <div class="card-header">
+                                        رقم الصيانة التسلسلي
+                                    </div>
+                                    <div class="card-body">
+                                        <input type="text" id="msn" placeholder="F######" class="form-control" form-name="new_maintenance" value="<!-- VAR_msn -->">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-4">
+                                <div class="card card-gray-dark card-outline">
+                                    <div class="card-header">
+                                صنف الجهاز
+                                    </div>
+                                    <div class="card-body">
+                                <input type="text" id="device_type" class="form-control" placeholder="صنف الجهاز" form-name="new_maintenance" value="<!-- VAR_type -->">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-4">
+                                <div class="card card-gray-dark card-outline">
+                                    <div class="card-header">
+                                تاريخ الادخال
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="input-group">
+                                            <input type="text" id="enter_date" readonly class="form-control" value="<!-- VAR_enter_date|d-m-Y @ h:i A -->" form-name="new_maintenance">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-default" id="today_btn" data-toggle="tooltip" data-placement="bottom" title="اليوم"
+                                                        onclick="$('#enter_date').val($('#server_time_custom').html());a();"><i class="fa fa-calendar-day"></i> </button>
+                                            </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="card card-gray-dark card-outline">
+                                    <div class="card-header">
+                                شكوى الزبون
+                                    </div>
+                                    <div class="card-body">
+                                <textarea  dir="rtl" id="description" class="form-control" form-name="new_maintenance" ><!-- VAR_description --></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="card card-gray-dark card-outline">
+                                    <div class="card-header">
+                                الملحقات
+                                    </div>
+                                    <div class="card-body">
+                                <textarea dir="rtl" id="adds" class="form-control" form-name="new_maintenance"><!-- VAR_adds --></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 ">
+                                <div class="card card-gray-dark card-outline">
+                                    <div class="card-header">
+                                ملاحظات
+                                    </div>
+                                    <div class="card-body">
+                                <textarea dir="rtl" id="notes" class="form-control" form-name="new_maintenance"><!-- VAR_notes --></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <br>
+                        <button class="btn btn-warning" onclick="edit()"><i class="fa fa-save"></i> حفظ </button>
+                        <hr>
+                        <span id="result_area"></span>
+                        <input type="hidden" id="x" value="1">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    function  a()
+    {
+        $("#enter_date").daterangepicker({
+            "locale": {
+                "format": "DD-MM-YYYY @ hh:mm A",
+                cancelLabel: 'الغاء'
+            },
+            singleDatePicker : true,
+            timePicker: true,
+            autoUpdateInput: false,
+        }).on('apply.daterangepicker', function(ev, picker) {
+            $(this).val(picker.startDate.format('DD-MM-YYYY @ hh:mm A')) ;//+ ' - ' + picker.endDate.format('MM/DD/YYYY'));
+        });
+    }
+    a();
+    $("#customer").select2();
+    function edit() {
+        $(".is-invalid").removeClass('is-invalid');
+        sendform('result_area','todo=edit_maintenance','new_maintenance');
+
+    }
+    $("#customer").val('<!-- VAR_customer -->').trigger('change');
+    //$.datepicker._gotoToday = function(id) {      $(id).datepicker('setDate', new Date()).datepicker('hide').blur();  };
+</script>

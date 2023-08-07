@@ -1,0 +1,55 @@
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>title</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="<!-- CONFIG_site -->/">{{home}}</a></li>
+                    <li class="breadcrumb-item"><a href="<!-- CONFIG_site -->/link2/">{{link2}}</a></li>
+                    <li class="breadcrumb-item active">{{current_link}}</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <span class="col-12">
+
+            </span>
+        </div>
+    </div>
+</section>
+
+
+
+<script>
+    $("#table_id").DataTable({
+        "paging": true,
+        "ordering": true,
+        "pagingType": "numbers",
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+        "columns": [
+            null,
+            null,
+            {searchable : false , sortable : false}
+        ],
+        "language": {
+            "info": "عرض _PAGE_ من _PAGES_",
+            "sInfo": "عرض _START_ إلى _END_ من أصل _TOTAL_ نتيجة",
+            "sEmptyTable": "لا يوجد بيانات",
+            "sInfoFiltered": "(مفتلرة من أصل  _MAX_ نتيجة)",
+            "sLengthMenu": "عرض _MENU_ نتيجة",
+            "sZeroRecords": "لا يوجد نتيجة مطابقة",
+            "sSearch": "بحث:",
+            "sInfoEmpty": "عرض 0 نتيجة",
+        }
+
+    });
+</script>

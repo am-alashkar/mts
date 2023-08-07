@@ -1,0 +1,130 @@
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+            </div>
+
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<section class="content">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-12 ">
+                <div class="card card-dark">
+                    <div class="card-header">
+                        <h3 class="card-title">أكواد التعبئة الغير مستخدمة</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="unused_cards" class="table table-hover table-bordered text-right" dir="rtl">
+                            <thead>
+                            <tr>
+                                <th>الرقم والكود</th>
+                                <th>المبلغ</th>
+                                <th>تاريخ</th>
+                                <th>ملاحظات</th>
+                                <th id="view_bill_area">-</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td><!-- INFO_num --><br><!-- INFO_code --></td>
+                                <td><!-- INFO_amount --></td>
+                                <td><!-- INFO_make_date|auto --></td>
+                                <td id="note_for_<!-- INFO_id -->" ondblclick="edit_bill('<!-- INFO_id -->')"><!-- INFO_notes --></td>
+                                <td><button class="btn btn-xs btn-outline-info" onclick="view_bill('<!-- INFO_abill_id -->')"><i class="fa fa-search-plus"></i> </button>
+                                    <button class="btn btn-xs btn-warning" title="تعديل الملاحظات" onclick="edit_bill('<!-- INFO_abill_id -->')"><i class="fa fa-pencil-alt"></i> </button></td>
+                            </tr>
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <th colspan="5">
+                                    <button class="btn btn-warning" type="button" onclick="new_card()"><i class="fa fa-plus"></i> جديد </button>
+                                    <span id="new_area"></span>
+                                </th>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 ">
+                <div class="card card-dark">
+                    <div class="card-header">
+                        <h3 class="card-title">أكواد التعبئة المستخدمة</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="used_cards" class="table table-hover table-bordered text-right" dir="rtl">
+                            <thead>
+                            <tr>
+                                <th>الرقم والكود</th>
+                                <th>المبلغ</th>
+                                <th>تاريخ</th>
+                                <th>الزبون</th>
+                                <th>تاريخ التعبئة</th>
+                                <th>ملاحظات</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td><!-- INFO_num --><br><!-- INFO_code --></td>
+                                <td><!-- INFO_amount --></td>
+                                <td><!-- INFO_make_date|auto --></td>
+                                <td><!-- INFO_client --></td>
+                                <td><!-- INFO_taken_date|auto --></td>
+                                <td><!-- INFO_notes --></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    function new_card() {
+        senddata('new_area','todo=payment_card&btn=new');
+    }
+    function balcalc() {
+        <!-- PER_is_accountant -->
+         return;
+        <!-- /PER_is_accountant -->
+        var am = $("#amount").val();
+        var notes = $("#notes").val();
+        var bal = +$("#balance").val();
+        if (bal < am) {
+            $("#result_area").html('<span style="color: red; ">رصيدك غير كافي </span><br>');
+        } else
+        {
+            $("#result_area").html('');
+        }
+        var ht =$("#result_area").html();
+        $("#result_area").html(ht + 'المبلغ '+am + ' <br> الرصيد الجديد  : '+ (bal-am));
+    }
+    function view_bill(id) {
+        senddata('view_bill_area','todo=view_bill&id='+id);
+    }
+    function edit_bill(id) {
+        var newnote = $("#new_note_for_"+id).html();
+        if (newnote !== undefined) return;
+        var o = $("#note_for_"+id).html();
+
+        $("#note_for_"+id).html(`<div class="input-group" dir="ltr">
+<div class="input-group-prepend">
+<button class="btn btn-default btn-sm" onclick="cancel_bill('`+id+`')"><i class="fa fa-times"></i> </button>
+<button class="btn btn-default btn-sm" onclick="save_bill('`+id+`')"><i class="fa fa-save"></i> </button>
+</div><input type="text" id="new_note_for_`+id+`" value="`+o+`" class="form-control" dir="rtl">
+</div><input type="hidden" id="old_note_for_`+id+`" value="`+o+`">`);
+    }
+    function save_bill(id) {
+        var newnote = $("#new_note_for_"+id).val();
+        senddata('note_for_'+id,'todo=edit_payment_card_note&note='+newnote+'&id='+id);
+    }
+    function cancel_bill(id) {
+        var oldNote = $("#old_note_for_"+id).val();
+        $("#note_for_"+id).html(oldNote);
+    }
+</script>

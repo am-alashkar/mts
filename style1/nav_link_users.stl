@@ -1,0 +1,28 @@
+administration
+
+<!-- SEP -->all
+<li class="nav-item">
+    <a href="<!-- CONFIG_home_link -->add/" class="nav-link">
+        <i class="nav-icon fa fa-plus-circle"> </i>
+        <p>إضافة صيانة</p>
+    </a>
+</li>
+<li class="nav-item">
+    <a href="<!-- CONFIG_home_link -->view/" class="nav-link">
+        <i class="nav-icon fa fa-list-alt"> </i>
+        <p>الصيانات</p>
+    </a>
+</li>
+<li class="nav-item">
+    <a href="<!-- CONFIG_home_link -->search/" class="nav-link">
+        <i class="nav-icon fa fa-search"> </i>
+        <p>بحث</p>
+    </a>
+</li>
+<li class="nav-item">
+    <a href="<!-- CONFIG_home_link -->customers/" class="nav-link">
+        <i class="nav-icon fa fa-users-cog"> </i>
+        <p>الزبائن</p>
+    </a>
+</li>
+<!-- SEP -->ALL

@@ -1,0 +1,43 @@
+<div class="login-box">
+    <div class="login-logo">
+        <a href="<!-- CONFIG_home_link -->"><b><!-- CONFIG_website_title --></b></a>
+    </div>
+    <!-- /.login-logo -->
+    <div class="card">
+        <div class="card-body login-card-body">
+            <p class="login-box-msg"><!-- CONFIG_website_title --></p>
+            <div class="alert alert-<!-- TYPE -->" >
+                <!-- CONTENTS -->
+            </div>
+            <a class="btn btn-lg btn-warning btn-block" href="<!-- CONFIG_home_link -->">{{return_to_home}}</a>
+            <!-- /.social-auth-links -->
+        </div>
+        <!-- /.login-card-body -->
+    </div>
+</div>
+<script>
+    document.body.className = "layout-top-nav layout-footer-fixed login-page";
+</script>
+<!-- SEP --><!-- 2 script if in body -->
+<section class="content-header"></section>
+<section class="content">
+    <div class="container-fluid justify-content-center">
+        <div class="row justify-content-center">
+            <div class="col-sm-12 col-md-6">
+                <div class="card card-<!-- TYPE -->">
+                    <div class="card-header">
+                        <b><!-- CONFIG_website_title --></b>
+                    </div>
+                    <!-- /.login-logo -->
+
+                    <div class="card-body">
+                        <p class="login-box-msg"><!-- CONFIG_website_title --></p>
+                        <div class="alert alert-<!-- TYPE -->" >
+                            <!-- CONTENTS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

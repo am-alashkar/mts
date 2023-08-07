@@ -1,0 +1,15 @@
+<hr>
+<table class="table table-borderless text-right" dir="rtl" >
+    <tr>
+        <th>أدخل المبلغ</th>
+        <th><input type="number" min="0" id="amount" class="form-control" placeholder="كمية التعبئة" form-name="new_card" onkeyup="balcalc()" onchange="balcalc()"></th>
+        <th><button class="btn btn-dark" onclick="sendform('result_area','todo=payment_card','new_card');"><i class="fa fa-save"></i> تأكيد </button> </th>
+    </tr>
+    <tr>
+        <td>ملاحظات</td>
+        <td colspan="2"><input type="text" id="notes" class="form-control" placeholder="ملاحظات" form-name="new_card"></td>
+    </tr>
+</table>
+<input type="hidden" id="csrf" name="csrf" value="<!-- VAR_csrf -->">
+<input type="hidden" id="btn" value="confirm_new" form-name="new_card">
+<span id="result_area"></span>

@@ -1,0 +1,52 @@
+<center><div class="col-sm-12 col-md-6">
+<div class="card card-dark">
+    <div class="card-header">
+        <p class="login-box-msg"><!-- CONFIG_website_title --></p>
+    </div>
+    <div class="card-body login-card-body">
+        <center>
+
+            <button id="mdl_btn_logout" class="btn btn-default" data-toggle="modal" data-target="#modal-logout">
+                {{click_here_to_logout}}
+            </button><br><br>
+            <a class="btn btn-warning" href="<!-- CONFIG_home_link -->">{{return_to_main}}</a>
+        </center>
+        <!-- /.social-auth-links -->
+    </div>
+    <!-- /.login-card-body -->
+</div>
+</div></center>
+<div class="modal fade" id="modal-logout">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">{{Logout}} </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>{{Logout}} ?</p>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <form method="post" action="<!-- CONFIG_home_link -->logout/">
+                    <input type="hidden" name="confirm" value="1">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{{Cancel}}</button>
+                    <button type="submit" class="btn btn-warning">{{confirm}}</button>
+                </form>
+
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- SEP -->
+
+<script>
+    $(function () {
+        $("#mdl_btn_logout").click();
+    });
+
+</script>
+<!-- SEP -->

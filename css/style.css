@@ -1,0 +1,59 @@
+.dance {
+    animation: dance 2s infinite steps(2);
+}
+@-moz-keyframes dance {
+    0%, 84%, 94% {
+        transform: skew(0deg);
+    }
+    85% {
+        transform: skew(50deg);
+    }
+    90% {
+        transform: skew(-15deg);
+    }
+    98% {
+        transform: skew(32deg);
+    }
+}
+@-webkit-keyframes dance {
+    0%, 84%, 94% {
+        transform: skew(0deg);
+    }
+    85% {
+        transform: skew(50deg);
+    }
+    90% {
+        transform: skew(-15deg);
+    }
+    98% {
+        transform: skew(32deg);
+    }
+}
+@-o-keyframes dance {
+    0%, 84%, 94% {
+        transform: skew(0deg);
+    }
+    85% {
+        transform: skew(50deg);
+    }
+    90% {
+        transform: skew(-15deg);
+    }
+    98% {
+        transform: skew(32deg);
+    }
+}
+@keyframes dance {
+    0%, 84%, 94% {
+        transform: skew(0deg);
+    }
+    85% {
+        transform: skew(50deg);
+    }
+    90% {
+        transform: skew(-15deg);
+    }
+    98% {
+        transform: skew(32deg);
+    }
+}

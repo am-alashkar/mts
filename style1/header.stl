@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title><!-- CONFIG_website_title --> - <!-- VAR_page_title --></title>
+    <link rel="icon" href="<!-- CONFIG_home_link -->images/logo.gif">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="<!-- CONFIG_home_link -->css/select2.min.css">
+    <link rel="stylesheet" href="<!-- CONFIG_home_link -->css/style.css">
+    <link rel="stylesheet" href="<!-- CONFIG_home_link -->css/select2-bootstrap4.min.css">
+    <link rel="stylesheet" href="<!-- CONFIG_home_link -->css/all.min.css">
+    <!-- icheck bootstrap -->
+    <link rel="stylesheet" href="<!-- CONFIG_home_link -->css/datatables.css">
+    <link rel="stylesheet" href="<!-- CONFIG_home_link -->css/icheck-bootstrap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="<!-- CONFIG_home_link -->css/adminlte.min.css">
+    <!-- sweetalert2 style -->
+    <link rel="stylesheet" href="<!-- CONFIG_home_link -->css/daterangepicker.css">
+    <link rel="stylesheet" href="<!-- CONFIG_home_link -->css/overlay.css">
+    <link rel="stylesheet" href="<!-- CONFIG_home_link -->css/jquery-ui.css">
+    <link rel="stylesheet" href="<!-- CONFIG_home_link -->css/bootstrap-4.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
+    <script src="<!-- CONFIG_home_link -->js/jquery.min.js"></script>
+    <script src="<!-- CONFIG_home_link -->js/moment_ar.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="<!-- CONFIG_home_link -->js/jquery-ui.js"></script>
+    <!-- AdminLTE App -->
+    <script src="<!-- CONFIG_home_link -->js/adminlte.min.js"></script>
+    <!-- sweetalert2 -->
+    <script src="<!-- CONFIG_home_link -->js/sweetalert2.min.js"></script>
+    <script src="<!-- CONFIG_home_link -->js/extra3.js"></script>
+    <script src="<!-- CONFIG_home_link -->js/select2.full.min.js"></script>
+    <script src="<!-- CONFIG_home_link -->js/daterangepicker.js"></script>
+    <script src="<!-- CONFIG_home_link -->js/datatables_en.js"></script>
+    <script src="<!-- CONFIG_home_link -->js/chart/Chart.min.js"></script>
+    <script src="<!-- CONFIG_home_link -->js/jquery.overlayScrollbars.min.js"></script>
+    <script src="<!-- CONFIG_home_link -->js/bootstrap.bundle.min.js"></script>
+
+</head>
+<body class="hold-transition sidebar-mini layout-fixed layout-footer-fixed accent-orange">
+<script>
+     document.body.style.fontFamily = 'Cairo, sans-serif';
+     document.body.style.lineHeight = '1.1';
+     document.body.style.fontSize = '14px!important';
+</script>
+<div class="wrapper">

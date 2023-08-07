@@ -1,0 +1,432 @@
+<section class="content-header"></section>
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- VAR_msg -->
+            <div class="col-12">
+                <div class="card card-dark">
+                    <div class="card-header">
+                        {{user_accounts}}
+                        <span id="add_new_btn">
+                        <button class="btn btn-warning float-right" id="add_new_user_btn"
+                                onclick="senddata('add_new_btn','todo=admin_users&btn=add')">
+                            <i class="fas fa-plus"></i>{{add_new_user}}
+                        </button>
+                            </span>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-bordered table-striped" id="users_table">
+                            <thead>
+                            <th>#</th>
+                            <th>{{username}}</th>
+                            <th>{{name}}</th>
+                            <th>{{group}}</th>
+                            <th>-</th>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td><!-- INFO_id --></td>
+                                <td><!-- INFO_s_start --> <!-- INFO_login_by --> <!-- INFO_s_end --></td>
+                                <td><!-- INFO_s_start --> <!-- INFO_name --> <!-- INFO_s_end --></td>
+                                <td><!-- INFO_group --></td>
+                                <td>
+                                    <button class="btn btn-xs btn-warning" title="{{Edit}}"
+                                            onclick="senddata('main','todo=admin_users&btn=edit&id=<!-- INFO_id -->')">
+                                        <i class="fas fa-user-edit"></i>
+                                    </button>
+                                    <button class="btn btn-xs btn-warning" title="{{Reset_Password}}"
+                                            for-user="u-<!-- INFO_id -->"
+                                            onclick="senddata('main','todo=admin_users&btn=reset_password&id=<!-- INFO_id -->')">
+                                        <i class="fas fa-key"></i>
+                                    </button>
+                                    <!-- INFO_extra_btn -->
+                                    <button class="btn btn-xs btn-danger" title="{{Delete}}"
+                                            for-user="u-<!-- INFO_id -->"
+                                            onclick="senddata('main','todo=admin_users&btn=delete&id=<!-- INFO_id -->')">
+                                        <i class="fas fa-user-times"></i>
+                                    </button>
+                                    <button class="btn btn-xs btn-danger" title="{{disable}} / {{enable}}"
+                                            for-user="u-<!-- INFO_id -->"
+                                            onclick="senddata('main','todo=admin_users&btn=disable&id=<!-- INFO_id -->')">
+                                        <i class="fas fa-user-slash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- CONTENT END -->
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    $("[for-user='u-1']").remove();
+    function f(txt) {
+        navigator.clipboard.writeText(txt);
+    }
+    function getBase64(file) {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = error => reject(error);
+        });
+    }
+
+</script>
+<!-- SEP --><!-- 2 add new -->
+<form method="post" action="<!-- CONFIG_home_link -->admincp/users/">
+<table class="table table-bordered {{text-left}}" dir="{{ltr}}">
+    <tr>
+        <th>{{username}}</th>
+        <td><input type="text" class="form-control" name="username" placeholder="{{user_name_for_login}}" required></td>
+    </tr>
+    <tr>
+        <th>{{name}}</th>
+        <td><input type="text" class="form-control" name="name" placeholder="{{user_name_for_display}}" required></td>
+    </tr>
+    <tr>
+        <th>{{password}}</th>
+        <td><input type="password" class="form-control" name="password" placeholder="{{password}}" required></td>
+    </tr>
+    <tr>
+        <th>{{confirm}} {{password}}</th>
+        <td><input type="password" class="form-control" name="confirm_password" placeholder="{{confirm}} {{password}}" required></td>
+    </tr>
+    <tr>
+        <th>{{group}}</th>
+        <td>
+            <select class="form-control" name="group_id" required>
+                <option value="" selected disabled>{{please_select}}</option>
+                <!-- GROUPS -->
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <input type="hidden" name="save" value="add_new_user">
+            <button type="submit" class="btn btn-warning btn-block"><i class="fa fa-save"></i> {{add}} </button>
+        </td>
+    </tr>
+</table>
+</form>
+<!-- SEP --><!-- 3 Edit user -->
+<form method="post" action="<!-- CONFIG_home_link -->admincp/users/">
+    <table class="table table-bordered {{text-left}}" dir="{{ltr}}">
+        <tr>
+            <th>{{username}}</th>
+            <td><input type="text" class="form-control" name="username" placeholder="{{user_name_for_login}}" value="<!-- INFO_login_by -->" required></td>
+        </tr>
+        <tr>
+            <th>{{name}}</th>
+            <td><input type="text" class="form-control" name="name" placeholder="{{user_name_for_display}}" value="<!-- INFO_name -->"  required></td>
+        </tr>
+        <tr>
+            <th>{{group}}</th>
+            <td>
+                <select class="form-control" name="group_id" id="group_id" required>
+                    <!-- GROUPS -->
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="hidden" name="save" value="edit_user">
+                <input type="hidden" name="id" value="<!-- VAR_id -->">
+                <button type="submit" class="btn btn-warning btn-block"><i class="fa fa-save"></i> {{save}} </button>
+            </td>
+        </tr>
+    </table>
+</form>
+<!-- SEP --><!-- 4 reset password -->
+<table class="table table-bordered table-striped {{text-left}}" dir="{{ltr}}">
+    <tr>
+        <th colspan="3">{{Reset_Password}}</th>
+    </tr>
+    <tr>
+        <th style="width: 1px;white-space: nowrap" nowrap="">{{username}}</th>
+        <th colspan="2"><!-- INFO_name --> <br> <!-- INFO_login --></th>
+    </tr>
+    <tr>
+        <th style="width: 1px;white-space: nowrap" nowrap="">{{suggested_password}}</th>
+        <td id="suggested_password" dir="ltr"><!-- INFO_new_password -->
+        <input id="suggested_password_b64" type="hidden" value="<!-- INFO_new_password_b64 -->">
+            <input type="hidden" id="suggested_password_clipboard" value="<!-- INFO_new_password -->">
+        </td>
+        <td style="width: 1px;white-space: nowrap" nowrap=""><button class="btn btn-sm btn-default" onclick="f($('#suggested_password_clipboard').val());" title="{{copy_to_clipboard}}"><i class="fa fa-copy"></i> </button>
+            <button class="btn btn-sm btn-default" onclick="senddata('suggested_password','todo=suggest_password')" title="{{new_suggestion}}"><i class="fa fa-sync"></i> </button></td>
+    </tr>
+    <tr>
+        <td>
+            <!-- INFO_confirm_checkbox -->
+        </td>
+        <td colspan="2">
+            <!-- INFO_confirm_label -->
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <button class="btn btn-warning" id="reset_pass_<!-- RID -->"><i class="fa fa-save"></i> {{confirm}}</button>
+        </td>
+        <td id="reset_pass_area">&nbsp;</td>
+    </tr>
+</table>
+<script>
+    $(function () {
+        $("#reset_pass_<!-- RID -->").click(function () {
+            if (document.getElementById('pass_reset_confirm').checked) {
+                senddata('reset_pass_area','todo=admin_users&btn=reset_password&id=<!-- INFO_id -->&confirm=1&np='+$('#suggested_password_b64').val());
+            } else {
+                alert('{{please_confirm_first}}');
+            }
+        });
+    })
+</script>
+<!-- SEP --><!-- 5 Delete -->
+<table class="table table-bordered table-striped {{text-left}}" dir="{{ltr}}">
+    <tr>
+        <th colspan="3" class="text-red">{{Delete_user}}</th>
+    </tr>
+    <tr>
+        <th style="width: 1px;white-space: nowrap" nowrap="">{{username}}</th>
+        <th colspan="2"><!-- INFO_name --> <br> <!-- INFO_login --></th>
+    </tr>
+    <tr>
+        <th class="text-red">{{warning}}</th>
+        <th colspan="2" class="text-red">{{this_operation_can_not_be_undone}}</th>
+    </tr>
+    <tr>
+        <td>
+            <!-- INFO_confirm_checkbox -->
+        </td>
+        <td colspan="2">
+            <!-- INFO_confirm_label -->
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <button class="btn btn-danger" id="delete_btn_<!-- RID -->"><i class="fa fa-times-circle"></i> {{confirm}} <i class="fa fa-times-circle"></i></button>
+        </td>
+        <td id="del_user_area">&nbsp;</td>
+    </tr>
+</table>
+<script>
+    $(function () {
+        $("#delete_btn_<!-- RID -->").click(function () {
+            if (document.getElementById('user_delete_confirm').checked) {
+                senddata('del_user_area','todo=admin_users&btn=delete&id=<!-- INFO_id -->&confirm=1');
+            } else {
+                alert('{{please_confirm_first}}');
+            }
+        });
+    })
+</script>
+<!-- SEP --><!-- 6 disable / Enable -->
+<table class="table table-bordered table-striped {{text-left}}" dir="{{ltr}}">
+    <tr>
+        <th colspan="3" class="text-red">{{disable_enable_user}}</th>
+    </tr>
+    <tr>
+        <th style="width: 1px;white-space: nowrap" nowrap="">{{username}}</th>
+        <th colspan="2"><!-- INFO_name --> <br> <!-- INFO_login --></th>
+    </tr>
+    <tr>
+        <th>{{notes}}</th>
+        <td colspan="2">
+            <input type="text" id="dis_note_<!-- RID -->" class="form-control" value="<!-- INFO_disable_note -->">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <!-- INFO_confirm_checkbox -->
+        </td>
+        <td colspan="2">
+            <!-- INFO_confirm_label -->
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <button class="btn btn-warning" id="disable_btn_<!-- RID -->"><i class="fa fa-save"></i> {{confirm}} </button>
+        </td>
+        <td id="dis_user_area">&nbsp;</td>
+    </tr>
+</table>
+<script>
+    $(function () {
+        $("#disable_btn_<!-- RID -->").click(function () {
+            var note = $("#dis_note_<!-- RID -->").val();
+            if (document.getElementById('user_disabled').checked) {
+                if (confirm('{{disable_user}} ?'))
+                    senddata('dis_user_area','todo=admin_users&btn=disable&id=<!-- INFO_id -->&confirm=1&dis_note='+note+'&disable=1');
+            } else {
+                if (confirm('{{activate_user}} ?'))
+                    senddata('dis_user_area','todo=admin_users&btn=disable&id=<!-- INFO_id -->&confirm=1&dis_note='+note+'&disable=2');
+            }
+        });
+    })
+</script>
+<!-- SEP --><!-- 7 permissions -->
+<table class="table table-bordered table-striped {{text-left}}" dir="{{ltr}}" id="permission_table">
+    <thead>
+    <tr>
+        <th colspan="3" class="text-red">{{user_permissions_edit}}</th>
+    </tr>
+    <tr>
+        <th style="width: 1px;white-space: nowrap" nowrap="">{{username}}</th>
+        <th colspan="2"><!-- INFO_name --> <br> <!-- INFO_login --></th>
+    </tr>
+
+    </thead>
+    <tbody>
+    <tr>
+        <td colspan="3">
+            <!-- PERS_HTML -->
+        </td>
+    </tr>
+    </tbody>
+    <tr>
+        <th colspan="2">
+            <button class="btn btn-warning" id="save_btn_<!-- RID -->"><i class="fa fa-save"></i> {{confirm}} </button>
+        </th>
+        <th id="permission_user_area">&nbsp;</th>
+    </tr>
+</table>
+<script>
+    $(function () {
+        $("#save_btn_<!-- RID -->").click(function () {
+            sendform('permission_user_area','todo=admin_users&btn=permission&id=<!-- INFO_id -->&confirm=1','permissions');
+        });
+    })
+</script>
+<!-- SEP --><!-- 8 template for permission group -->
+<!-- HEADER_START -->
+<div class="card card-dark collapsed-card">
+    <div class="card-header text-left" data-card-widget="collapse" style="cursor:pointer;">
+        <!-- INFO_group_name --> <i class="fa fa-chevron-down"></i>
+        <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
+            </button>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table table-hover table-bordered">
+            <!-- HEADER_END -->
+            <!-- RPT_START -->
+            <tr>
+                <td><!-- INFO_checkbox --></td>
+                <td><!-- INFO_label --></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <!-- INFO_extra -->
+                </td>
+            </tr>
+            <!-- RPT_END -->
+            <!-- FOOTER_START -->
+        </table>
+    </div>
+</div>
+<!-- FOOTER_END -->
+<!-- SEP --><!-- 9 sub items in permissions -->
+<span class="border border-info row"><!-- INFO_checkbox --> <!-- INFO_label --></span>
+<!-- SEP --><!-- 10 prices -->
+<table class="table text-right" dir="rtl">
+    <tr>
+        <th>رقم العضوية</th>
+        <th>الاسم</th>
+        <th>فئة التسعير</th>
+    </tr>
+
+    <tr>
+        <th><!-- INFO_id --></th>
+        <th><!-- INFO_name --></th>
+        <th><select class="form-control" id="user_price_tag">
+            <option value="3" selected>مفرق</option>
+            <option value="2">جملة</option>
+            <option value="1">خاص</option>
+        </select> </th>
+    </tr>
+    <tr>
+        <td>
+            <button class="btn btn-warning" id="price_save_btn_<!-- RID -->"><i class="fa fa-save"></i> حفظ </button>
+        </td>
+        <td colspan="2">&nbsp;</td>
+    </tr>
+</table>
+<table id="custom_price_table" class="table table-bordered table-hover text-right">
+    <thead>
+    <tr>
+        <th> اسم الخدمة التي تم تخصيص أسعارها</th>
+        <th>-</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr id="tr_cp_<!-- INFO_counter -->" >
+        <td><!-- INFO_name --></td>
+        <td><button class="btn btn-danger btn-sm" title="حذف التسعير الخاص لهذه الخدمة" onclick="if(confirm('تأكيد حذف السعر المخصص لهذه الخدمة ؟')) {senddata('next_to_title_<!-- RID -->','todo=extra_admin_ops&btn=delete_c_price&uid=<!-- INFO_user_id -->&scr=<!-- INFO_script -->'); $('#tr_cp_<!-- INFO_counter -->').remove()}"><i class="fa fa-times"></i> </button> </td>
+    </tr>
+    </tbody>
+</table>
+<div class="card card-dark collapsed-card">
+    <div class="card-header text-left" data-card-widget="collapse" style="cursor:pointer;">
+        أسعار خاصة <i class="fa fa-chevron-down"></i>
+        <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
+            </button>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table table-hover table-bordered">
+            <tr>
+                <td><button class="btn btn-success float-right" id="custom_price_download_<!-- RID -->"><i class="fa fa-download"></i> تحميل ملف الأسعار </button>
+                </td><td><span id="downloader_<!-- RID -->"></span></td>
+                <td><button class="btn btn-success float-left" id="custom_price_upload_<!-- RID -->"><i class="fa fa-upload"></i> رفع ملف الأسعار </button>
+                    <input type="file" id="user_<!-- INFO_id -->_pu_<!-- RID -->" style="display: none;"
+                           accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3"><span id="p_area_pu_<!-- RID -->"></span>
+                    <span id="u_area_pu_<!-- RID -->"></span></td>
+            </tr>
+            <tr>
+                <td colspan="3" dir="rtl" class="text-right">
+                    <i class="fa fa-info-circle text-cyan"></i>
+                        قم بتحميل ملف الأسعار الخاص بهذا الزبون ثم قم باجراء التعديلات على الأسعار و قم برفع الملف لتطبيق الاسعار الخاصة حسب الملف<br>
+                    - قم بحذف الأسطر أو الصفحات التي لا تريد تطبيق السعر المخصص عليها<br>
+                    - يتم تطبيق قواعد الأسعار المذكورة في صفحة الأسعار العامة لكل خدمة <br>
+                    - لحذف خدمة أو جزء منها للزبون قم بتعيين السعر إلى 0 <br>
+                    <i class="fa fa-info-circle text-green" ></i> يمكنك رفع نفس الملف لأكثر من زبون <br>
+                    <i class="fa fa-exclamation-triangle text-red"></i><span class="text-red"><b>لا تقم بتعديل بيانات حقول الاسم والنوع والملاحظات ، ولا تقم بتعديل اسماء الأعمدة أو اسماء الصفحات</b></span>
+                            <br>
+
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<script>
+
+    $("#user_<!-- INFO_id -->_pu_<!-- RID -->").change(function () {
+        var target = document.getElementById('user_<!-- INFO_id -->_pu_<!-- RID -->');
+        let file = target.files[0];
+        if (file) {
+            upload_file('user_<!-- INFO_id -->_pu_<!-- RID -->', 'p_area_pu_<!-- RID -->', 'u_area_pu_<!-- RID -->', 'price_upload');
+        }
+    });
+    $("#custom_price_upload_<!-- RID -->").click(function () {
+        $("#user_<!-- INFO_id -->_pu_<!-- RID -->").click();
+    });
+    $("#custom_price_download_<!-- RID -->").click(function () {
+        senddata('downloader_<!-- RID -->','todo=admin&type=global&btn=download&uid=<!-- INFO_id -->');
+    });
+    $("#user_price_tag").val("<!-- INFO_price_group -->");
+    $("#price_save_btn_<!-- RID -->").click(function () {
+        var v = $("#user_price_tag").val();
+        senddata('next_to_title_<!-- RID -->','todo=admin_users&id=<!-- VAR_id -->&btn=prices&confirm=1&v='+v);
+    });
+</script>

@@ -1,0 +1,271 @@
+﻿<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+            </div>
+
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<section class="content">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-12 no-print">
+                <div class="card card-warning card-outline collapsed-card">
+                    <div id="card_header" class="card-header text-center" data-card-widget="collapse" style="cursor:pointer;">
+                        مواصفات بحث
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <form method="POST" action=".">
+                        <div class="row">
+                            <div class="col-12 col-md-6 col-lg-4">
+                                <div class="card card-gray-dark card-outline">
+                                    <div class="card-header">
+                                        اسم الزبون
+                                    </div>
+                                    <div class="card-body">
+                                        <input type="hidden" name="customers" id="customers" value="<!-- VAR_customers -->">
+                                        <select id="customer" name="customer" class="form-control" form-name="new_maintenance" onchange="b()">
+                                            <!-- OBJECT_customer_list_options -->
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-4">
+                                <div class="card card-gray-dark card-outline">
+                                    <div class="card-header">
+                                        اسم وموديل الجهاز
+                                    </div>
+                                    <div class="card-body">
+                                        <input type="text" name="device" id="device" value="<!-- VAR_device -->" class="form-control" dir="ltr" placeholder="اسم وموديل الجهاز" form-name="new_maintenance">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-4">
+                                <div class="card card-gray-dark card-outline">
+                                    <div class="card-header">
+                                        صنف الجهاز
+                                    </div>
+                                    <div class="card-body">
+                                        <input type="text" name="device_type" id="device_type" value="<!-- VAR_device_type -->" class="form-control" placeholder="صنف الجهاز" form-name="new_maintenance">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-4">
+                                <div class="card card-gray-dark card-outline">
+                                    <div class="card-header">
+                                        الرقم التسلسلي أو رقم الصيانة
+                                    </div>
+                                    <div class="card-body">
+                                        <input type="text" name="fast_search" id="fast_search" placeholder="SN" class="form-control" form-name="new_maintenance" value="<!-- VAR_fast_search -->">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-6 col-lg-4">
+                                <div class="card card-gray-dark card-outline">
+                                    <div class="card-header">
+                                        من تاريخ الادخال
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="input-group">
+                                            <input type="text" name="from_enter_date" id="from_enter_date" readonly class="form-control" value="من <!-- VAR_from_enter_date|d-m-Y -->" form-name="new_maintenance">
+                                            <div class="input-group-append">
+                                                <button type="button" class="btn btn-default" id="from_today_btn" data-toggle="tooltip" data-placement="bottom" title="اليوم"
+                                                        onclick="$('#from_enter_date').val('من '+$('#server_time_custom').html().split('@')[0].trim());a();"><i class="fa fa-calendar-day"></i> </button>
+                                                <button type="button" class="btn btn-default" id="from_first_btn" data-toggle="tooltip" data-placement="bottom" title="من أقدم تاريخ ممكن"
+                                                        onclick="$('#from_enter_date').val('من 01-01-1900');a();"><i class="fab fa-wpexplorer"></i> </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-4">
+                                <div class="card card-gray-dark card-outline">
+                                    <div class="card-header">
+                                        إلى تاريخ الادخال
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="input-group">
+                                            <input type="text" name="to_enter_date" id="to_enter_date" readonly class="form-control" value="إلى <!-- VAR_to_enter_date|d-m-Y -->" form-name="new_maintenance">
+                                            <div class="input-group-append">
+                                                <button type="button" class="btn btn-default" id="to_today_btn" data-toggle="tooltip" data-placement="bottom" title="اليوم"
+                                                        onclick="$('#to_enter_date').val('إلى '+$('#server_time_custom').html().split('@')[0].trim());a();"><i class="fa fa-calendar-day"></i> </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-4">
+                                <div class="card card-gray-dark card-outline">
+                                    <div class="card-header">
+                                        المدينة
+                                    </div>
+                                    <div class="card-body">
+                                        <input type="text" name="city" id="city" value="<!-- VAR_city -->" class="form-control" placeholder="المدينة" form-name="new_maintenance">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-4">
+                                <div class="card card-gray-dark card-outline">
+                                    <div class="card-header">
+                                        رقم هاتف
+                                    </div>
+                                    <div class="card-body">
+                                        <input type="text" name="customer_other_phone" id="customer_other_phone" value="<!-- VAR_customer_other_phone -->" class="form-control" placeholder="رقم هاتف ضمن الارقام الاخرى" form-name="new_maintenance">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-4">
+                                <div class="card card-gray-dark card-outline">
+                                    <div class="card-header">
+                                        الحالة
+                                    </div>
+                                    <div class="card-body">
+                                        <input type="hidden" name="stats" id="stats" value="<!-- VAR_stat -->" form-name="new_maintenance">
+                                        <select class="form-control" name="stat" id="stat" onchange="c()" >
+                                            <option value="0">جديد</option>
+                                            <option value="1">قيد الصيانة</option>
+                                            <option value="2">جاهزة غير مسلمة</option>
+                                            <option value="3">تم التسليم</option>
+                                            <option value="4">بانتظار رد الزبون</option>
+                                            <option value="5">صيانات دبي</option>
+                                            <option value="6">معلقة</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                            <button type="submit" name="btn" value="search" class="btn btn-warning btn-sm"><i class="fa fa-search"></i> بحث </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="card card-success card-outline text-right" id="Card_result">
+                    <div class="card-header text-center">
+                        نتائج البحث
+                    </div>
+                    <div class="card-body text-right" id="result_area">
+                        <!-- RESULTS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    $("#customer").select2({
+        placeholder: 'اختر زبون او اكثر',
+        multiple: true,
+        allowClear: true,
+        closeOnSelect: false,
+    });
+    $("#customer").val('<!-- VAR_customers -->'.split(',')).trigger('change');
+    $("#stat").select2({
+        placeholder: 'اختر حالة او اكثر',
+        multiple: true,
+        allowClear: true,
+        closeOnSelect: false,
+    });
+    $("#stat").val('<!-- VAR_stats -->'.split(',')).trigger('change');
+    function a() {
+        $("#from_enter_date").daterangepicker({
+            "locale": {
+                "format": "من DD-MM-YYYY",
+                cancelLabel: 'الغاء'
+            },
+            singleDatePicker : true,
+            timePicker: false,
+            autoUpdateInput: false,
+        }).on('apply.daterangepicker', function(ev, picker) {
+            $(this).val(picker.startDate.format('من DD-MM-YYYY')) ;//+ ' - ' + picker.endDate.format('MM/DD/YYYY'));
+        });
+        $("#to_enter_date").daterangepicker({
+            "locale": {
+                "format": "إلى DD-MM-YYYY",
+                cancelLabel: 'الغاء'
+            },
+            singleDatePicker : true,
+            timePicker: false,
+            autoUpdateInput: false,
+        }).on('apply.daterangepicker', function(ev, picker) {
+            $(this).val(picker.startDate.format('إلى DD-MM-YYYY')) ;//+ ' - ' + picker.endDate.format('MM/DD/YYYY'));
+        });
+    }
+    a();
+    function b() {
+        var a = $("#customer").val();
+        $("#customers").val(a);
+    }
+    function c() {
+        var a = $("#stat").val();
+        $("#stats").val(a);
+    }
+</script>
+<!-- VAR_open_search_box -->
+<!-- SEP --><!-- 2 results -->
+<table id="result_table" class="table table-bordered table-hover text-right text-sm" dir="rtl">
+    <thead>
+    <tr>
+        <td>#</td>
+        <td>الزبون</td>
+        <td class="no-print">الصنف</td>
+        <td>الجهاز</td>
+        <td>SN</td>
+        <td style="white-space:nowrap;width:1px;" nowrap="">استلام</td>
+        <td>الحالة</td>
+        <td class="no-print">-</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td><!-- INFO_id --></td>
+        <td><!-- INFO_customer_name -->  <!-- INFO_customer_phone --></td>
+        <td class="no-print"><!-- INFO_type --></td>
+        <td><!-- INFO_device --></td>
+        <td><!-- INFO_sn --><!-- INFO_snsep --><!-- INFO_msn --></td>
+        <td style="white-space:nowrap;width:1px;" nowrap=""><span style="display: none"><!-- INFO_enter_date|U --></span> <!-- INFO_enter_date|shortdate --> </td>
+        <td style="white-space:nowrap;width:1px;" nowrap=""><!-- INFO_stat_html --></td>
+        <a href="<!-- CONFIG_home_link -->view/<!-- INFO_id -->/">
+            <td class="no-print"><a href="<!-- CONFIG_home_link -->view/<!-- INFO_id -->/" class="btn btn-warning btn-xs"><i class="fa fa-angle-left"></i> </a> </td>
+        </a>
+    </tr>
+    </tbody>
+</table>
+<script>
+    $("#result_table").DataTable({
+        "paging": false,
+        "ordering": true,
+        "pagingType": "numbers",
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+        "columns": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            {'searchable' : false},
+            {'searchable' : false,'sortable' : true},
+            {'searchable' : false,'sortable' : false},
+
+        ],
+        "language": {
+            "info": " ",
+            "sInfo": " ",
+            "sEmptyTable": "لا يوجد بيانات",
+            "sInfoFiltered": " ",
+            "sLengthMenu": " ",
+            "sZeroRecords": "لا يوجد سجلات مطابقة",
+            "sSearch": "بحث سريع",
+            "sInfoEmpty": " ",
+        },
+        "aaSorting": []
+    });
+</script>

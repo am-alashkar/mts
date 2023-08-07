@@ -1,0 +1,57 @@
+<div class="login-box">
+    <div class="login-logo">
+        <a href="<!-- CONFIG_home_link -->"><b><!-- CONFIG_website_title --></b></a>
+    </div>
+
+    <!-- /.login-logo -->
+    <div class="card">
+        <div class="card-body login-card-body">
+            <a href="#" class="brand-link">
+                <i class="brand-image fa fa-sign-in-alt text-dark"
+                     style="opacity: 1"></i>
+
+            </a>
+            <p class="login-box-msg">{{Login}}</p>
+
+            <form action="<!-- CONFIG_home_link -->login/" method="post">
+                <div class="input-group mb-3">
+                    <input type="text" name="username" class="form-control" placeholder="{{Username}}" required>
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-user-alt"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="password" name="password" id="pass" class="form-control" placeholder="{{Password}}" required>
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-lock"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-8">
+                        <input type="hidden" name="login" value="1">
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-warning btn-block">{{enter}}</button>
+                    </div>
+                    <!-- /.col -->
+                </div>
+
+                <div class="row">
+                    <div class="col-8">
+                        <label class="badge badge-danger"><!-- VAR_msg --></label>
+                    </div>
+                </div>
+            </form>
+            <!-- /.social-auth-links -->
+        </div>
+        <!-- /.login-card-body -->
+    </div>
+</div>
+<script>
+    document.body.className = "layout-top-nav layout-footer-fixed login-page";
+</script>

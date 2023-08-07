@@ -1,0 +1,29 @@
+<!-- not Done -->
+<span class="badge badge-pill badge-warning">جديد</span><br>
+<span class="text-muted"> <!-- INFO_admin_note --></span>
+<span class="text-red"><!-- INFO_cr --></span>
+<!-- SEP --><!-- 1 Done -->
+<span class="badge badge-pill badge-success">منفذة</span>
+<br><!-- INFO_admin_name --><br>
+<!-- INFO_done_date|auto --><br>
+<span class="text-muted"> <!-- INFO_admin_note --></span>
+<span class="text-red"><!-- INFO_cr --></span>
+<!-- SEP --><!-- 2 rejected -->
+<span class="badge badge-pill badge-danger" title="<!-- INFO_admin_note -->">ملغاة</span>
+<br><!-- INFO_admin_name --><br>
+<!-- INFO_done_date|auto --><br>
+<span class="text-muted"> <!-- INFO_admin_note --></span>
+<span class="text-red"><!-- INFO_cr --></span>
+<!-- SEP --><!-- 3 on hold -->
+<span class="badge badge-pill badge-info" title="<!-- INFO_admin_note -->">معلقة</span>
+<br><!-- INFO_admin_name --><br>
+<!-- INFO_done_date|auto --><br>
+<span class="text-muted"> <!-- INFO_admin_note --></span>
+<span class="text-red"><!-- INFO_cr --></span>
+<!-- SEP --><!-- 4 in progress -->
+<span class="badge badge-pill badge-dark" title="<!-- INFO_admin_note -->">قيد التنفيذ</span>
+<br><!-- INFO_admin_name --><br>
+<!-- INFO_done_date|auto --><br>
+<span class="text-muted"> <!-- INFO_admin_note --></span>
+<span class="text-red"><!-- INFO_cr --></span>
+
